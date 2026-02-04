@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Azurealpes® Games Booking - À Propos</title>
+    <link rel="stylesheet" href="styles/Fixed_banner.css"/>
+    <link rel="stylesheet" href="styles/Profile_Page.css"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* S'assurer que le contenu principal est bien centré et prend de la place */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        /* Conteneur pour centrer et gérer la largeur des biographies */
+        .bio-container {
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .biography {
+            display: flex;
+            align-items: flex-start; /* Alignement en haut si les biographies sont de tailles différentes */
+            padding: 15px;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bio-icon {
+            font-size: 2.5rem;
+            color: #007bff; /* Couleur de l'icône */
+            margin-right: 15px;
+            min-width: 40px; /* Assurer que l'icône ne bouge pas */
+            text-align: center;
+        }
+
+       .bio-image {
+        width: 48px;  /* Exemple de largeur fixe */
+        height: 48px; /* Exemple de hauteur fixe */
+        border-radius: 50%; /* Pour une forme ronde (type avatar) */
+        object-fit: cover; /* Assure que l'image couvre l'espace sans se déformer */
+    }
+  
+        .bio-text {
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        /* Styles d'alignement pour les paragraphes dans les biographies */
+        .align-left {
+            text-align: justify;
+            text-align-last: left; 
+        }
+
+        .align-right {
+            text-align: justify;
+            text-align-last: right; 
+        }
+
+        /* Section Nous Contacter */
+        .contact-section {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            margin: 10px 0;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        
+        .members-section {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .members-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .members-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .members-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-banner">
+        <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/00d49c31-cda1-4d82-a3ff-633dbea000ae/variations/Default_Generate_a_vibrant_highresolution_3D_Logo_that_remind_0_00d49c31-cda1-4d82-a3ff-633dbea000ae_0.png" alt="Mon image de test" class="logo" />
+        <h1>Azurealpes</h1>
+        <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
+  ☰ </button>
+    </div>
+
+    <div class="main-layout">
+        <div id="banner-container"></div>
+        <div class="main-content">
+            
+            <header style="width: 100%; max-width: 800px; text-align: center; margin-bottom: 30px;">
+                <h2>Notre Équipe et Contact</h2>
+            </header>
+
+            <div class="bio-container">
+    <h3 style="text-align: center; margin-bottom: 20px;">Notre Équipe Dirigeante</h3>
+
+    <div class="biography">
+      <img src="https://imgs.search.brave.com/5ume192FXmYEVWSZCqmVML64zXibh5OWASIk208VEFo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5saWNkbi5jb20v/ZG1zL2ltYWdlL3Yy/L0M1NjAzQVFFZWhr/Y3UzSzFJTlEvcHJv/ZmlsZS1kaXNwbGF5/cGhvdG8tc2hyaW5r/XzIwMF8yMDAvcHJv/ZmlsZS1kaXNwbGF5/cGhvdG8tc2hyaW5r/XzIwMF8yMDAvMC8x/NTE3NTQ3MzYwNTc1/P2U9MjE0NzQ4MzY0/NyZ2PWJldGEmdD1D/VWRsMVdSZ0xNMmRE/T3lNYVZqcXlGU0Nj/SVhEcWVUUnpnYU1j/c25NMGpv" alt="Photo de profil" class="bio-image">
+         <p class="bio-text align-left">
+**L** (Présidente). Ingénieure responsable dans le secteur Pharmaceutique. Son expertise en gestion de projets réglementés offre un parallèle direct avec la rigueur et la structure nécessaires à la direction de l'association. Le jeu l'aide à se focaliser et à gérer des contraintes complexes.
+        </p>
+    </div>
+
+    <div class="biography" style="flex-direction: row-reverse;">
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ84iJwt4SZNuK-ZA84dUYzFNrUy3I1sGE2yZ5p8Ivg1A&s=10" alt="Photo de profil" class="bio-image">           <p class="bio-text align-right">
+            **B** (Trésorier & Admin IT). Expert des infrastructures numériques de l'association. Les jeux de plateaux le poussent à résoudre des situations complexes et à optimiser les ressources.
+        </p>
+    </div>
+
+    <div class="biography">
+        <span class="bio-icon"><i class="fas fa-user-circle"></i></i ></span>
+        <p class="bio-text align-left">
+            **Kevin** (Secrétaire). Le jeu est pour lui une passion supplémentaire, aussi intense que celle qu'il entretient pour le football depuis plus de trente ans. Il est en charge de la communication externe et des sous.
+        </p>
+    </div>
+</div>
+
+             <div class="contact-section">
+                <h3>Nous Contacter</h3>
+                <hr style="width: 50%; margin: 15px auto;">
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span><strong>Bureau :</strong> Bureau@azurealpes.fr</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span><strong>Partenariats :</strong> partenariats@azurealpes.fr</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span><strong>Presse :</strong> presse@azurealpes.fr</span>
+                </div>
+                
+                <hr style="width: 50%; margin: 15px auto;">
+
+                <div class="contact-item">
+                    <i class="fas fa-phone fa-fw"></i>
+                    <span><strong>Président : </strong> +33 1 23 45 67 89</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone fa-fw"></i>
+                    <span><strong>Secrétaire :</strong> +33 9 87 65 43 21</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone fa-fw"></i>
+                    <span><strong>Urgence :</strong> +33 9 00 11 22 33</span>
+                </div>
+			 </div>
+			
+            <div class="members-section">
+                <h3>Liste des Membres Actifs</h3>
+                <hr style="width: 50%; margin: 15px auto;">
+                <ul class="members-list">
+                    <li><span>Licorne</span> <span>(Admin)</span></li>
+                    <li><span>Renard Gris</span> <span>(Développeur)</span></li>
+                    <li><span>K</span> <span>(Testeur)</span></li>
+                    <li><span>Rumi</span> <span>(Membre honorifique)</span></li>
+                    <li><span>Tic-Tac</span> <span>(Membre honorifique)</span></li>
+                    <li><span>J</span> <span>(Membre)</span></li>
+                </ul>
+            </div>
+            
+        </div>
+       
+    </div>
+
+    <script src="./scripts/JS-Nav.js"> </script>
+	<script src="./scripts/load-navigation.js"> </script>
+
+</body>
+</html>

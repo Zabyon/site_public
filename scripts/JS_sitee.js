@@ -1,0 +1,2 @@
+(()=>{document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("menu-toggle-button"),t=document.querySelector(".fixed-sidebar");if(e&&t){let o=function(){let n=t.classList.toggle("is-open");e.setAttribute("aria-expanded",n),e.textContent=n?"\u2715":"\u2630"};var s=o;e.addEventListener("click",o),t.querySelectorAll("a").forEach(n=>{n.addEventListener("click",()=>{t.classList.contains("is-open")&&o()})})}else console.error("\xC9l\xE9ments de bascule du menu (bouton ou barre lat\xE9rale) introuvables.")});})();
+//# sourceMappingURL=JS_sitee.js.map

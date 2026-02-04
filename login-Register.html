@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Azurealpes® Games Booking</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      :root {
+        --primary-color: #1c87c9;
+        --secondary-color: #26a9e0;
+        --text-color: #666;
+        --background-color: #ddd;
+        --form-bg-color: #ebebeb;
+      }
+      
+      html, body {
+        height: 100%;
+        margin: 0;
+        font-family: Roboto, Arial, sans-serif;
+        color: var(--text-color);
+        background-color: var(--background-color);
+      }
+      
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      
+      /* Styles pour petits écrans (par défaut) */
+      .logo-container {
+        display: none; /* Masque ce conteneur par défaut */
+      }
+    
+      .form-logo {
+        display: flex; /* Affiche ce conteneur par défaut */
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .logo {
+        height: 150px;
+        width: auto;
+      }
+      
+      /* Styles pour grands écrans (> 600px) */
+      @media (min-width: 601px) {
+        .logo-container {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          display: block; /* Affiche ce conteneur */
+        }
+        .form-logo {
+          display: none; /* Masque ce conteneur */
+        }
+      }
+      
+      /* Styles généraux du formulaire */
+      .main-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 8px;
+        border: solid 1px #ccc;
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.31);
+        background: var(--form-bg-color);
+        box-sizing: border-box;
+      }
+
+      /* Styles des onglets (Nouveauté) */
+      .tab-switcher {
+          display: flex;
+          width: 100%;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          overflow: hidden;
+          background-color: #ccc;
+      }
+
+      .tab-switcher button {
+          flex: 1;
+          padding: 10px 0;
+          margin-top: 0; /* Annule le margin-top du style button général */
+          border-radius: 0;
+          background: #eee;
+          color: var(--text-color);
+          font-weight: 500;
+          transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      .tab-switcher button.active {
+          background: var(--primary-color);
+          color: #fff;
+      }
+      
+      h2 {
+        padding: 10px 0;
+        font-weight: 300;
+        text-align: center;
+        width: 100%;
+        margin-top: 0;
+        display: none; /* Masqué car remplacé par les onglets */
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .input-group {
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      
+      input[type=text], input[type=password], input[type=email] {
+        flex-grow: 1;
+        height: 40px;
+        padding: 0 10px;
+        border-radius: 0 5px 5px 0;
+        border: solid 1px #cbc9c9;
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.09);
+        background: #fff;
+        box-sizing: border-box;
+      }
+      
+      #icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        background: var(--primary-color);
+        color: #fff;
+        border-radius: 5px 0 0 5px;
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.09);
+      }
+      
+      .btn-block {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      button {
+        width: 100%;
+        padding: 12px 0;
+        margin-top: 20px;
+        border-radius: 5px;
+        border: none;
+        background: var(--primary-color);
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      
+      button:hover {
+        background: var(--secondary-color);
+      }
+      
+      .privacy-policy {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 12px;
+      }
+      
+      .privacy-policy a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      /* Styles pour masquer/afficher les formulaires (Nouveauté) */
+      .form-content {
+          display: none;
+      }
+
+      .form-content.active {
+          display: block;
+          width: 100%;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="logo-container">
+      <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/00d49c31-cda1-4d82-a3ff-633dbea000ae/variations/Default_Generate_a_vibrant_highresolution_3D_Logo_that_remind_0_00d49c31-cda1-4d82-a3ff-633dbea000ae_0.png" alt="Logo" class="logo">
+    </div>
+
+
+    <div class="main-block">
+      <div class="form-logo">
+        <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/00d49c31-cda1-4d82-a3ff-633dbea000ae/variations/Default_Generate_a_vibrant_highresolution_3D_Logo_that_remind_0_00d49c31-cda1-4d82-a3ff-633dbea000ae_0.png" alt="Logo" class="logo">
+      </div>
+      
+      <div class="tab-switcher">
+          <button id="tab-login" class="active" onclick="switchTab('login')">Connexion</button>
+          <button id="tab-register" onclick="switchTab('register')">Enregistrement</button>
+      </div>
+      
+      <div id="login-form-content" class="form-content active">
+          <form id="loginForm" action="#">
+            <div class="input-group">
+              <label id="icon"><i class="fas fa-envelope"></i></label>
+              <input type="email" name="loginEmail" id="loginEmail" placeholder="Email" required/>
+            </div>
+            <div class="input-group">
+              <label id="icon"><i class="fas fa-unlock-alt"></i></label>
+              <input type="password" name="loginPassword" id="loginPassword" placeholder="Mot de passe" required/>
+            </div>
+            <div class="btn-block">
+              <button type="submit">Connexion</button>
+            </div>
+          </form>
+      </div>
+
+      <div id="register-form-content" class="form-content">
+          <form id="registerForm" action="#">
+            <div class="input-group">
+              <label id="icon"><i class="fas fa-envelope"></i></label>
+              <input type="email" name="registerEmail" id="registerEmail" placeholder="Email (login)" required/>
+            </div>
+            <div class="input-group">
+              <label id="icon"><i class="fas fa-unlock-alt"></i></label>
+              <input type="password" name="registerPassword" id="registerPassword" placeholder="Mot de passe" required/>
+            </div>
+            <div class="input-group">
+              <label id="icon"><i class="fas fa-lock"></i></label>
+              <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmer mot de passe" required/>
+            </div>
+            <div class="btn-block">
+              <p class="privacy-policy">En cliquant sur Enregistrer, vous acceptez notre <a href="https://www.websitepolicies.com/blog/sample-privacy-policy-template">Politique de confidentialité</a>.</p>
+              <button type="submit">Enregistrer</button>
+            </div>
+          </form>
+      </div>
+
+      <div id="result-message">Résultat de l'opération apparaîtra ici.</div>
+    </div>
+
+    <script>
+      // --- Configuration des API ---
+      const urlIdent = 'http://172.16.254.30:5678/webhook/62e74156-a953-4b1b-94cb-51b2b5314903';
+      // *** NOUVELLE ADRESSE API POUR L'ENREGISTREMENT ***
+      const urlRegistration = 'http://172.16.254.30:5678/webhook/45f098af-3eb6-43e2-9dba-7b875824779c'; 
+      // ------------------------------------------------
+      const targetDiv = '#result-message';
+
+
+      // Fonction utilitaire pour afficher les données
+      function displayMessage(message, isError = false) {
+          const element = document.querySelector(targetDiv);
+          if (element) {
+              element.textContent = message;
+              element.style.color = isError ? 'red' : 'green';
+          }
+      }
+
+      // Fonction pour changer d'onglet
+      function switchTab(tabId) {
+          document.querySelectorAll('.tab-switcher button').forEach(button => {
+              button.classList.remove('active');
+          });
+          document.querySelectorAll('.form-content').forEach(content => {
+              content.classList.remove('active');
+          });
+
+          document.getElementById('tab-' + tabId).classList.add('active');
+          document.getElementById(tabId + '-form-content').classList.add('active');
+          displayMessage('Résultat de l\'opération apparaîtra ici.', false); // Réinitialise le message
+      }
+
+      // Gestionnaire de soumission pour la connexion
+      document.getElementById('loginForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const email = document.getElementById('loginEmail').value;
+          const password = document.getElementById('loginPassword').value;
+          apiCall(urlIdent, email, password, 'login');
+      });
+
+      // Gestionnaire de soumission pour l'enregistrement
+      document.getElementById('registerForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const email = document.getElementById('registerEmail').value;
+          const password = document.getElementById('registerPassword').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+
+	  // Début de la vérification du mot de passe
+          const minLength = 13;
+          const maxLength = 39; // 'moins de 40' -> max 39
+          const hasUpperCase = /[A-Z]/.test(password);
+          const hasNumberOrSymbol = /[\d\W_]/.test(password); /*// \d pour nombre, \W pour symbole (non-mot), _ pour underscore inclus dans \W.*/
+
+if (password.length < minLength || password.length > maxLength) {
+              displayMessage(`Erreur : Le mot de passe doit contenir entre ${minLength} et ${maxLength} caractères.`, true);
+              return;
+          }
+
+          if (!hasUpperCase) {
+              displayMessage('Erreur : Le mot de passe doit contenir au moins une majuscule.', true);
+              return;
+          }
+
+          if (!hasNumberOrSymbol) {
+              displayMessage('Erreur : Le mot de passe doit contenir au moins un nombre ou un symbole.', true);
+              return;
+          }
+         
+
+
+          if (password !== confirmPassword) {
+              displayMessage('Erreur : Les mots de passe ne correspondent pas.', true);
+              return;
+          }
+          
+          apiCall(urlRegistration, email, password, 'register');
+      });
+
+
+      // Fonction unifiée pour l'appel API
+      async function apiCall(url, email, password, type) {
+          const data = {
+              'userName': email,
+              'password': password
+          };
+
+          try {
+              const response = await fetch(url, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+              });
+
+              if (!response.ok) {
+                  throw new Error(`Erreur HTTP: ${response.status}`);
+              }
+
+              const responseData = await response.json();
+              console.log('Réponse de l\'API:', responseData);
+
+              if (type === 'login') {
+                  // Logique spécifique à la CONNEXION
+                  // J'utilise responseData[0].jwtToken basé sur votre code original.
+                  const jwtToken = responseData[0]?.jwtToken;
+
+                  if (jwtToken) {
+                      sessionStorage.setItem('jwtToken', jwtToken);
+                      // Stockage des autres éléments si nécessaires, basé sur votre code original
+                      sessionStorage.setItem('Falsetoken', responseData[0].Falsetoken);
+                      sessionStorage.setItem('userName', responseData[0].userName);
+
+                      displayMessage('Connexion réussie. Redirection en cours...', false);
+                      console.log('Token JWT reçu et stocké. Redirection.');
+                      // Redirection vers une page sécurisée
+                     // window.location.href = 'http://172.16.254.29:8000/api/fs/download?file=/ApiProd.html&preview=true'; 
+					   window.location.href = 'ApiProd.html'; 
+                  } else {
+                      displayMessage('Token non reçu. Authentification échouée.', true);
+                  }
+
+              } else if (type === 'register') {
+                  // Logique spécifique à l'ENREGISTREMENT
+                  // Suppose que l'API retourne un statut ou un message de succès
+                  displayMessage('Enregistrement réussi. Vous pouvez maintenant vous connecter.', false);
+                  // Optionnel: Passer automatiquement à l'onglet Connexion après succès
+                  // switchTab('login');
+              }
+
+
+          } catch (error) {
+              console.error('Erreur lors de la récupération des données:', error);
+              if (type === 'login') {
+                  displayMessage('Erreur lors de la connexion.', true);
+              } else {
+                  displayMessage('Erreur lors de l\'enregistrement. Vérifiez l\'API.', true);
+              }
+          }
+      }
+
+      // Initialisation: S'assurer que le premier onglet est actif au chargement
+      document.addEventListener('DOMContentLoaded', () => {
+          switchTab('login');
+      });
+    </script>    
+    
+  </body>
+</html>
+

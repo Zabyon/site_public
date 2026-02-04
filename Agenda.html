@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Azurealpes</title>
+    <link rel="stylesheet" href="styles/Fixed_banner.css"/>
+  <style>
+
+ body {
+  margin: 0;
+  padding-top :62px; /* Ajoute l'écrat pour que la bannière apparaisse et n'écrase pas le contenu */
+  background-color: #ddd
+ }
+
+ /* FIN Menu GAUCHE */
+    
+
+    /*/ container */
+        .containerMid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          border: 2px dashed #ddd;
+          padding: 10px;
+          
+        }
+
+        .item {
+            flex: 1 1 600px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
+            border: 1px solid blue;
+            padding: 10px;
+            box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur/hauteur */
+        }
+
+        /* Styles spécifiques pour le premier élément (optionnel) */
+        .item:first-child {
+            border-color: green;
+        }
+
+        /* Styles spécifiques pour le deuxième élément (optionnel) */
+        .item:last-child {
+            border-color: pink;
+        }
+   
+         .item2 {
+            flex: 1 1 200px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
+            border: 1px solid blue;
+            padding: 0px;
+            /*Inclut le padding et la bordure dans la largeur/hauteur */
+        }
+
+        /* LE DROPDOWN MENU*/
+      h4 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+	  
+
+
+.logo-content {
+    height: 240px; 
+    width: auto; 
+    margin-right: 20px;
+}
+/*CSS DE L'AGENDA MAIS VOIR POIR CENTRALISER LE CSS*/
+:root {
+            --primary: #4CAF50;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+        }
+        body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.5; }
+        
+      
+    
+    .events-grid {
+    display: grid;
+    /* Par défaut : 1 seule colonne (mobile first) */
+    grid-template-columns: 1fr; 
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Tablette et Desktop : on autorise plusieurs colonnes si l'espace le permet */
+@media (min-width: 765px) {
+    .events-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+    
+    
+    
+
+        .event-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .event-card:hover { transform: translateY(-4px); }
+
+        .event-type {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+
+        .event-date {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .event-title {
+            margin: 8px 0;
+            font-size: 1.4rem;
+            color: #0f172a;
+        }
+
+        .event-desc {
+            font-size: 0.95rem;
+            color: #475569;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Style alternatif pour les réunions */
+        .cta-info {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+    </style>
+
+</head>
+<body>
+<div class="fixed-banner">
+    <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/00d49c31-cda1-4d82-a3ff-633dbea000ae/variations/Default_Generate_a_vibrant_highresolution_3D_Logo_that_remind_0_00d49c31-cda1-4d82-a3ff-633dbea000ae_0.png" alt="Mon image de test" class="logo" />
+    <h1>Azurealpes </h1>
+    <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
+    ☰ </button>
+</div>
+
+<div class="main-layout">
+<div id="banner-container"></div>  
+  
+  <div class="main-content">  
+<h2 style="text-align:center; margin-bottom: 40px;">Prochains rendez-vous</h2>
+    
+    <div id="events-container" class="events-grid"></div>
+  </div>
+    <script>
+        const rawData = [
+            { type: "Tournoi", titre: "Pokémon Régional", description: "Format Standard - 32 places.", date: "2026-01-11", lieu: "Siège asso" },
+            { type: "Réunion", titre: "Assemblée Générale", description: "Bilan annuel et nouveaux projets.", date: "2026-02-01", lieu: "Salle Polyvalente" },
+            { type: "Open salle", titre: "Jeux de plateau", description: "Accès libre à la ludothèque.", date: "2026-02-15", lieu: "Local 42" },
+            { type: "Tournoi", titre: "Time Bomb", description: "Tournoi amical de rapidité.", date: "2026-03-05", lieu: "Café Jeux" },
+            { type: "Open salle", titre: "Après-midi figurines", description: "Atelier peinture et jeu.", date: "2026-03-20", lieu: "Local 42" }
+        ];
+
+        function getCTA(type) {
+            switch(type) {
+                case "Tournoi":
+                case "Open salle":
+                    return { text: "Je m'inscris", class: "" };
+                case "Réunion":
+                    return { text: "Plus d'informations", class: "cta-info" };
+                default:
+                    return { text: "En savoir plus", class: "" };
+            }
+        }
+
+        function renderEvents() {
+            const container = document.getElementById('events-container');
+            const now = new Date();
+
+            const upcomingEvents = rawData
+                .filter(item => new Date(item.date) >= now)
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .slice(0, 5);
+
+            container.innerHTML = upcomingEvents.map(event => {
+                const cta = getCTA(event.type);
+                return `
+                <article class="event-card">
+                    <div class="event-type">${event.type}</div>
+                    <div class="event-date">
+                        ${new Date(event.date).toLocaleDateString('fr-FR', {day: 'numeric', month: 'long'})}
+                    </div>
+                    <h3 class="event-title">${event.titre}</h3>
+                    <p class="event-desc">
+                        ${event.description}<br>
+                        <small>📍 ${event.lieu}</small>
+                    </p>
+                    <a href="#" class="cta-button ${cta.class}">${cta.text}</a>
+                </article>
+            `}).join('');
+        }
+
+        renderEvents();
+    </script>    
+  
+ 
+ 
+
+<script src=./scripts/JS-Nav.js> </script>
+<script src=./scripts/load-navigation.js> </script>
+
+</body>
+</html>

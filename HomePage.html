@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Azurealpes</title>
+    <link rel="stylesheet" href="styles/Fixed_banner.css"/>
+  <style>
+
+ body {
+  margin: 0;
+  padding-top :62px; /* Ajoute l'écrat pour que la bannière apparaisse et n'écrase pas le contenu */
+  background-color: #ddd
+ }
+
+
+
+ /* FIN Menu GAUCHE */
+        button {
+            background-color: #4CAF50; 
+            color: white; /* Texte */
+            padding: 15px 30px; /* Espacement intérieur */
+            border: none; /* Pas de bordure */
+            border-radius: 30px; /* Bords arrondis */
+            cursor: crosshair; /* Curseur de la main au survol */
+            font-size: 18px; /* Taille du texte */
+        }
+
+        button:hover {
+            background-color: #45a049; /* Légèrement plus foncé au survol */
+        }
+    
+        input {
+          width: 100%;
+          height: 30px;
+        }
+
+    /*/ container */
+        .containerMid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          border: 2px dashed #ddd;
+          padding: 10px;
+          
+        }
+
+        .item {
+            flex: 1 1 600px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
+            border: 1px solid blue;
+            padding: 10px;
+            box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur/hauteur */
+        }
+
+        /* Styles spécifiques pour le premier élément (optionnel) */
+        .item:first-child {
+            border-color: green;
+        }
+
+        /* Styles spécifiques pour le deuxième élément (optionnel) */
+        .item:last-child {
+            border-color: pink;
+        }
+   
+         .item2 {
+            flex: 1 1 200px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
+            border: 1px solid blue;
+            padding: 0px;
+            /*Inclut le padding et la bordure dans la largeur/hauteur */
+        }
+
+        /* LE DROPDOWN MENU*/
+      h4 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Basic styling for the label */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+
+.logo-content {
+    height: 240px; 
+    width: auto; 
+    margin-right: 20px;
+}
+
+.mainimg {
+  /* 1. Définir la largeur à 80% du conteneur */
+  width: 70%;
+  /* 2. Convertir en élément de bloc pour le centrage horizontal par marge */
+  display: block;
+  /* 3. Centrer horizontalement l'image dans son conteneur */
+  margin-left: auto;
+  margin-right: auto;
+}
+    
+
+.text-container {
+  width: 85%;
+  margin: 0px auto 0 auto; /* Ajouter une marge supérieure de 20px et centrer */
+}
+/* A RETIRER ENSUITE MAIS ATTENTION A TOUTES LES URLS CAR TOUT POUR LE DEV !*/
+
+#Saisie_Jeu {
+  border-radius: 40px; /* Ajustez cette valeur si nécessaire */
+
+  /* (Optionnel) Ajoute un léger rembourrage pour l'esthétique */
+  padding: 8px 10px;
+}
+
+#Saisie_Jeu::placeholder {
+  /* Police en italique */
+  font-style: italic;
+  color: #aaa;
+}
+	  
+
+
+
+
+.branding h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  gap: 12px; /* Espacement entre les boutons */
+}
+
+.btn {
+  display: block;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 30px;
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary {
+  background-color: white;
+  border-radius: 30px;
+  color: var(--primary-color);
+  border: 1px solid #ccc;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+
+    #random-event-container {
+            background: #ffffff;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border-left: 5px solid #4CAF50;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .event-info-line {
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #1e293b;
+        }
+
+        .event-info-line:last-child {
+            border-bottom: none;
+        }
+
+
+
+
+           .toggle-container {
+            display: flex;
+            gap: 20px; /* Espace entre les boutons */
+            align-items: center;
+            margin: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+   
+</style>
+
+</head>
+<body>
+<div class="fixed-banner">
+    <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/00d49c31-cda1-4d82-a3ff-633dbea000ae/variations/Default_Generate_a_vibrant_highresolution_3D_Logo_that_remind_0_00d49c31-cda1-4d82-a3ff-633dbea000ae_0.png" alt="Mon image de test" class="logo" />
+    <h1>Azurealpes </h1>
+    <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
+    ☰ </button>
+</div>
+
+<div class="main-layout">
+  <div id="banner-container"></div>  
+  
+  <div class="main-content">    
+    <div class="hero-container">
+      <div class="branding">
+      <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/00d49c31-cda1-4d82-a3ff-633dbea000ae/variations/Default_Generate_a_vibrant_highresolution_3D_Logo_that_remind_0_00d49c31-cda1-4d82-a3ff-633dbea000ae_0.png" alt="Logo" class="logo-content">
+      <h1>Unis par les dés. Animés par le jeu.</h1>
+      	<h2>L'association</h2>
+        <p>
+        L'association Azurealpes promeut le jeu de société comme vecteur de lien social direct et outil de renforcement du tissu communautaire local.
+        </p>
+        <p>
+        Nous œuvrons à accroître la visibilité des jeux de plateau afin d'offrir une alternative enrichissante et un équilibre convivial face aux sollicitations numériques croissantes.
+        </p>
+        <hr>  
+      </div>  
+     
+    <div class="button-group">
+    <a href="Adhesion.html"" class="btn btn-primary">Je veux Adhérer !</a>
+    <a href="Agenda.html" class="btn btn-secondary">On fait quoi ce week ?</a>
+    <a href="NousContacter.html" class="btn btn-secondary">Je Sponsorise !</a>
+    </div>
+
+
+   
+    <div class="containerMid"> 
+      <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/1f0a86b9-e03e-6db0-b652-32a9be5bc86b/gemini-2.5-flash-image-preview_Add_some_dragon_and_knight_action_figure_lying_on_the_table-0.jpg" alt="image ppale decrivant AFINIR" class="mainimg" />   
+    </div>   
+    <div class="containerMid">
+      <div class="text-container">
+        
+        <h2>À Propos</h2>
+        <p>
+        Fondée en 2025 par M. B et Mme L, l'association s'articule autour de l'appréciation du côté humain des jeux de plateau, lesquels sont reconnus pour être des catalyseurs d'interactions et pour affûter activement les compétences cognitives indispensables telles que la stratégie et l'anticipation. Le jeu représente un accès direct au développement du potentiel intellectuel.
+        </p>
+        <p>
+        Une première initiative notable fut le lancement d'un pilote d'accompagnement pour les personnes atteintes de la Sclérose en Plaques (SEP), une cause soutenue par Mme L (notamment via la SEPc).
+        </p>
+        <p>
+        L'association a été officiellement établie pour étendre cette démarche positive et déployer son action au sein du tissu de l'arrière-pays.
+        </p>
+        <hr>
+      
+        <h2>Ou nous trouver</h2>
+        <p>
+        4rue des Fleurs, 06460 st vallier de thiey
+        </p>
+		<br>
+      </div> 
+	</div>
+       <div class="hero-container">   
+      <small>
+	    <a href="https://www.openstreetmap.org/?#map=19/43.699785/6.848150&amp;layers=N">4 rue des fleurs Saint vallier de thiey</a>
+	  </small>
+      <iframe 
+		width="380"
+		height="300" 
+		src="https://www.openstreetmap.org/export/embed.html?bbox=6.84762328863144%2C43.69946700916219%2C6.848677396774293%2C43.70010305231341&amp;layer=mapnik" style="border: 1px solid black">
+	  </iframe>
+	  <hr>
+	  <small>
+	  <a href="https://www.openstreetmap.org/?#map=19/43.699785/6.848150&amp;layers=N">Afficher une carte plus grande</a></small>
+	  <br>
+     
+	  <div class="containerMid">     
+	<hr>  
+    <h2> À la découverte d'un nouveau jeu </h2>
+    <button id ="Surprends moi !" onclick="resetData('result2','ecranJeu')"Surprends moi !</button>
+    
+    <hr>
+  
+
+
+<button id="btn-random-event">Surprends moi !e</button>
+
+
+     <div class="toggle-container">
+        <div>
+            <label class="switch">
+                <input type="checkbox" id="toggle1">
+                <span class="slider"></span>
+            </label>
+            <span>Conditions ? Oui/Non</span>
+        </div>
+        <div>
+            <label class="switch">
+                <input type="checkbox" id="toggle2">
+                <span class="slider"></span>
+            </label>
+            <span>Compétitif/Coopératif ?2</span>
+        </div>
+        <div>
+            <label class="switch">
+                <input type="checkbox" id="toggle3">
+                <span class="slider"></span>
+            </label>
+            <span>15 a 30min? 45min+?</span>
+        </div>
+    </div>
+
+    <div id="content1" class="content">
+        <p>Jeu avec contrainte ? (non activé)</p>
+    </div>
+    <div id="content2" class="content">
+        <p>Choix 1 bouton 2 (non activé)</p>
+    </div>
+    <div id="content3" class="content">
+        <p>Choix 1 bouton 3 (non activé)</p>
+    </div>
+
+   
+       <div id="result3">En choissisant un style/temps/difficulté de jeu cela réduit les possibilités</div>
+    </div>  
+    <hr>
+   <div id="random-event-container">
+  </div>
+
+  </div>
+</div>      
+ 
+</div>
+ 
+   <script>
+const toggle1 = document.getElementById('toggle1');
+        const content1 = document.getElementById('content1');
+        toggle1.addEventListener('change', function() {
+            content1.textContent = this.checked ? 'Voir contraintes (activé)' : 'Jeu aléatoire (non activé)';
+        });
+
+        const toggle2 = document.getElementById('toggle2');
+        const content2 = document.getElementById('content2');
+        toggle2.addEventListener('change', function() {
+            content2.textContent = this.checked ? 'Compétitif (activé)' : 'Cooperatif (non activé)';
+        });
+
+        const toggle3 = document.getElementById('toggle3');
+        const content3 = document.getElementById('content3');
+        toggle3.addEventListener('change', function() {
+           content3.textContent = this.checked ? 'Durée 15min)' : '30min+ )';
+        })
+    </script>
+
+<script src=./scripts/JS-Nav.js> </script>
+<script src=./scripts/load-navigation.js> </script>
+
+<script src=./scripts/RandomObjectGame.js> </script>
+
+
+
+</body>
+</html>

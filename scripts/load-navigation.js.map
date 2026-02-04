@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../Web-Dev/scripts/load-navigation.js"],
+  "sourcesContent": ["//load-navigation.js\ndocument.addEventListener('DOMContentLoaded', function() {\n  fetch('navigation.html')\n    .then(response => {\n      if (!response.ok) throw new Error('Fichier introuvable');\n      return response.text();\n    })\n    .then(data => {\n      const container = document.getElementById('banner-container');\n      if (container) {\n        container.innerHTML = data;\n      }\n    })\n    .catch(error => {\n      console.error('Erreur:', error);\n      const container = document.getElementById('banner-container');\n      if (container) {\n        container.innerHTML = '<p>Navigation temporairement indisponible</p>';\n      }\n    });\n});\n"],
+  "mappings": "MACA,SAAS,iBAAiB,mBAAoB,UAAW,CACvD,MAAM,iBAAiB,EACpB,KAAKA,GAAY,CAChB,GAAI,CAACA,EAAS,GAAI,MAAM,IAAI,MAAM,qBAAqB,EACvD,OAAOA,EAAS,KAAK,CACvB,CAAC,EACA,KAAKC,GAAQ,CACZ,IAAMC,EAAY,SAAS,eAAe,kBAAkB,EACxDA,IACFA,EAAU,UAAYD,EAE1B,CAAC,EACA,MAAME,GAAS,CACd,QAAQ,MAAM,UAAWA,CAAK,EAC9B,IAAMD,EAAY,SAAS,eAAe,kBAAkB,EACxDA,IACFA,EAAU,UAAY,gDAE1B,CAAC,CACL,CAAC",
+  "names": ["response", "data", "container", "error"]
+}
