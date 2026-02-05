@@ -1,11 +1,21 @@
 <!doctype html>
 <html lang="fr">
   <head>
+
+<script>
+  document.documentElement.className += " js-loading";
+</script>
+	  
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Azurealpes</title>
     <link rel="stylesheet" href="styles/Fixed_banner.css"/>
   <style>
+
+.js-loading {
+  visibility: hidden;
+}
+	  
 
  body {
   margin: 0;
@@ -405,6 +415,14 @@ const toggle1 = document.getElementById('toggle1');
 <script src=./scripts/RandomObjectGame.js> </script>
 
 
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.classList.remove('js-loading');
+  });
+</script>
+
+	
 
 </body>
 </html>
