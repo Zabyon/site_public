@@ -4,20 +4,14 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Alchimie du Jeu</title>
+    <title>Arcane Vallérois</title>
     <link rel="stylesheet" href="styles/Fixed_banner.css"/>
   <style>
 
-	  
-
- body {
-  margin: 0;
-  padding-top :62px; /* Ajoute l'écrat pour que la bannière apparaisse et n'écrase pas le contenu */
-  background-color: #ddd
- }
-
-
-
+#btn-random-event {
+    display : block;
+    margin : 0 auto;
+}
  /* FIN Menu GAUCHE */
         button {
             background-color: #4CAF50; 
@@ -85,7 +79,6 @@ label {
     font-weight: bold;
     color: #555;
 }
-
 
 .logo-content {
     height: 240px; 
@@ -254,22 +247,23 @@ label {
 <body>
 <div class="fixed-banner">
     <img src="./assets/logo_hexag.webp" alt="Mon image de test" class="logo" />
-    <h1>Alchimie du Jeu</h1>
+    <h1>Arcane Vallérois</h1>
     <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
     ☰ </button>
 </div>
 
 <div class="main-layout">
-  <div id="banner-container"></div>  
+  <div id="banner-container">
+  </div>  
   
   <div class="main-content">    
     <div class="hero-container">
       <div class="branding">
-      <img src="./assets/logo_hexag.webp" alt="Logo" class="logo-content">
-      <h1>Unis par les dés. Animés par le jeu.</h1>
+        <img src="./assets/logo_hexag.webp" alt="Logo" class="logo-content">
+        <h1>Unis par les dés. Animés par le jeu.</h1>
       	<h2>L'association</h2>
         <p>
-        L'association Alchimie du Jeu promeut le jeu de société comme vecteur de lien social direct et outil de renforcement du tissu communautaire local.
+        L'association Arcane Vallérois - Alchimie du Jeu promeut le jeu de société comme vecteur de lien social direct et outil de renforcement du tissu communautaire local.
         </p>
         <p>
         Nous œuvrons à accroître la visibilité des jeux de plateau afin d'offrir une alternative enrichissante et un équilibre convivial face aux sollicitations numériques croissantes.
@@ -277,130 +271,59 @@ label {
         <hr>  
       </div>  
      
-    <div class="button-group">
-    <a href="Adhesion.html"" class="btn btn-primary">Je veux Adhérer !</a>
-    <a href="Agenda.html" class="btn btn-secondary">On fait quoi ce week ?</a>
-    <a href="NousContacter.html" class="btn btn-secondary">Je Sponsorise !</a>
+      <div class="button-group">
+        <a href="Adhesion.html"" class="btn btn-primary">Je veux Adhérer !</a>
+        <a href="Agenda.html" class="btn btn-secondary">On fait quoi ce week ?</a>
+        <a href="NousContacter.html" class="btn btn-secondary">Je Sponsorise !</a>
+      </div>
+      <div class="containerMid"> 
+        <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/1f0a86b9-e03e-6db0-b652-32a9be5bc86b/gemini-2.5-flash-image-preview_Add_some_dragon_and_knight_action_figure_lying_on_the_table-0.jpg" alt="image ppale decrivant AFINIR" class="mainimg" />   
+      </div>   
+      <div class="containerMid">
+        <div class="text-container">        
+          <h2>À Propos</h2>
+          <p>
+          Fondée en 2026 par Mme L, Mme. G et Mr B, l'association s'articule autour de l'appréciation du côté humain des jeux de plateau, lesquels sont reconnus pour être des catalyseurs d'interactions et pour affûter activement les compétences cognitives indispensables telles que la stratégie et l'anticipation. Le jeu représente un accès direct au développement du potentiel intellectuel.
+          </p>
+          <p>
+          Une première initiative notable fut le lancement d'un pilote d'accompagnement pour les personnes atteintes de la Sclérose en Plaques (SEP), une cause soutenue par Mme L (notamment via la SEPc).
+          </p>
+          <p>
+          L'association a été officiellement établie pour étendre cette démarche positive et déployer son action au sein du tissu de l'arrière-pays.
+          </p>
+          <hr>
+          <h2>Ou nous trouver</h2>
+          <p>
+          Boite Aux Lettres : 91 rue des Fleurs, 06460 st vallier de thiey
+          </p>
+		      <br>
+        </div> 
+	    </div>
     </div>
-
-
-   
-    <div class="containerMid"> 
-      <img src="https://cdn.leonardo.ai/users/65caef68-b2fc-4b3c-aea2-9b83729fe324/generations/1f0a86b9-e03e-6db0-b652-32a9be5bc86b/gemini-2.5-flash-image-preview_Add_some_dragon_and_knight_action_figure_lying_on_the_table-0.jpg" alt="image ppale decrivant AFINIR" class="mainimg" />   
-    </div>   
-    <div class="containerMid">
-      <div class="text-container">
-        
-        <h2>À Propos</h2>
-        <p>
-        Fondée en 2025 par M. B et Mme L, l'association s'articule autour de l'appréciation du côté humain des jeux de plateau, lesquels sont reconnus pour être des catalyseurs d'interactions et pour affûter activement les compétences cognitives indispensables telles que la stratégie et l'anticipation. Le jeu représente un accès direct au développement du potentiel intellectuel.
-        </p>
-        <p>
-        Une première initiative notable fut le lancement d'un pilote d'accompagnement pour les personnes atteintes de la Sclérose en Plaques (SEP), une cause soutenue par Mme L (notamment via la SEPc).
-        </p>
-        <p>
-        L'association a été officiellement établie pour étendre cette démarche positive et déployer son action au sein du tissu de l'arrière-pays.
-        </p>
+    <div class="hero-container">   
+        <small>
+	      <a href="https://www.openstreetmap.org/?#map=19/43.699785/6.848150&amp;layers=N">4 rue des fleurs Saint vallier de thiey</a>
+	      </small>
+        <iframe 
+		    width="380"
+		    height="300" 
+		    src="https://www.openstreetmap.org/export/embed.html?bbox=6.84762328863144%2C43.69946700916219%2C6.848677396774293%2C43.70010305231341&amp;layer=mapnik" style="border: 1px solid black">
+	      </iframe>
+	      <hr>
+	      <small>
+	      <a href="https://www.openstreetmap.org/?#map=19/43.699785/6.848150&amp;layers=N">Afficher une carte plus grande</a>
+        </small>
+	      <br>    
+  	    <hr>  
+        <h2> À la découverte d'un nouveau jeu </h2>
         <hr>
-      
-        <h2>Ou nous trouver</h2>
-        <p>
-        4rue des Fleurs, 06460 st vallier de thiey
-        </p>
-		<br>
-      </div> 
-	</div>
-       <div class="hero-container">   
-      <small>
-	    <a href="https://www.openstreetmap.org/?#map=19/43.699785/6.848150&amp;layers=N">4 rue des fleurs Saint vallier de thiey</a>
-	  </small>
-      <iframe 
-		width="380"
-		height="300" 
-		src="https://www.openstreetmap.org/export/embed.html?bbox=6.84762328863144%2C43.69946700916219%2C6.848677396774293%2C43.70010305231341&amp;layer=mapnik" style="border: 1px solid black">
-	  </iframe>
-	  <hr>
-	  <small>
-	  <a href="https://www.openstreetmap.org/?#map=19/43.699785/6.848150&amp;layers=N">Afficher une carte plus grande</a></small>
-	  <br>
-     
-	  <div class="containerMid">     
-	<hr>  
-    <h2> À la découverte d'un nouveau jeu </h2>
-    <button id ="Surprends moi !" onclick="resetData('result2','ecranJeu')"Surprends moi !</button>
-    
-    <hr>
-  
-
-
-<button id="btn-random-event">Surprends moi !e</button>
-
-
-     <div class="toggle-container">
-        <div>
-            <label class="switch">
-                <input type="checkbox" id="toggle1">
-                <span class="slider"></span>
-            </label>
-            <span>Conditions ? Oui/Non</span>
-        </div>
-        <div>
-            <label class="switch">
-                <input type="checkbox" id="toggle2">
-                <span class="slider"></span>
-            </label>
-            <span>Compétitif/Coopératif ?2</span>
-        </div>
-        <div>
-            <label class="switch">
-                <input type="checkbox" id="toggle3">
-                <span class="slider"></span>
-            </label>
-            <span>15 a 30min? 45min+?</span>
-        </div>
-    </div>
-
-    <div id="content1" class="content">
-        <p>Jeu avec contrainte ? (non activé)</p>
-    </div>
-    <div id="content2" class="content">
-        <p>Choix 1 bouton 2 (non activé)</p>
-    </div>
-    <div id="content3" class="content">
-        <p>Choix 1 bouton 3 (non activé)</p>
-    </div>
-
-   
-       <div id="result3">En choissisant un style/temps/difficulté de jeu cela réduit les possibilités</div>
+        <button id="btn-random-event">Surprends moi !</button>
+        <div id="random-event-container"></div>
     </div>  
     <hr>
-   <div id="random-event-container">
-  </div>
-
-  </div>
-</div>      
- 
-</div>
- 
-   <script>
-const toggle1 = document.getElementById('toggle1');
-        const content1 = document.getElementById('content1');
-        toggle1.addEventListener('change', function() {
-            content1.textContent = this.checked ? 'Voir contraintes (activé)' : 'Jeu aléatoire (non activé)';
-        });
-
-        const toggle2 = document.getElementById('toggle2');
-        const content2 = document.getElementById('content2');
-        toggle2.addEventListener('change', function() {
-            content2.textContent = this.checked ? 'Compétitif (activé)' : 'Cooperatif (non activé)';
-        });
-
-        const toggle3 = document.getElementById('toggle3');
-        const content3 = document.getElementById('content3');
-        toggle3.addEventListener('change', function() {
-           content3.textContent = this.checked ? 'Durée 15min)' : '30min+ )';
-        })
-    </script>
+    </div>
+</div> 
+   
 
 <script src=./scripts/JS-Nav.js> </script>
 <script src=./scripts/load-navigation.js> </script>
