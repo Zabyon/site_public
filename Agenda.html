@@ -130,7 +130,7 @@
     <script>
         
         async function chargerEvenements() {
-    const container = document.getElementById('votre-id-container');
+    const container = document.getElementById('events-container');
 
     try {
         // Récupération du fichier local
@@ -141,10 +141,14 @@
         
         // Conversion du format (le fichier est une liste d'objets séparés par des virgules)
         // On l'entoure de crochets pour en faire un tableau JSON valide
-        const rawData = JSON.parse(`[${text}]`);
+        let rawData = JSON.parse(`[${text}]`);
+        const now = new Date().setHours(0, 0, 0, 0);
 
         // Tri par date (optionnel mais recommandé)
-        rawData.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+        rawData = rawData
+            .filter(item => new Date(item.Date) >= now) // Correction de item.date -> item.Date
+            .sort((a, b) => new Date(a.Date) - new Date(b.Date))
+            .slice(0, 5); // On ne garde que les 5 premiers
 
         // Génération du contenu
         container.innerHTML = rawData.map(event => `
