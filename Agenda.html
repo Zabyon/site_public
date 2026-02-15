@@ -128,54 +128,43 @@
     <div id="events-container" class="events-grid"></div>
   </div>
     <script>
-        const rawData = [
-            { type: "Tournoi", titre: "Pokémon Régional", description: "Format Standard - 32 places.", date: "2026-01-11", lieu: "Siège asso" },
-            { type: "Réunion", titre: "Assemblée Générale", description: "Bilan annuel et nouveaux projets.", date: "2026-02-01", lieu: "Salle Polyvalente" },
-            { type: "Open salle", titre: "Jeux de plateau", description: "Accès libre à la ludothèque.", date: "2026-02-15", lieu: "Local 42" },
-            { type: "Tournoi", titre: "Time Bomb", description: "Tournoi amical de rapidité.", date: "2026-03-05", lieu: "Café Jeux" },
-            { type: "Open salle", titre: "Après-midi figurines", description: "Atelier peinture et jeu.", date: "2026-03-20", lieu: "Local 42" }
-        ];
+        
+        async function chargerEvenements() {
+    const container = document.getElementById('votre-id-container');
 
-        function getCTA(type) {
-            switch(type) {
-                case "Tournoi":
-                case "Open salle":
-                    return { text: "Je m'inscris", class: "" };
-                case "Réunion":
-                    return { text: "Plus d'informations", class: "cta-info" };
-                default:
-                    return { text: "En savoir plus", class: "" };
-            }
-        }
+    try {
+        // Récupération du fichier local
+        const response = await fetch('./event.txt');
+        if (!response.ok) throw new Error('Erreur de chargement du fichier');
+        
+        const text = await response.text();
+        
+        // Conversion du format (le fichier est une liste d'objets séparés par des virgules)
+        // On l'entoure de crochets pour en faire un tableau JSON valide
+        const rawData = JSON.parse(`[${text}]`);
 
-        function renderEvents() {
-            const container = document.getElementById('events-container');
-            const now = new Date();
+        // Tri par date (optionnel mais recommandé)
+        rawData.sort((a, b) => new Date(a.Date) - new Date(b.Date));
 
-            const upcomingEvents = rawData
-                .filter(item => new Date(item.date) >= now)
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                .slice(0, 5);
+        // Génération du contenu
+        container.innerHTML = rawData.map(event => `
+            <div class="event-card" id="event-${event.Id}">
+                <h3>${event.Nom}</h3>
+                <p class="type"><strong>Type :</strong> ${event.Type || 'Non spécifié'}</p>
+                <p class="date"><strong>Date :</strong> ${new Date(event.Date).toLocaleDateString('fr-FR')}</p>
+                <p class="lieu"><strong>Lieu :</strong>📍 ${event.Lieu}</p>
+                <p class="description">${event.Description.replace(/\n/g, '<br>')}</p>
+            </div>
+        `).join('');
 
-            container.innerHTML = upcomingEvents.map(event => {
-                const cta = getCTA(event.type);
-                return `
-                <article class="event-card">
-                    <div class="event-type">${event.type}</div>
-                    <div class="event-date">
-                        ${new Date(event.date).toLocaleDateString('fr-FR', {day: 'numeric', month: 'long'})}
-                    </div>
-                    <h3 class="event-title">${event.titre}</h3>
-                    <p class="event-desc">
-                        ${event.description}<br>
-                        <small>📍 ${event.lieu}</small>
-                    </p>
-                    <a href="#" class="cta-button ${cta.class}">${cta.text}</a>
-                </article>
-            `}).join('');
-        }
+    } catch (error) {
+        container.innerHTML = `<p class="error">Erreur : ${error.message}</p>`;
+    }
+}
 
-        renderEvents();
+// Exécution
+chargerEvenements();
+
     </script>    
   
  
