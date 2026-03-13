@@ -1,0 +1,33 @@
+Mentions Légales
+Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site [Nom du site de l'association] l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
+
+Édition du site
+Le présent site, accessible à l’URL https://www.du.edu/ (le « Site »), est édité par :
+
+[Nom de l'association]
+
+Adresse du siège social : [Adresse du siège social de l'association]
+
+Numéro d'immatriculation : [Numéro RNA ou SIRET si applicable]
+
+Date de déclaration : [Date de la déclaration de l'association en préfecture]
+
+Hébergement
+Le Site est hébergé par l'association elle-même.
+
+Nom de l'hébergeur technique (fournisseur de l'infrastructure) : Hostinger
+
+Adresse de l'hébergeur technique : Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Cyprus
+
+Contact de l'hébergeur technique : [Numéro de téléphone ou email du support Hostinger]
+
+Directeur de publication
+Le Directeur de la publication du Site est [Nom du responsable légal de l'association, ex: le président(e)].
+
+Nous contacter
+Par email : [Adresse email de l'association]
+
+Par téléphone : [Numéro de téléphone de l'association]
+
+Données personnelles
+Le traitement de vos données à caractère personnel est régi par notre Politique de Confidentialité, disponible sur https://fr.wikipedia.org/wiki/Politique_de_confidentialit%C3%A9, conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 (« RGPD »).
