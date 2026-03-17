@@ -15,8 +15,8 @@
         color: white; /* Texte */
         padding: 15px 30px; /* Espacement intérieur */
         border: none; 
-        border-radius: 30px; /* Bords arrondis */
-        cursor: crosshair; /* Curseur de la main au survol */
+        border-radius: 30px; 
+        cursor: crosshair; 
         font-size: 18px;
         position: relative;         
         display:block;
@@ -26,34 +26,31 @@
    .bouton-avec-badge {
     position: relative; 
     padding: 10px 20px;
-    /* Autres styles de bouton... */
+ 
 }
 
 .badge-notification {
-    /* Positionne le badge de manière absolue par rapport au bouton */
     position: absolute; 
     
-    /* Place le badge en haut à droite */
+    
     top: -1px; 
     right: 9px;
     
-    /* Styles visuels */
+    
     background-color: red;
     color: white;
     font-size: 12px;
     font-weight: bold;
     
-    /* Forme circulaire ou ovale */
+  
     width: 20px; /* Ajuster au besoin */
-    height: 20px; /* Ajuster au besoin, doit être égal à la largeur pour un cercle */
+    height: 20px; 
     border-radius: 50%;
     
-    /* Centrage du chiffre */
-    display: flex;
-    align-items: center; /* Centrage vertical */
-    justify-content: center; /* Centrage horizontal */
     
-    /* Assure que le badge est au-dessus des autres éléments */
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
     z-index: 10;
 }
 
@@ -66,7 +63,7 @@
           height: 30px;
         }
 
-    /*/ container */
+
         .containerMid {
           display: flex;
           
@@ -83,15 +80,14 @@
             flex: 1 1 600px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
             border: 1px solid blue;
             padding: 10px;
-            box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur/hauteur */
+            box-sizing: border-box;
         }
 
-        /* Styles spécifiques pour le premier élément (optionnel) */
+
         .item:first-child {
             border-color: green;
         }
 
-        /* Styles spécifiques pour le deuxième élément (optionnel) */
         .item:last-child {
             border-color: pink;
         }
@@ -100,7 +96,6 @@
             flex: 1 1 200px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
             border: 1px solid blue;
             padding: 0px;
-            /*Inclut le padding et la bordure dans la largeur/hauteur */
         }
 
    h2 {
@@ -127,9 +122,7 @@ label {
   /* 1. Définir la largeur à 80% du conteneur */
   height: 240px; 
   width: auto;
-  /* 2. Convertir en élément de bloc pour le centrage horizontal par marge */
   display: block;
-  /* 3. Centrer horizontalement l'image dans son conteneur */
   margin-left: auto;
   margin-right: auto;
 }
@@ -146,14 +139,14 @@ label {
 
    
 	table {
-    border-collapse: collapse; /* Fusionne les bordures des cellules */
-    width: 200px; /* Exemple de largeur */
+    border-collapse: collapse; 
+    width: 200px; 
 margin-left: auto;
     margin-right: auto;
 }
 
 td {
-    border: 1px solid #ccc; /* Bordure légère */
+    border: 1px solid #ccc; 
     padding: 10px;
     text-align: center;
     font-size: 18px;
@@ -213,7 +206,7 @@ Rejoignez une communauté passionnée où le jeu n’est pas qu’un loisir, mai
  
   <h2>Rejoignez nous !</h2>
   <br>
-    <button id ="Adhésion" onclick="resetData('result2','ecranJeu')">J'adhère
+    <button id ="Adhésion" onclick="window.location.href='https://framaforms.org/souhait-pour-larcane-vallerois-1773167377'">Je m’engage avec vous !
      <span class="badge-notification">1</span>
     </button>
           
