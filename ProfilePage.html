@@ -38,8 +38,8 @@
   
   <div class="main-content">
     <!-- Div centrale avec le texte -->
-    <div style="text-align: center; margin: 20px auto; max-width: 100%; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: white;">
-        <p style="font-size: 16px; line-height: 1.5;">
+    <div>
+        <p>
             Mail : example@mail.com<br>
          <hr>
             ID (date de création) : 2025-10-09-123456789<br>
@@ -48,19 +48,14 @@
         </p>
 
         <!-- Input et bouton pour l'API -->
-        <div style="margin: 20px 0;">
-            <input type="text" placeholder="Entrez votre texte ici..." style="width: 70%; height: 30px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-            <button onclick="alert('Appel API Update Pseudo simulé')" style="width: 28%; height: 48px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Changer de Pseudo (API)</button>
+        <div>
+            <input type="text" placeholder="Entrez votre texte ici...">
+            <button onclick="alert('Appel API Update Pseudo simulé')">Changer de Pseudo (API)</button>
         </div>
 
         <!-- Bouton rouge "Supprimer le compte" -->
-        <div style="margin: 20px 0;">
-           <button
-    onclick="showDeleteModal()"
-    style="width: 100%; height: 40px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;"
->
-    Supprimer le compte
-</button>
+        <div>
+           <button onclick="showDeleteModal()">Supprimer le compte</button>
         </div>
     </div>
 
@@ -68,27 +63,13 @@
 <!-- Modale de confirmation (masquée par défaut) -->
 <div id="confirmModal" class="ModaleProfile">
  
-    <div style="
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 500px;
-        width: 90%;
-        text-align: center;
-    ">
-        <h3 style="color: #f44336;">⚠️ Attention</h3>
+    <div>
+        <h3>⚠️ Attention</h3>
 		<p>Cette action est définitive et supprimera votre compte. Voulez-vous continuer ?</p>
 		<p>Si oui Merci de rentrer votre mot de passe pour Confirmer et appuyer sur Supprimer définitivement</p>
 		<input type="password" id="apiPasswordInput">
-        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-            <button id="cancelDelete" style="
-                padding: 8px 16px;
-                background-color: #ccc;
-                color: black;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            ">Annuler</button>
+        <div>
+            <button id="cancelDelete">Annuler</button>
             <button id="confirmDelete">Supprimer définitivement</button>
         </div>
     </div>
@@ -97,18 +78,10 @@
 
 <!-- Modale de succès -->
 <div id="successModal" class="ModaleProfile">
-    <div style="
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 500px;
-        width: 90%;
-        text-align: center;
-    ">
-        <h3 style="color: #4CAF50;">✅ Succès</h3>
+    <div>
+        <h3>✅ Succès</h3>
         <p>Votre compte a été supprimé avec succès.</p>
-        <button onclick="document.getElementById('successModal').style.display = 'none'; window.location.href = '/';"
-                style="margin-top: 20px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        <button onclick="document.getElementById('successModal').style.display = 'none'; window.location.href = '/';">
             Retour à l'accueil
         </button>
     </div>
@@ -116,18 +89,10 @@
 
 <!-- Modale d'erreur -->
 <div id="errorModal" class="ModaleProfile">
-    <div style="
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 500px;
-        width: 90%;
-        text-align: center;
-    ">
-        <h3 style="color: #f44336;">❌ Erreur</h3>
+    <div>
+        <h3>❌ Erreur</h3>
         <p id="errorMessage">Une erreur est survenue lors de la suppression du compte.</p>
-        <button onclick="document.getElementById('errorModal').style.display = 'none';"
-                style="margin-top: 20px; padding: 8px 16px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        <button onclick="document.getElementById('errorModal').style.display = 'none';">
             Fermer
         </button>
     </div>

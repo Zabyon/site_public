@@ -54,6 +54,11 @@
     width: auto; 
     margin-right: 20px;
 }
+
+/* Fix font for navigation bar links */
+.fixed-sidebar nav ul li a {
+    font-family: initial;
+}
 /*CSS DE L'AGENDA MAIS VOIR POIR CENTRALISER LE CSS*/
 :root {
             --primary: #4CAF50;
@@ -113,9 +118,7 @@
 </head>
 <body>
 <div class="fixed-banner">
-    <a href="HomePage.html" aria-label="Return to Home Page">
-    <img src="./assets/logo_hexag.webp" alt="Logo de l'Arcane Vallerois" class="logo" />
-    </a>
+<img src="./assets/logo_hexag.webp" alt="Logo de l'Arcane Vallerois" class="logo" />
     <h1>Arcane Vallérois</h1>
     <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
     ☰ </button>
@@ -125,7 +128,7 @@
 <div id="banner-container"></div>  
   
   <div class="main-content">  
-<h2 style="text-align:center; margin-bottom: 40px;">Prochains rendez-vous</h2>
+<h2>Prochains rendez-vous</h2>
     
     <div id="events-container" class="events-grid"></div>
   </div>

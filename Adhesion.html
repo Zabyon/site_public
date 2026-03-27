@@ -64,14 +64,10 @@
 
         .containerMid {
           display: flex;
-          
+          flex-wrap: wrap;
           gap: 10px;
           border: 2px dashed #ddd;
           padding: 10px;
-         width: 100%; 
-         
-         justify-content: center; /* Centre horizontalement les enfants */
-    align-items: center; 
         }
 
         .item {
@@ -129,8 +125,6 @@ label {
 .text-container {
   width: 80%;
   margin: 0px auto 0 auto; /* Ajouter une marge supérieure de 20px et centrer */
-  align-items: center; 
- justify-content: left;
 }
 /* A RETIRER ENSUITE MAIS ATTENTION A TOUTES LES URLS CAR TOUT POUR LE DEV !*/
 
@@ -168,9 +162,7 @@ tr:nth-child(even) {
 </head>
 <body>
  <div class="fixed-banner">
-  <a href="HomePage.html" aria-label="Return to Home Page">
-   <img src="./assets/logo_hexag.webp" alt="Logo" class="logo" />
- </a>
+<img src="./assets/logo_hexag.webp" alt="Logo" class="logo" />
     <h1>Arcane Vallérois</h1>
     <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
         ☰ </button>
