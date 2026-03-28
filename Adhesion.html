@@ -6,160 +6,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>Arcane Vallérois</title>
     <link rel="stylesheet" href="styles/Fixed_banner.css"/>
-  <style>
-
-    button {
-        background-color: #4CAF50; 
-        color: white; /* Texte */
-        padding: 15px 30px; /* Espacement intérieur */
-        border: none; 
-        border-radius: 30px; 
-        cursor: crosshair; 
-        font-size: 18px;
-        position: relative;         
-        display:block;
-        margin: 0 auto;
-    }
-   
-   .bouton-avec-badge {
-    position: relative; 
-    padding: 10px 20px;
- 
-}
-
-.badge-notification {
-    position: absolute; 
-    
-    
-    top: -1px; 
-    right: 9px;
-    
-    
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    
-  
-    width: 20px; /* Ajuster au besoin */
-    height: 20px; 
-    border-radius: 50%;
-    
-    
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    z-index: 10;
-}
-
-        button:hover {
-            background-color: #45a049; /* Légèrement plus foncé au survol */
-        }
-    
-        input {
-          width: 100%;
-          height: 30px;
-        }
-
-
-        .containerMid {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          border: 2px dashed #ddd;
-          padding: 10px;
-        }
-
-        .item {
-            flex: 1 1 600px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
-            border: 1px solid blue;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-
-        .item:first-child {
-            border-color: green;
-        }
-
-        .item:last-child {
-            border-color: pink;
-        }
-   
-         .item2 {
-            flex: 1 1 200px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
-            border: 1px solid blue;
-            padding: 0px;
-        }
-
-   h2 {
-    text-align: center;
-   }
-        /* LE DROPDOWN MENU*/
-      h4 {
-    color: #333;
-    margin-bottom: 30px;
-}
-
-/* Basic styling for the label */
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-
-
-
-.mainimg {
-  /* 1. Définir la largeur à 80% du conteneur */
-  height: 240px; 
-  width: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-    
-
-.text-container {
-  width: 80%;
-  margin: 0px auto 0 auto; /* Ajouter une marge supérieure de 20px et centrer */
-}
-/* A RETIRER ENSUITE MAIS ATTENTION A TOUTES LES URLS CAR TOUT POUR LE DEV !*/
-
-
-   
-	table {
-    border-collapse: collapse; 
-    width: 200px; 
-margin-left: auto;
-    margin-right: auto;
-}
-
-td {
-    border: 1px solid #ccc; 
-    padding: 10px;
-    text-align: center;
-    font-size: 18px;
-    min-width:100px
-}
-
-/* Lignes impaires (1, 3, 5...) - Ligne claire */
-tr:nth-child(odd) {
-    background-color: #f2f2f2; /* Gris très clair */
-}
-
-/* Lignes paires (2, 4, 6...) - Ligne gris foncé */
-tr:nth-child(even) {
-    background-color: #444444; /* Gris foncé */
-    color: white; /* Assure la lisibilité du texte en blanc sur le fond foncé */
-}  
-   
-   
-</style>
-
-</head>
+    <link rel="stylesheet" href="styles/common.css"/>
+  </head>
 <body>
  <div class="fixed-banner">
 <img src="./assets/logo_hexag.webp" alt="Logo" class="logo" />
@@ -173,7 +21,7 @@ tr:nth-child(even) {
       <div class="main-content">   
         <div class="containerMid"> 
         <img src="./assets/logo_hexag.webp" alt="Image représentant le logo" class="mainimg" />   
-        </div>   
+        </div>  
   
         <div class="containerMid">
           <div class="text-container">
@@ -182,21 +30,21 @@ tr:nth-child(even) {
 <b>Et si le jeu devenait votre allié pour grandir, apprendre et vous connecter aux autres ?</b>
 <br>
 <br>
-Rejoignez une communauté passionnée où le jeu n’est pas qu’un loisir, mais un outil puissant de développement personnel, de partage et de créativité. <b>L’Arcane Vallérois - Alchimie du Jeu</b> vous ouvre ses portes !
+Rejoignez une communauté passionnée où le jeu n'est pas qu'un loisir, mais un outil puissant de développement personnel, de partage et de créativité. <b>L'Arcane Vallérois - Alchimie du Jeu</b> vous ouvre ses portes !
 <br><br>
 <b>Comment nous rejoindre ?</b>
 <br>
 - <b>En solo</b> : Optez pour une adhésion individuelle et explorez nos activités à votre rythme.<br>
-- <b>En famille</b> : Choisissez l’adhésion familiale et partagez des moments de jeu, de rires et d’apprentissage avec vos proches.
+- <b>En famille</b> : Choisissez l'adhésion familiale et partagez des moments de jeu, de rires et d'apprentissage avec vos proches.
 <br>
 <b>Ensemble, transformons chaque partie en une aventure.</b> 🎲✨
-           </p>
-           <hr>
+          </p>
+          <hr>
            
  
   <h2>Rejoignez nous !</h2>
   <br>
-    <button id ="Adhésion" onclick="window.location.href='https://framaforms.org/souhait-pour-larcane-vallerois-1773167377'">Je m’engage avec vous !
+    <button id ="Adhésion" onclick="window.location.href='https://framaforms.org/souhait-pour-larcane-vallerois-1773167377'">Je m'engage avec vous !
      <span class="badge-notification">1</span>
     </button>
           
@@ -216,8 +64,8 @@ Rejoignez une communauté passionnée où le jeu n’est pas qu’un loisir, mai
         <td>A venir pour 2026-2027</td>
     </tr>
 </table>
-           <hr>   
-           
+          <hr>   
+          
      <!--  <h2>Avantages</h2>
             <p>
             Les résidents de St Vallier de Thiey se verront octroyer une remise de 10% supplémentares sur l'adhésion..</p>
@@ -244,8 +92,7 @@ Oui, à condition que tous les membres de votre famille soient rattachés au mê
             </ul>
            -->
          </div>            
-   
-
+  
 <!--
 <script src=./scripts/JS-Nav.js> </script>
 <script src=./scripts/load-navigation.js> </script>
