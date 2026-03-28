@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../Web-Dev/scripts/Score.js"],
+  "sourcesContent": ["const players = [\n    { rank: 1, name: \"Rumi\", score: 9875, color: \"#ffd700\" },\n    { rank: 2, name: \"Tic Tac\", score: 8932, color: \"#c0c0c0\" },\n    { rank: 3, name: \"Panda Roux\", score: 7689, color: \"#cd7f32\" },\n    { rank: 4, name: \"nom long qui sort Lyra Whisperwind\", score: 6543, color: \"#4169e1\" },\n    { rank: 5, name: \"Renard Gris\", score: 5901, color: \"#50c878\" }\n];\n\nconst list = document.getElementById('leaderboard');\n\n// G\u00E9n\u00E8re les lignes avec les classes correspondant au CSS\nlist.innerHTML = players.map(p => `\n  <li style=\"color: ${p.color}\">\n    <span class=\"rank-box\">${p.rank}</span>\n    <span class=\"player-name\">${p.name}</span>\n    <span class=\"player-score\">${p.score}</span>\n  </li>\n`).join('');\n"],
+  "mappings": "MAAA,IAAMA,EAAU,CACZ,CAAE,KAAM,EAAG,KAAM,OAAQ,MAAO,KAAM,MAAO,SAAU,EACvD,CAAE,KAAM,EAAG,KAAM,UAAW,MAAO,KAAM,MAAO,SAAU,EAC1D,CAAE,KAAM,EAAG,KAAM,aAAc,MAAO,KAAM,MAAO,SAAU,EAC7D,CAAE,KAAM,EAAG,KAAM,qCAAsC,MAAO,KAAM,MAAO,SAAU,EACrF,CAAE,KAAM,EAAG,KAAM,cAAe,MAAO,KAAM,MAAO,SAAU,CAClE,EAEMC,EAAO,SAAS,eAAe,aAAa,EAGlDA,EAAK,UAAYD,EAAQ,IAAIE,GAAK;AAAA,sBACZA,EAAE,KAAK;AAAA,6BACAA,EAAE,IAAI;AAAA,gCACHA,EAAE,IAAI;AAAA,iCACLA,EAAE,KAAK;AAAA;AAAA,CAEvC,EAAE,KAAK,EAAE",
+  "names": ["players", "list", "p"]
+}

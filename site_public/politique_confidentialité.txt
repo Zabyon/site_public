@@ -1,0 +1,38 @@
+
+Politique de confidentialité
+Chez [nom de votre association], nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons les informations que vous nous confiez.
+
+1. Données collectées
+Nous collectons uniquement votre adresse e-mail, qui est utilisée comme identifiant de connexion et pour vous contacter si nécessaire.
+
+2. Utilisation des données
+Vos données sont utilisées exclusivement pour :
+
+Vous permettre d’accéder à votre compte utilisateur.
+Vous contacter en cas de besoin (par exemple, pour répondre à une demande ou vous informer d’un changement important).
+
+
+3. Durée de conservation
+Vos données sont conservées jusqu’à la suppression de votre compte utilisateur. Vous pouvez demander la suppression de votre compte à tout moment en nous contactant à [votre e-mail].
+
+4. Partage des données
+Vos données sont hébergées sur les serveurs de [hébergeur de mon choix], notre prestataire d’hébergement. [hébergeur de mon choix] agit en tant que sous-traitant et s’engage à respecter les normes de sécurité et de confidentialité en vigueur. Vos données ne sont pas partagées avec d’autres tiers sans votre consentement explicite.
+
+5. Sécurité des données
+Nous mettons en place des mesures techniques et organisationnelles pour protéger vos données contre toute perte, altération ou accès non autorisé.
+
+6. Vos droits
+Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :
+
+Droit d’accès : Demander une copie des données que nous détenons sur vous.
+Droit de rectification : Corriger ou mettre à jour vos informations.
+Droit à l’effacement : Demander la suppression de vos données.
+Droit à la portabilité : Récupérer vos données dans un format structuré.
+
+Pour exercer ces droits, contactez-nous à [votre e-mail].
+
+7. Modifications de cette politique
+Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page.
+
+8. Contact
+Pour toute question concernant cette politique ou vos données personnelles, n’hésitez pas à nous contacter à [votre e-mail].
