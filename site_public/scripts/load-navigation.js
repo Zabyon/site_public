@@ -1,2 +1,0 @@
-(()=>{var t=document.documentElement.lang,i=t.startsWith("en")?"navigation_en.html":"navigation.html";document.addEventListener("DOMContentLoaded",function(){fetch(i).then(n=>{if(!n.ok)throw new Error("Fichier introuvable");return n.text()}).then(n=>{let e=document.getElementById("banner-container");e&&(e.innerHTML=n)}).catch(n=>{console.error("Erreur:",n);let e=document.getElementById("banner-container");e&&(e.innerHTML="<p>Navigation temporairement indisponible</p>")})});})();
-//# sourceMappingURL=load-navigation.js.map
