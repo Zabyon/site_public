@@ -1,0 +1,2 @@
+(()=>{document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("menu-toggle-button"),s=document.getElementById("banner-container");function i(){let n=s.querySelector(".fixed-sidebar");if(e&&n){let o=function(){let t=n.classList.toggle("is-open");e.setAttribute("aria-expanded",t),e.textContent=t?"\u2715":"\u2630"};var c=o;e.addEventListener("click",o),n.querySelectorAll("a").forEach(t=>{t.addEventListener("click",()=>{n.classList.contains("is-open")&&o()})})}else setTimeout(i,100)}i()});})();
+//# sourceMappingURL=JS-Nav.js.map

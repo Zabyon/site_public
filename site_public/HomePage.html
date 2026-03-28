@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Arcane Vallérois</title>
+  </head>
+    <link rel="stylesheet" href="styles/Fixed_banner.css"/>
+    <link rel="stylesheet" href="styles/common.css"/>
+
+</head>
+<body>
+<div class="fixed-banner">
+<img src="./assets/logo_hexag.webp" alt="Logo de l'Arcane Vallerois" class="logo" />
+    <h1>Arcane Vallérois</h1>
+    <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
+    ☰ </button>
+</div>
+
+<div class="main-layout">
+  <div id="banner-container">
+  </div>  
+  
+  <div class="main-content">    
+    <div class="hero-container">
+      <div class="branding">
+        <img src="./assets/logo_hexag.webp" alt="Logo de Arcane Vallérois" class="mainimg">
+        <h1>Unis par les dés. Animés par le jeu.</h1>
+      	<h2>L'Arcane Vallérois</h2>
+        <p>
+        L'association l'Arcane Vallérois - Alchimie du Jeu promeut le jeu de société comme vecteur de lien social direct et outil de renforcement du tissu communautaire local.
+        </p>
+        <p>
+        Nous œuvrons à accroître la visibilité des jeux de société afin d'offrir une alternative enrichissante et un équilibre convivial face aux sollicitations numériques croissantes.
+        </p>
+        <hr>  
+      </div>  
+     
+      <div class="button-group">
+        <a href="Adhesion.html"" class="button">Je veux Adhérer !</a>
+        <a href="Agenda.html" class="button-blanc">On fait quoi ce week ?</a>
+        <a href="NousContacter.html" class="button-blanc">Je contacte !</a>
+      </div>
+      <div class="containerMid"> 
+        <figure>
+        <img src="./assets/imageAD.webp" alt="image représentant un jeu de l'Arcane Vallérois" class="mainimg" height=350px width="auto"/>
+      <figcaption>Photo représentant Petit Peuple : A l'Arcane Valléroise vous apprendrez à envahir le bac à fleurs du voisin. L'Arcane Vallérois décline toute responsabilité en cas de coup d'Etat réussi dans votre jardinière</figcaption>  
+      </figure>
+      </div>   
+      <div class="containerMid">
+        <div class="text-container">        
+          <h2>À Propos</h2>
+          <p>
+          Fondée en 2026 par Mme L, Mme. G et Mr B, l'association s'articule autour de l'appréciation du côté humain des jeux de plateau, lesquels sont reconnus pour être des catalyseurs d'interactions et pour affûter activement les compétences cognitives indispensables telles que la stratégie et l'anticipation. Le jeu représente un accès direct au développement du potentiel intellectuel.
+          </p>
+          <p>
+          Les jeux de sociétés sont bénéfiques chez les adultes et peuvent préserver la mémoire, ralentissant ainsi l'apparition de maladies comme Alzheimer. Ils peuvent également préserver de l'isolement que provoque certaines maladies comme la Sclérose en Plaque (SEP), une cause soutenue par Mme L (notamment via la SEPc). Ils ont aussi de nombreuses vertus pour les tout petits, ils permettent notamment de stimuler leur concentration et également de développer leur motricité fine.
+          </p>
+          <p>
+          L'association a été officiellement établie pour étendre cette démarche positive et déployer son action au sein du tissu de l'arrière-pays.
+          </p>
+          <hr>
+          <h2>Ou nous trouver</h2>
+          <p>
+          Boite Aux Lettres : 91 chemin de la Calade, 06460 Saint-Vallier-de-Thiey
+          </p>
+          <h3>Prochain évènement</h3>
+          <p>
+          Chapelle Saint-Esprit : Rue de l'Hôpital, 06460 Saint-Vallier-de-Thiey
+          </p>
+		      <br>
+        </div> 
+	    </div>
+    </div>
+    <div class="hero-container">   
+        <small>
+	      <a href="https://www.openstreetmap.org/?#map=19/43.698161/6.849533&amp;layers=N">Chapelle Du Saint Esprit Saint Vallier de Thiey 06460</a>
+	      </small>
+        <iframe 
+		    width="380"
+		    height="300" 
+		    src="https://www.openstreetmap.org/export/embed.html?bbox=6.849533%2C43.698161%2C6.849533%2C43.698161&amp;layer=mapnik&amp;marker=43.699785%2C6.848150"
+        style="border: 1px solid black">
+	      </iframe>
+	      <hr>
+	      <small>
+	      <a href="https://www.openstreetmap.org/?#map=19/43.698161/6.849533&amp;layers=N">Afficher une carte plus grande</a>
+        </small>
+	      <br>    
+  	    <hr>  
+        <h2> À la découverte d'un nouveau jeu </h2>
+        <hr>
+        <button id="btn-random-event">Surprends moi !</button>
+        <div id="random-event-container"></div>
+    </div>  
+    <hr>
+    </div>
+</div> 
+   
+<!--
+<script src=./scripts/JS-Nav.js> </script>
+<script src=./scripts/load-navigation.js> </script>
+-->
+<script src=./scripts/chargement-navbar.js> </script>
+
+<script src=./scripts/RandomObjectGame.js> </script>
+
+</body>
+</html>
