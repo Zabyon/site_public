@@ -30,9 +30,8 @@
 
     try {
         // Récupération du fichier local
-        //const response = await fetch('./event.txt');
-const response = await fetch('https://github.com/Zabyon/Arcane-vallerois-evenement/raw/refs/heads/main/evenement.txt');
-      
+        const response = await fetch('./event.txt');
+     
         if (!response.ok) throw new Error('Erreur de chargement du fichier');
         
         const text = await response.text();
