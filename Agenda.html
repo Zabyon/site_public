@@ -53,6 +53,7 @@
                 <h3>${event.Nom}</h3>
                 <p class="type"><strong>Type :</strong> ${event.Type || 'Non spécifié'}</p>
                 <p class="date"><strong>Date :</strong> ${new Date(event.Date).toLocaleDateString('fr-FR')}</p>
+                <p class="date"><strong>Horaire :</strong> ${event.Horaire}</p>
                 <p class="lieu"><strong>Lieu :</strong>📍 ${event.Lieu}</p>
                 <p class="description">${event.Description.replace(/\n/g, '<br>')}</p>
             </div>
