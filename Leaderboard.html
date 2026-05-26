@@ -7,9 +7,204 @@
 
  <link rel="stylesheet" href="styles/Fixed_banner.css"/>
   <link rel="stylesheet" href="styles/Score.css"/>
- 
+    <style>
+        :root {
+            --bg-page: #ffffff;            /* Fond blanc pour la page principale */
+            --bg-card: #1e2530;            /* Bleu nuit d'origine pour les éléments du classement */
+            --bg-card-hover: #2a3241;      /* Version légèrement plus claire pour le survol */
+            --text-light: #ffffff;
+            --text-muted: #a0aec0;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --accent-bronze: #cd7f32;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-page);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .leaderboard-container {
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* --- SECTION PODIUM --- */
+        .podium-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            align-items: flex-end;
+            padding: 20px 0;
+            min-height: 260px;
+        }
+
+        .podium-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            cursor: default;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hauteurs et positions du podium */
+        .podium-card.rank-1 { height: 240px; border: 2px solid var(--accent-gold); grid-column: 2; grid-row: 1; }
+        .podium-card.rank-2 { height: 200px; border: 1px solid var(--accent-silver); grid-column: 1; grid-row: 1; }
+        .podium-card.rank-3 { height: 180px; border: 1px solid var(--accent-bronze); grid-column: 3; grid-row: 1; }
+
+        /* Effet Hover Podium */
+        .podium-card:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(30, 37, 48, 0.3);
+        }
+
+        .podium-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #3f4a5f;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        /* Conteneur d'image pour le podium et la liste */
+        .podium-avatar img, .row-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: -12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #000;
+            z-index: 2; /* Reste au-dessus de l'image d'avatar */
+        }
+        .rank-1 .rank-badge { background-color: var(--accent-gold); }
+        .rank-2 .rank-badge { background-color: var(--accent-silver); }
+        .rank-3 .rank-badge { background-color: var(--accent-bronze); }
+
+        .podium-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-light);
+        }
+        .rank-1 .podium-name { color: var(--accent-gold); }
+
+        .podium-score {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* --- SECTION LISTE --- */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .list-row {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            cursor: default;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Effet Hover Liste */
+        .list-row:hover {
+            background-color: var(--bg-card-hover);
+            transform: scale(1.01);
+            box-shadow: 0 4px 14px rgba(30, 37, 48, 0.2);
+        }
+
+        .row-rank {
+            width: 40px;
+            font-weight: bold;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .row-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #3f4a5f;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .row-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .row-stats {
+            text-align: right;
+        }
+
+        .row-score {
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .row-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+    </style>
 
 </head>
+
+
+
+  
 <body>
 <div class="fixed-banner">
     <a href="HomePage.html" aria-label="Return to Home Page">
@@ -22,28 +217,99 @@
 
 <div class="main-layout">
  <div id="banner-container"></div>  
-  <div class="main-content">   
-    
-    <div class="containerMid"> 
-<div class="leaderboard-wrapper"> <div class="header-labels">
+ <div class="main-content">   
 
-  </div>
-  <ol class="leaderboard-list" id="leaderboard"></ol>
-</div>
+<div class="leaderboard-container">
+        
+        <div class="podium-container" id="podium-target"></div>
+
+        <div class="list-container" id="list-target"></div>
+
     </div>
-  </div>
-  </div>
+
+   
+ </div>
 </div>
+</div>
+
+  </body>
+
 
   
-    
-  </body>
  <script src=./scripts/load-navigation.js></script>
  <script src=./scripts/JS-Nav.js> </script>
 
  <script src="https://github.com/ninefortyonestudio/uxnote/releases/download/v1.0.0/uxnote.min-v1.0.0.js"></script>
  <script src=./scripts/Score.js> </script>
+<script>
+        // Données statiques incluant la propriété avatarUrl
+        const initialData = [
+            { name: "Joueur 1", rating: 3750, avatarUrl: "" },
+            { name: "Joueur 2", rating: 8500, avatarUrl: "https://www.shutterstock.com/shutterstock/photos/2507626161/display_1500/stock-vector-two-dice-cubes-icon-isolated-on-white-background-2507626161.jpg" },
+            { name: "Joueur 3", rating: 350,  avatarUrl: "" },
+            { name: "Joueur 4", rating: 2100, avatarUrl: "" },
+            { name: "Joueur 5", rating: 1850, avatarUrl: "" }
+        ];
 
+        // Tri décroissant
+        const sortedData = [...initialData].sort((a, b) => b.rating - a.rating);
+
+        const podiumTarget = document.getElementById('podium-target');
+        const listTarget = document.getElementById('list-target');
+
+        const top3 = sortedData.slice(0, 3);
+        const rest = sortedData.slice(3);
+
+        // Configuration de l'affichage du podium (2e, 1er, 3e)
+        const podiumOrder = [
+            { data: top3[1], rank: 2, class: "rank-2" },
+            { data: top3[0], rank: 1, class: "rank-1" },
+            { data: top3[2], rank: 3, class: "rank-3" }
+        ];
+
+        podiumOrder.forEach(item => {
+            if (item.data) {
+                const initialLetter = item.data.name.charAt(0).toUpperCase();
+                
+                // Si une URL d'avatar existe, injecte l'image, sinon affiche la première lettre
+                const avatarContent = item.data.avatarUrl 
+                    ? `<img src="${item.data.avatarUrl}" alt="${item.data.name}">` 
+                    : initialLetter;
+
+                podiumTarget.innerHTML += `
+                    <div class="podium-card ${item.class}">
+                        <div class="podium-avatar">
+                            <div class="rank-badge">${item.rank}</div>
+                            ${avatarContent}
+                        </div>
+                        <div class="podium-name">${item.data.name}</div>
+                        <div class="podium-score">${item.data.rating}</div>
+                    </div>
+                `;
+            }
+        });
+
+        // Configuration de l'affichage de la liste pour les rangs inférieurs (4+)
+        rest.forEach((player, index) => {
+            const currentRank = index + 4;
+            const initialLetter = player.name.charAt(0).toUpperCase();
+            
+            const avatarContent = player.avatarUrl 
+                ? `<img src="${player.avatarUrl}" alt="${player.name}">` 
+                : initialLetter;
+
+            listTarget.innerHTML += `
+                <div class="list-row">
+                    <div class="row-rank">${currentRank}</div>
+                    <div class="row-avatar">${avatarContent}</div>
+                    <div class="row-name">${player.name}</div>
+                    <div class="row-stats">
+                        <span class="row-score">${player.rating}</span><span class="row-label">Rating</span>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
   
   
 </html>
