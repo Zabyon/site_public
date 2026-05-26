@@ -273,7 +273,7 @@ async function chargerDonnees() {
         console.error("Impossible de charger le fichier JSON :", erreur);
     }
 }
-
+let initialData = null;
 async function initialiserApplication() {
     // Ici, 'await' suspend l'exécution jusqu'à la réception des données
     const initialData = await chargerDonnees();
