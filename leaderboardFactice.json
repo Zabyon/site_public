@@ -1,8 +1,8 @@
 [
-    { name: "Joueur 1", rating: 3750, avatarUrl: "" },
-    { name: "Joueur 2", rating: 8500, avatarUrl: "https://www.shutterstock.com/shutterstock/photos/2507626161/display_1500/stock-vector-two-dice-cubes-icon-isolated-on-white-background-2507626161.jpg" },
-    { name: "Joueur 3", rating: 350,  avatarUrl: "" },
-    { name: "Joueur 4", rating: 2100, avatarUrl: "" },
-    { name: "Joueur 5", rating: 1850, avatarUrl: "" },
-    { name: "Renard Gris", rating: 150, avatarUrl: "" }
+    { "name": "Joueur 1", "rating": 3750, "avatarUrl": "" },
+    { "name": "Joueur 2", "rating": 8500, "avatarUrl": "https://www.shutterstock.com/shutterstock/photos/2507626161/display_1500/stock-vector-two-dice-cubes-icon-isolated-on-white-background-2507626161.jpg" },
+    { "name": "Joueur 3", "rating": 350,  "avatarUrl": "" },
+    { "name": "Joueur 4", "rating": 2100, "avatarUrl": "" },
+    { "name": "Joueur 5", "rating": 1850, "avatarUrl": "" },
+    { "name": "Renard Gris", "rating": 150, "avatarUrl": "" }
 ];
