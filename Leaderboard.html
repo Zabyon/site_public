@@ -256,35 +256,25 @@ function sanitizeUrl(url) {
         return '';
     }
 }
-/*
-async function chargerDonnees() {
-    try {
-        // Exécute la requête HTTP pour récupérer le fichier
-        const reponse = await fetch('leaderboardFactice.json');
-        
-        // Vérifie si le fichier a été trouvé et chargé correctement
-        if (!reponse.ok) {
-            throw new Error(`Erreur HTTP ! Statut : ${reponse.status}`);
-        }
-        
-        // Convertit le contenu textuel en objet/tableau J
-      return await reponse.json();      
-    }catch (erreur) {
-        console.error("Impossible de charger le fichier JSON :", erreur);
-    }
-}
-let initialData = null;
-async function initialiserApplication() {
-    // Ici, 'await' suspend l'exécution jusqu'à la réception des données
-    const initialData = await chargerDonnees();
-    
-    // Vous pouvez utiliser initialData directement à la suite
-    console.log(initialData); 
-}
 
-// Lancement
-initialiserApplication();
- */ 
+  async function loadData(filename) {
+    try {
+        const response = await fetch(filename);
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Erreur lors du chargement du fichier JSON :", error);
+        return null;
+    }
+  }
+  const initialData = await loadData("leaderboardFactice.json");
+/*
+
+
+
  //charg Données
   
 const initialData = [
@@ -296,6 +286,7 @@ const initialData = [
     { name: "Renard Gris", rating: 150, avatarUrl: "" }
 ];
 
+*/
 const sortedData = [...initialData].sort((a, b) => b.rating - a.rating);
 
 const podiumTarget = document.getElementById('podium-target');
