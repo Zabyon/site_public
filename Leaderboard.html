@@ -242,73 +242,129 @@
  <script src="https://github.com/ninefortyonestudio/uxnote/releases/download/v1.0.0/uxnote.min-v1.0.0.js"></script>
  <script src=./scripts/Score.js> </script>
 <script>
-        // Données statiques incluant la propriété avatarUrl
-        const initialData = [
-            { name: "Joueur 1", rating: 3750, avatarUrl: "" },
-            { name: "Joueur 2", rating: 8500, avatarUrl: "https://www.shutterstock.com/shutterstock/photos/2507626161/display_1500/stock-vector-two-dice-cubes-icon-isolated-on-white-background-2507626161.jpg" },
-            { name: "Joueur 3", rating: 350,  avatarUrl: "" },
-            { name: "Joueur 4", rating: 2100, avatarUrl: "" },
-            { name: "Joueur 5", rating: 1850, avatarUrl: "" }
-        ];
+    //function de sanitization 
+  
+function sanitizeName(name) {
+    return String(name).replace(/[^a-zA-Z0-9À-ÿ \-]/g, '');
+}
 
-        // Tri décroissant
-        const sortedData = [...initialData].sort((a, b) => b.rating - a.rating);
+function sanitizeUrl(url) {
+    try {
+        const u = new URL(url);
+        return ['http:', 'https:'].includes(u.protocol) ? url : '';
+    } catch {
+        return '';
+    }
+}
 
-        const podiumTarget = document.getElementById('podium-target');
-        const listTarget = document.getElementById('list-target');
+// Données
+const initialData = [
+    { name: "Joueur 1", rating: 3750, avatarUrl: "" },
+    { name: "Joueur 2", rating: 8500, avatarUrl: "https://www.shutterstock.com/shutterstock/photos/2507626161/display_1500/stock-vector-two-dice-cubes-icon-isolated-on-white-background-2507626161.jpg" },
+    { name: "Joueur 3", rating: 350,  avatarUrl: "" },
+    { name: "Joueur 4", rating: 2100, avatarUrl: "" },
+    { name: "Joueur 5", rating: 1850, avatarUrl: "" },
+    { name: "Renard Gris", rating: 150, avatarUrl: "" }
+];
 
-        const top3 = sortedData.slice(0, 3);
-        const rest = sortedData.slice(3);
+const sortedData = [...initialData].sort((a, b) => b.rating - a.rating);
 
-        // Configuration de l'affichage du podium (2e, 1er, 3e)
-        const podiumOrder = [
-            { data: top3[1], rank: 2, class: "rank-2" },
-            { data: top3[0], rank: 1, class: "rank-1" },
-            { data: top3[2], rank: 3, class: "rank-3" }
-        ];
+const podiumTarget = document.getElementById('podium-target');
+const listTarget = document.getElementById('list-target');
 
-        podiumOrder.forEach(item => {
-            if (item.data) {
-                const initialLetter = item.data.name.charAt(0).toUpperCase();
-                
-                // Si une URL d'avatar existe, injecte l'image, sinon affiche la première lettre
-                const avatarContent = item.data.avatarUrl 
-                    ? `<img src="${item.data.avatarUrl}" alt="${item.data.name}">` 
-                    : initialLetter;
+const top3 = sortedData.slice(0, 3);
+const rest = sortedData.slice(3);
 
-                podiumTarget.innerHTML += `
-                    <div class="podium-card ${item.class}">
-                        <div class="podium-avatar">
-                            <div class="rank-badge">${item.rank}</div>
-                            ${avatarContent}
-                        </div>
-                        <div class="podium-name">${item.data.name}</div>
-                        <div class="podium-score">${item.data.rating}</div>
-                    </div>
-                `;
-            }
-        });
+const podiumOrder = [
+    { data: top3[1], rank: 2, class: "rank-2" },
+    { data: top3[0], rank: 1, class: "rank-1" },
+    { data: top3[2], rank: 3, class: "rank-3" }
+];
 
-        // Configuration de l'affichage de la liste pour les rangs inférieurs (4+)
-        rest.forEach((player, index) => {
-            const currentRank = index + 4;
-            const initialLetter = player.name.charAt(0).toUpperCase();
-            
-            const avatarContent = player.avatarUrl 
-                ? `<img src="${player.avatarUrl}" alt="${player.name}">` 
-                : initialLetter;
+// PODIUM
+podiumOrder.forEach(item => {
+    if (!item.data) return;
 
-            listTarget.innerHTML += `
-                <div class="list-row">
-                    <div class="row-rank">${currentRank}</div>
-                    <div class="row-avatar">${avatarContent}</div>
-                    <div class="row-name">${player.name}</div>
-                    <div class="row-stats">
-                        <span class="row-score">${player.rating}</span><span class="row-label">Rating</span>
-                    </div>
-                </div>
-            `;
-        });
+    const safeName = sanitizeName(item.data.name);
+    const initialLetter = safeName.charAt(0).toUpperCase();
+
+    const card = document.createElement('div');
+    card.className = `podium-card ${item.class}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'podium-avatar';
+
+    const badge = document.createElement('div');
+    badge.className = 'rank-badge';
+    badge.textContent = item.rank;
+
+    avatar.appendChild(badge);
+
+    if (item.data.avatarUrl) {
+        const img = document.createElement('img');
+        img.src = sanitizeUrl(item.data.avatarUrl);
+        img.alt = safeName;
+        avatar.appendChild(img);
+    } else {
+        avatar.appendChild(document.createTextNode(initialLetter));
+    }
+
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'podium-name';
+    nameDiv.textContent = safeName;
+
+    const scoreDiv = document.createElement('div');
+    scoreDiv.className = 'podium-score';
+    scoreDiv.textContent = item.data.rating;
+
+    card.append(avatar, nameDiv, scoreDiv);
+    podiumTarget.appendChild(card);
+});
+
+// LISTE
+rest.forEach((player, index) => {
+    const safeName = sanitizeName(player.name);
+    const initialLetter = safeName.charAt(0).toUpperCase();
+
+    const row = document.createElement('div');
+    row.className = 'list-row';
+
+    const rankDiv = document.createElement('div');
+    rankDiv.className = 'row-rank';
+    rankDiv.textContent = index + 4;
+
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'row-avatar';
+
+    if (player.avatarUrl) {
+        const img = document.createElement('img');
+        img.src = sanitizeUrl(player.avatarUrl);
+        img.alt = safeName;
+        avatarDiv.appendChild(img);
+    } else {
+        avatarDiv.appendChild(document.createTextNode(initialLetter));
+    }
+
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'row-name';
+    nameDiv.textContent = safeName;
+
+    const statsDiv = document.createElement('div');
+    statsDiv.className = 'row-stats';
+
+    const scoreSpan = document.createElement('span');
+    scoreSpan.className = 'row-score';
+    scoreSpan.textContent = player.rating;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'row-label';
+    labelSpan.textContent = 'Rating';
+
+    statsDiv.append(scoreSpan, labelSpan);
+
+    row.append(rankDiv, avatarDiv, nameDiv, statsDiv);
+    listTarget.appendChild(row);
+});
     </script>
   
   
