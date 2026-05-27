@@ -1,5 +1,5 @@
 [
-    { "name": "Panda Roux", "rating": 3750, "avatarUrl": "" },
+    { "name": "Panda Roux", "rating": 3750, "avatarUrl": "https://www.gstatic.com/webp/gallery3/2.sm.png" },
     { "name": "Rumi", "rating": 8500, "avatarUrl": "https://www.shutterstock.com/shutterstock/photos/2507626161/display_1500/stock-vector-two-dice-cubes-icon-isolated-on-white-background-2507626161.jpg" },
     { "name": "Joueur 3", "rating": 350,  "avatarUrl": "" },
     { "name": "TEST MODIF", "rating": 2100, "avatarUrl": "" },
