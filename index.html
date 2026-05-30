@@ -5,248 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Arcane Vallérois</title>
+  </head>
     <link rel="stylesheet" href="styles/Fixed_banner.css"/>
-  <style>
-
-#btn-random-event {
-    display : block;
-    margin : 0 auto;
-}
- /* FIN Menu GAUCHE */
-        button {
-            background-color: #4CAF50; 
-            color: white; /* Texte */
-            padding: 15px 30px; /* Espacement intérieur */
-            border: none; /* Pas de bordure */
-            border-radius: 30px; /* Bords arrondis */
-            cursor: crosshair; /* Curseur de la main au survol */
-            font-size: 18px; /* Taille du texte */
-        }
-
-        button:hover {
-            background-color: #45a049; /* Légèrement plus foncé au survol */
-        }
-    
-        input {
-          width: 100%;
-          height: 30px;
-        }
-
-    /*/ container */
-        .containerMid {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          border: 2px dashed #ddd;
-          padding: 10px;
-          
-        }
-
-        .item {
-            flex: 1 1 600px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
-            border: 1px solid blue;
-            padding: 10px;
-            box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur/hauteur */
-        }
-
-        /* Styles spécifiques pour le premier élément (optionnel) */
-        .item:first-child {
-            border-color: green;
-        }
-
-        /* Styles spécifiques pour le deuxième élément (optionnel) */
-        .item:last-child {
-            border-color: pink;
-        }
-   
-         .item2 {
-            flex: 1 1 200px; /* 1: peut grandir, 1: peut rétrécir, 600px: largeur de base */
-            border: 1px solid blue;
-            padding: 0px;
-            /*Inclut le padding et la bordure dans la largeur/hauteur */
-        }
-
-        /* LE DROPDOWN MENU*/
-      h4 {
-    color: #333;
-    margin-bottom: 30px;
-}
-
-/* Basic styling for the label */
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-.logo-content {
-    height: 240px; 
-    width: auto; 
-    margin-right: 20px;
-}
-
-.mainimg {
-  /* 1. Définir la largeur à 80% du conteneur */
-  width: 70%;
-  /* 2. Convertir en élément de bloc pour le centrage horizontal par marge */
-  display: block;
-  /* 3. Centrer horizontalement l'image dans son conteneur */
-  margin-left: auto;
-  margin-right: auto;
-}
-    
-
-.text-container {
-  width: 85%;
-  margin: 0px auto 0 auto; /* Ajouter une marge supérieure de 20px et centrer */
-}
-/* A RETIRER ENSUITE MAIS ATTENTION A TOUTES LES URLS CAR TOUT POUR LE DEV !*/
-
-#Saisie_Jeu {
-  border-radius: 40px; /* Ajustez cette valeur si nécessaire */
-
-  /* (Optionnel) Ajoute un léger rembourrage pour l'esthétique */
-  padding: 8px 10px;
-}
-
-#Saisie_Jeu::placeholder {
-  /* Police en italique */
-  font-style: italic;
-  color: #aaa;
-}
-	  
-
-
-
-
-.branding h1 {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  color: var(--text-color);
-}
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 320px;
-  gap: 12px; /* Espacement entre les boutons */
-}
-
-.btn {
-  display: block;
-  padding: 14px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.2s;
-  text-align: center;
-}
-
-.btn-primary {
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 30px;
-  border: 1px solid var(--primary-color);
-}
-
-.btn-secondary {
-  background-color: white;
-  border-radius: 30px;
-  color: var(--primary-color);
-  border: 1px solid #ccc;
-}
-
-.btn:active {
-  transform: scale(0.98);
-}
-
-
-    #random-event-container {
-            background: #ffffff;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            border-left: 5px solid #4CAF50;
-            border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .event-info-line {
-            display: block;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            color: #1e293b;
-        }
-
-        .event-info-line:last-child {
-            border-bottom: none;
-        }
-
-
-
-
-           .toggle-container {
-            display: flex;
-            gap: 20px; /* Espace entre les boutons */
-            align-items: center;
-            margin: 20px;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-   
-</style>
+    <link rel="stylesheet" href="styles/common.css"/>
 
 </head>
 <body>
 <div class="fixed-banner">
-    <img src="./assets/logo_hexag.webp" alt="Mon image de test" class="logo" />
+<img src="./assets/logo_hexag.webp" alt="Logo de l'Arcane Vallerois" class="logo" />
     <h1>Arcane Vallérois</h1>
     <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">
     ☰ </button>
@@ -259,7 +25,7 @@ label {
   <div class="main-content">    
     <div class="hero-container">
       <div class="branding">
-        <img src="./assets/logo_hexag.webp" alt="Logo de Arcane Vallérois" class="logo-content">
+        <img src="./assets/logo_hexag.webp" alt="Logo de Arcane Vallérois" class="mainimg">
         <h1>Unis par les dés. Animés par le jeu.</h1>
       	<h2>L'Arcane Vallérois</h2>
         <p>
@@ -272,21 +38,52 @@ label {
       </div>  
      
       <div class="button-group">
-        <a href="Adhesion.html"" class="btn btn-primary">Je veux Adhérer !</a>
+        <a href="Adhesion.html" class="btn button">Je veux Adhérer !</a>
         <a href="Agenda.html" class="btn btn-secondary">On fait quoi ce week ?</a>
         <a href="NousContacter.html" class="btn btn-secondary">Je contacte !</a>
-      </div>
+  </div>
+
+<!-- NOUVEAU : Section Réseaux Sociaux -->
+<div class="social-section">
+    <h3>Réseaux sociaux</h3>
+    <div class="social-icons">
+        <a href="#" aria-label="Facebook" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+            </svg>
+        </a>
+        <a href="#" aria-label="Instagram" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="#" aria-label="Discord" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+        </a>
+		<a href="#" aria-label="Telegram" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+	</svg>
+		</a>
+		
+        
+		
       <div class="containerMid"> 
+        <figure>
         <img src="./assets/imageAD.webp" alt="image représentant un jeu de l'Arcane Vallérois" class="mainimg" height=350px width="auto"/>
+      <figcaption>Photo représentant Petit Peuple : A l'Arcane Valléroise vous apprendrez à envahir le bac à fleurs du voisin. L'Arcane Vallérois décline toute responsabilité en cas de coup d'Etat réussi dans votre jardinière</figcaption>  
+      </figure>
       </div>   
       <div class="containerMid">
         <div class="text-container">        
           <h2>À Propos</h2>
           <p>
-          Fondée en 2026 par Mme L, Mme. G et Mr B, l'association s'articule autour de l'appréciation du côté humain des jeux de plateau, lesquels sont reconnus pour être des catalyseurs d'interactions et pour affûter activement les compétences cognitives indispensables telles que la stratégie et l'anticipation. Le jeu représente un accès direct au développement du potentiel intellectuel.
+          Fondée en 2026 par Laetitia, Charlène et Benjamin, l'association s'articule autour de l'appréciation du côté humain des jeux de plateau, lesquels sont reconnus pour être des catalyseurs d'interactions et pour affûter activement les compétences cognitives indispensables telles que la stratégie et l'anticipation. Le jeu représente un accès direct au développement du potentiel intellectuel.
           </p>
           <p>
-          Les jeux de sociétés sont bénéfiques chez les adultes et peuvent préserver la mémoire, ralentissant ainsi l'apparition de maladies comme Alzheimer. Ils peuvent également préserver de l'isolement que provoque certaines maladies comme la Sclérose en Plaque (SEP), une cause soutenue par Mme L (notamment via la SEPc). Ils ont aussi de nombreuses vertus pour les tout petits, ils permettent notamment de stimuler leur concentration et également de développer leur motricité fine.
+          Les jeux de sociétés sont bénéfiques chez les adultes et peuvent préserver la mémoire, ralentissant ainsi l'apparition de maladies comme Alzheimer. Ils peuvent également préserver de l'isolement que provoque certaines maladies comme la Sclérose en Plaque (SEP), une cause soutenue par la Présidente (notamment via la SEPc). Ils ont aussi de nombreuses vertus pour les tout petits, ils permettent notamment de stimuler leur concentration et également de développer leur motricité fine.
           </p>
           <p>
           L'association a été officiellement établie pour étendre cette démarche positive et déployer son action au sein du tissu de l'arrière-pays.
@@ -311,7 +108,7 @@ label {
         <iframe 
 		    width="380"
 		    height="300" 
-		    src="https://www.openstreetmap.org/export/embed.html?bbox=6.849533%2C43.698161%2C6.849533%2C43.698161&amp;layer=mapnik&amp;marker=43.699785%2C6.848150"
+		    src="https://www.openstreetmap.org/export/embed.html?bbox=6.847512%2C43.696181%2C6.851512%2C43.700181&layer=mapnik&marker=43.698181%2C6.849512"
         style="border: 1px solid black">
 	      </iframe>
 	      <hr>
@@ -323,7 +120,12 @@ label {
 		<!--
         <h2> À la découverte d'un nouveau jeu </h2>
         <hr>
+		
         <button id="btn-random-event">Surprends moi !</button>
+		<a class="btn button">Surprends moi !</a>
+		
+		
+		<button id="btn-random-event" class="btn button">Surprends moi !</button>
         <div id="random-event-container"></div>
 		-->
     </div>  
@@ -331,9 +133,12 @@ label {
     </div>
 </div> 
    
-
+<!--
 <script src=./scripts/JS-Nav.js> </script>
 <script src=./scripts/load-navigation.js> </script>
+-->
+<script src=./scripts/chargement-navbar.js> </script>
+
 <script src=./scripts/RandomObjectGame.js> </script>
 
 </body>
