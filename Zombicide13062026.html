@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zombicide : La Trahison des Arbalètes</title>
+    <style>
+      /* Style général */
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+
+      /* Banner fixe en haut */
+      .fixed-banner {
+        background-color: #111;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 2px solid #8b0000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .fixed-banner h1 {
+        margin: 0;
+        color: #ff4444;
+        font-size: 1.8em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      }
+
+      .logo {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      /* Bouton menu */
+      #menu-toggle-button {
+        background: none;
+        border: none;
+        color: #ff4444;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+
+      /* Contenu principal */
+      .main-layout {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #222;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+      }
+
+      /* Images */
+      .story-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid #8b0000;
+        margin: 20px 0;
+      }
+
+      /* Texte de l'histoire */
+      .story-text {
+        text-align: justify;
+        font-size: 1.1em;
+      }
+
+      .story-text p {
+        margin-bottom: 15px;
+      }
+
+      /* Mise en valeur des citations */
+      .story-text blockquote {
+        border-left: 4px solid #ff4444;
+        padding-left: 15px;
+        margin-left: 0;
+        color: #ffcccc;
+        font-style: italic;
+      }
+
+      /* Pied de page */
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #888;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed-banner">
+      <img src="https://via.placeholder.com/50" alt="Logo Zombicide" class="logo" />
+      <h1>Zombicide : La Trahison des Arbalètes</h1>
+      <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">☰</button>
+    </div>
+
+    <div class="main-layout">
+      <!-- Image de début -->
+      <img src="https://via.placeholder.com/800x400/333/ff4444?text=Village+Maudit" alt="Village médiéval abandonné" class="story-image" />
+
+      <!-- Texte de l'histoire -->
+      <div class="story-text">
+        <p><strong>Introduction à la mission :</strong></p>
+        <p>Les rumeurs parlaient d’un village maudit, abandonné depuis que la peste noire avait frappé… ou du moins, c’est ce que les survivants racontent entre deux gorgées de bière avariée. Aujourd’hui, c’est à notre équipe de huit fous furieux — deux nains tanks, un charognard, une mage, un magicien, un elfe qui tire de loin (et qui court encore plus loin), un paladin et un guerrier — de vérifier si les morts y reposent vraiment en paix. Spoiler : non. Mais bon, quand on a accepté une mission intitulée <em>« Nettoyage express : Zombies non inclus »</em>, on s’attend à ce que ça parte en sucette. Et clairement, ça part en sucette.</p>
+
+        <p><strong>Exploration du village médiéval abandonné :</strong></p>
+        <p>La troupe avance prudemment dans les ruelles pavées du village, où les maisons de pierre, à moitié effondrées, semblent murmurer des secrets oubliés. Les vitraux brisés des églises laissent filtrer une lumière sinistre, tandis que des traces de sang séché rappellent que les habitants ont depuis longtemps cédé leur place aux hôtes indésirables. <em>« On dirait que le boucher a fermé boutique… mais les clients sont toujours là »</em>, commente le charognard en pointant du doigt une porte arrachée, couverte de griffures.</p>
+
+        <!-- Image du centre -->
+        <img src="https://via.placeholder.com/800x400/333/ff4444?text=Combat+Épique" alt="Combat contre les rôdeurs" class="story-image" />
+
+        <p><strong>Premiers combats :</strong></p>
+        <p>Soudain, un grognement sourd brise le silence. Une horde de rôdeurs émerge des ombres, leurs pas traînants résonnant comme un glas. <em>« Encore des fans de marche lente… »</em> soupire l’elfe en bandant son arc… depuis une position <em>très</em> en retrait.</p>
+
+        <p><strong>Transition :</strong></p>
+        <p>Après des heures de combat acharné, l’équipe est exsangue : les nains tanks boitent, la mage et le magicien ont les doigts carbonisés par leurs sorts, l’elfe a épuisé son carquois (et sa dignité), et le paladin… eh bien, il prie. Beaucoup. C’est dans ce chaos organisé que l’un des nains, déjà affaibli par une morsure de rôdeur, tourne le dos à ses alliés pour couvrir leur retraite. Mal lui en prend : ses "alliés" se sont passé l’arbalète vampire comme un jouet maudit, et les carreaux sifflent dans l’air pour lui transpercer le dos. Le nain, en retrait pour couvrir leur retraite, s’écroule, trahi par ceux-là mêmes qu’il protégeait. <em>« Putain, les gars, on était à -1 PV tous les huit, là ! »</em> grogne-t-il en s’effondrant.</p>
+
+        <p><strong>Épilogue :</strong></p>
+        <p>Après 3h de combat acharné, de trahison et d’actes manqués... Le boss final est tombé, planté d'un carreau entre les deux yeux. <em>« L’arbalète : l’arme officielle des lâches et des héros. Sponsorisé par la Guilde des Tireurs Anonymes. »</em></p>
+        <p>Dormez sereinement, peuple des Alpes-Maritimes. L'invasion zombie n'aura pas lieu. Enfin... pas aujourd'hui.</p>
+      </div>
+
+      <!-- Image de fin -->
+      <img src="https://via.placeholder.com/800x400/333/ff4444?text=Victoire+Sanglante" alt="Victoire contre le boss final" class="story-image" />
+
+      <div class="footer">
+        <p>© 2026 - Une aventure Zombicide Black Plague</p>
+      </div>
+    </div>
+  </body>
+</html>
