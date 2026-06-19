@@ -57,15 +57,19 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
       }
 
-      /* Images */
+    
+            /* Images */
       .story-image {
+        display: block;
         width: 100%;
-        max-height: 400px;
-        object-fit: cover;
+        height: auto; /* Permet à la hauteur de s'adapter proportionnellement à la largeur */
+        max-height: 500px; /* Optionnel : limite la hauteur maximale sur grand écran */
+        object-fit: contain; /* Garantit que l'image entière est visible sans être rognée */
         border-radius: 8px;
         border: 2px solid #8b0000;
         margin: 20px 0;
       }
+
 
       /* Texte de l'histoire */
       .story-text {
