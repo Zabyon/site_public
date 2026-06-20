@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zombicide : La Trahison des Arbalètes</title>
-    <script src=./scripts/chargement-navbar.js> </script>
     <style>
       /* Style général */
       body {
@@ -32,6 +31,10 @@
         color: #ff4444;
         font-size: 1.8em;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+
+        position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
       }
 
       .logo {
@@ -40,39 +43,6 @@
       }
 
 
- .fixed-sidebar {
-     position: fixed; /* Le menu reste fixe par rapport à la fenêtre */
-     top: 62px; /* Laisse la place de la barre centrale */
-     left: 0; /* Colle bord gauche */
-     width: 200px; /* Largeur menu */
-     height: 100%; /* Prend toute la hauteur de la fenêtre restante */
-     /*background-color: #666666;*/
-     background-color: #111
-     padding: 20px;
-     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-     z-index: 999; /* Moins que la bannière si vous les combinez */
- }
-
- .fixed-sidebar nav ul {
-     list-style: none; /* Supprime les puces des listes */
-     padding: 0;
- }
-
- .fixed-sidebar nav ul li {
-     margin-bottom: 10px;
- }
-
- .fixed-sidebar nav ul li a {
-     text-decoration: none; /* Supprime le soulignement des liens */
-     color: #ff4444;
-     display: block;
-     padding: 5px 0;
-     transition: color 0.3s ease;
- }
-
- .fixed-sidebar nav ul li a:hover {
-     color: #ff4444;
- }
 
  
  
@@ -141,45 +111,13 @@
         color: #888;
         font-size: 0.9em;
       }
-      @media (max-width: 765px) {
-  .fixed-sidebar {
-         /* AJOUTER : Mise en page pour le mobile */
-         position: fixed;
-         height: calc(100% - 62px); /* Hauteur restante après la bannière */
-         width: 250px; /* Plus large pour le mobile */
-         transform: translateX(-100%); /* Masquer le menu hors de l'écran par défaut */
-         transition: transform 0.3s ease-out; /* Animation de transition */
-         /* AJOUTER : Affiche sur le dessus des autres éléments */
-         z-index: 998;
-         /* MODIFICATION: Laissez le 'display: none;' pour qu'il soit invisible si le JS n'est pas actif (graceful degradation), mais on va utiliser le transform */
-         /* Mieux: Enlevez display: none; et utilisez transform: translateX(-100%); pour l'animation */
-         /* display: none; */
-     }
 
-
-/* CLASSE AJOUTÉE PAR JS QUAND LE MENU EST OUVERT */
-     .fixed-sidebar.is-open {
-         transform: translateX(0); /* Afficher le menu */
-         box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
-     }
-     
-     /* AFFICHE LE BOUTON SUR MOBILE */
-     #menu-toggle-button {
-         display: block; 
-     }
- .main-content {
-     margin-left: 0px; /* Décale contenu principal pour laisser de la place au menu de gauche */
-     padding: 20px;
-     flex-grow: 1; /* Permet au contenu de prendre l'espace restant */
- }
-      }
     </style>
   </head>
   <body>
     <div class="fixed-banner">
       <img src="./assets/logo_hexag.webp" alt="Logo de l'Arcane Vallerois" class="logo" />
       <h1>Zombicide : La Trahison des Arbalètes</h1>     
-      <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">☰</button>
     </div>
 
     <div class="main-layout">
