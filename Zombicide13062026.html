@@ -39,14 +39,57 @@
         margin-right: 10px;
       }
 
-      /* Bouton menu */
-      #menu-toggle-button {
-        background: none;
-        border: none;
-        color: #ff4444;
-        font-size: 1.5em;
-        cursor: pointer;
-      }
+
+ .fixed-sidebar {
+     position: fixed; /* Le menu reste fixe par rapport à la fenêtre */
+     top: 62px; /* Laisse la place de la barre centrale */
+     left: 0; /* Colle bord gauche */
+     width: 200px; /* Largeur menu */
+     height: 100%; /* Prend toute la hauteur de la fenêtre restante */
+     /*background-color: #666666;*/
+     background-color: #1F2833;
+     padding: 20px;
+     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+     z-index: 999; /* Moins que la bannière si vous les combinez */
+ }
+
+ .fixed-sidebar nav ul {
+     list-style: none; /* Supprime les puces des listes */
+     padding: 0;
+ }
+
+ .fixed-sidebar nav ul li {
+     margin-bottom: 10px;
+ }
+
+ .fixed-sidebar nav ul li a {
+     text-decoration: none; /* Supprime le soulignement des liens */
+     color: aliceblue;
+     display: block;
+     padding: 5px 0;
+     transition: color 0.3s ease;
+ }
+
+ .fixed-sidebar nav ul li a:hover {
+     color: #ff4444;
+ }
+
+ 
+ 
+#menu-toggle-button {
+    background-color: transparent;
+    color: #ff4444;
+    border: none;
+    font-size: 2em;
+    line-height: 1;
+    padding: 5px 10px;
+    cursor: pointer;
+    /* Masqué par défaut sur les grands écrans */
+    display: none; 
+    order: 3; /* Assure qu'il est à l'extrême droite */
+} 
+      
+      
 
       /* Contenu principal */
       .main-layout {
@@ -103,13 +146,12 @@
   <body>
     <div class="fixed-banner">
       <img src="./assets/logo_hexag.webp" alt="Logo de l'Arcane Vallerois" class="logo" />
-      <h1>Zombicide : La Trahison des Arbalètes</h1>
-     <div id="banner-container">
+      <h1>Zombicide : La Trahison des Arbalètes</h1>     
       <button id="menu-toggle-button" aria-expanded="false" aria-controls="fixed-sidebar">☰</button>
-       </div> 
     </div>
 
     <div class="main-layout">
+      <div id="banner-container"></div>
       <!-- Image de début -->
       <img src="./assets/13062026_Debut.webp" alt="Village médiéval abandonné" class="story-image" />
 
