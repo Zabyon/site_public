@@ -141,6 +141,38 @@
         color: #888;
         font-size: 0.9em;
       }
+      @media (max-width: 765px) {
+  .fixed-sidebar {
+         /* AJOUTER : Mise en page pour le mobile */
+         position: fixed;
+         height: calc(100% - 62px); /* Hauteur restante après la bannière */
+         width: 250px; /* Plus large pour le mobile */
+         transform: translateX(-100%); /* Masquer le menu hors de l'écran par défaut */
+         transition: transform 0.3s ease-out; /* Animation de transition */
+         /* AJOUTER : Affiche sur le dessus des autres éléments */
+         z-index: 998;
+         /* MODIFICATION: Laissez le 'display: none;' pour qu'il soit invisible si le JS n'est pas actif (graceful degradation), mais on va utiliser le transform */
+         /* Mieux: Enlevez display: none; et utilisez transform: translateX(-100%); pour l'animation */
+         /* display: none; */
+     }
+
+
+/* CLASSE AJOUTÉE PAR JS QUAND LE MENU EST OUVERT */
+     .fixed-sidebar.is-open {
+         transform: translateX(0); /* Afficher le menu */
+         box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
+     }
+     
+     /* AFFICHE LE BOUTON SUR MOBILE */
+     #menu-toggle-button {
+         display: block; 
+     }
+ .main-content {
+     margin-left: 0px; /* Décale contenu principal pour laisser de la place au menu de gauche */
+     padding: 20px;
+     flex-grow: 1; /* Permet au contenu de prendre l'espace restant */
+ }
+      }
     </style>
   </head>
   <body>
