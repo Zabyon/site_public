@@ -3,7 +3,6 @@
 {"Id":1781682670027,"Horaire":"10h - 16h","Nom":"Forum des associations","Description":"Journée dédiée aux échanges et aux jeux","Date":"2026-09-05","Lieu":"Devant la médiathèque","Type":"Présentation de l'association"},{"Id":1781682670028,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Premier Evenement de l'asso sur la saison 2026-2027","Date":"2026-09-26","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux"},
 {"Id":1781680070429,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Journée jeux à l'Oustaou","Date":"2026-10-10","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux"},
 {"Id":1781680070429,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Journée jeux spécial Halloween","Date":"2026-10-31","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux à thème"},
-{"Id":1781680070429,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Journée jeux spécial Halloween","Date":"2026-10-31","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux à thème"},
 {"Id":1781680070421,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Journée jeux","Date":"2026-11-14","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux"},
 {"Id":1781680070422,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Journée jeux","Date":"2026-11-28","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux"},
 {"Id":1781680070423,"Horaire":"16h - 23h","Nom":"Journée Jeux","Description":"Journée jeux , fêtes de fin d'année","Date":"2026-12-12","Lieu":"Salle Anais de l'Oustaou","Type":"Journée Jeux à thème"}
