@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>État-Major Impérial - Saint-Vallier-de-Thiey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="../escape.css"/>
+   <!--
+    
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-light: #e5c158;
+            --gold-dark: #8c6d2d;
+            --imperial-blue: #121c2b;
+            --imperial-red: #6b1414;
+            --parchment-bg: #f2ebd9;
+            --parchment-border: #3a2e2b;
+            --text-color: #2b2118;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--imperial-blue);
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(30, 45, 66, 0.8) 0%, rgba(10, 15, 23, 0.95) 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c5a059' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M30 0l5 10 10-5-5 10 10 5-10 5 5 10-10-5-5 10-5-10-10 5 5-10-10-5 10-5-5-10 10 5z'/%3E%3C/g%3E%3C/svg%3E");
+            color: var(--text-color);
+            font-family: 'Playfair Display', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Frame container for the document */
+        .document-wrapper {
+            position: relative;
+            max-width: 850px;
+            width: 100%;
+            background: var(--parchment-bg);
+            background-image: 
+                radial-gradient(ellipse at center, rgba(255,255,255,0.4) 0%, rgba(210,190,150,0.2) 70%, rgba(160,130,90,0.4) 100%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.03' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'/%3E%3C/svg%3E");
+            padding: 40px 50px;
+            box-shadow: 
+                0 0 0 10px #1e293b,
+                0 0 0 12px var(--gold),
+                0 0 0 18px #0f172a,
+                0 20px 50px rgba(0,0,0,0.8);
+            border-radius: 4px;
+        }
+
+        /* Gold Corner Embellishments */
+        .corner-decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gold);
+            pointer-events: none;
+        }
+        .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+        .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+        .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--gold-dark);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .imperial-header {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            color: var(--imperial-red);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: #1a110b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        .subtitle {
+            font-family: 'Tangerine', cursive;
+            font-size: 2rem;
+            color: var(--gold-dark);
+            margin-top: -5px;
+        }
+
+        /* Map Canvas Area */
+        .map-container {
+            position: relative;
+            margin: 0 auto 35px auto;
+            border: 8px solid #2b2118;
+            outline: 2px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background-color: #e2d7c3;
+            max-width: 600px;
+            overflow: hidden;
+        }
+
+        .map-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.25) contract(1.05);
+        }
+
+        .map-caption {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #4a3c31;
+            margin-top: 10px;
+        }
+
+        /* Action section with Parchment Button */
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .parchment-btn {
+            position: relative;
+            display: inline-block;
+            padding: 18px 45px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #2c1d11;
+            text-decoration: none;
+            background: #e8d8b7;
+            background-image: 
+                radial-gradient(ellipse at center, #f4e8c1 0%, #d8be91 100%);
+            border: 2px solid #5c4428;
+            border-radius: 4px;
+            box-shadow: 
+                0 0 0 1px #a88956,
+                0 8px 15px rgba(0,0,0,0.3),
+                inset 0 0 15px rgba(139, 90, 43, 0.3);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: center;
+            user-select: none;
+        }
+
+        /* Parchment Roll Ends Styling */
+        .parchment-btn::before, .parchment-btn::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            bottom: -6px;
+            width: 10px;
+            background: linear-gradient(to right, #8c6d2d, #fcf6ba, #8c6d2d);
+            border: 1px solid #3a2e2b;
+            border-radius: 3px;
+        }
+
+        .parchment-btn::before { left: -6px; }
+        .parchment-btn::after { right: -6px; }
+
+        .parchment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 0 1px var(--gold-light),
+                0 12px 20px rgba(0,0,0,0.4),
+                inset 0 0 20px rgba(139, 90, 43, 0.1);
+            color: #000;
+            background: #f0e2c3;
+        }
+
+        .parchment-btn:active {
+            transform: translateY(1px);
+            box-shadow: 
+                0 0 0 1px #8c6d2d,
+                0 4px 8px rgba(0,0,0,0.3),
+                inset 0 0 25px rgba(139, 90, 43, 0.5);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6b5b4f;
+            border-top: 1px dashed var(--gold-dark);
+            padding-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .document-wrapper { padding: 25px 20px; }
+            h1 { font-size: 1.6rem; }
+            .parchment-btn { font-size: 1rem; padding: 14px 30px; }
+        }
+    </style>
+
+
+-->
+
+    
+</head>
+<body>
+
+    <div class="document-wrapper">
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <header>
+            <div class="imperial-header">Grande Armée — État-Major Général</div>
+            <h1>Carte Topographique</h1>
+            <div class="subtitle">Environs de Saint-Vallier-de-Thiey</div>
+        </header>
+
+        <main>
+            <div class="map-container">
+                <img src="https://generative-placeholders.glitch.me/image?width=600&height=1200&img=1" alt="Carte Napoléonienne de Saint-Vallier-de-Thiey">
+            </div>
+            <div class="map-caption">
+                Dépôt Général de la Guerre — An X (1801)
+            </div>
+
+            <div class="action-container">
+                <a href="https://www.google.com" class="parchment-btn" id="dispatchBtn">
+                    Transmettre la réponse
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            Service Cartographique Impérial — Répertoire Tactique
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('dispatchBtn');
+            
+            btn.addEventListener('click', (e) => {
+                // Animation de confirmation visuelle avant redirection
+                btn.style.opacity = '0.8';
+                btn.innerText = 'Transmission...';
+            });
+        });
+    </script>
+</body>
+</html>
