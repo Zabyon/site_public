@@ -203,3 +203,24 @@
             h1 { font-size: 1.6rem; }
             .parchment-btn { font-size: 1rem; padding: 14px 30px; }
         }
+
+        .intro-text {
+            max-width: 650px;
+            margin: 20px auto 40px auto;
+            text-align: center;
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+
+        .intro-text p {
+            margin-bottom: 18px;
+        }
+
+        .mission-order {
+            margin-top: 30px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--imperial-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }

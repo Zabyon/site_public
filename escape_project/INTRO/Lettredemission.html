@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordres de Mission - Saint-Vallier-de-Thiey</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:wght@400;700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+    <link ration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+
+    <header>
+        <div class="imperial-header">Grande Armée — État-Major Général</div>
+        <h1>Ordres de Mission</h1>
+        <div class="subtitle">Saint-Vallier-de-Thiey</div>
+    </header>
+
+    <main>
+
+        <div class="intro-text">
+            <p>
+                Nous sommes en l'an 1801.
+            </p>
+
+            <p>
+                Après plusieurs jours de campagne, l'Empereur Napoléon et son escorte
+                approchent de Saint‑Vallier‑de‑Thiey.
+            </p>
+
+            <p>
+                Avant d'entrer dans le village, un courrier de l'État‑Major remet à
+                l'Empereur une mission d'une importance capitale.
+            </p>
+
+            <p>
+                Des troupes ennemies auraient été aperçues dans les environs.
+                Leur position exacte est inconnue et les routes habituelles ne sont
+                peut‑être plus sûres.
+            </p>
+
+            <p>
+                Votre objectif est de réunir les indices disséminés dans le village
+                afin d'identifier, à la fin de cette mission, le chemin le plus sûr
+                permettant de quitter Saint‑Vallier‑de‑Thiey sans rencontrer les
+                forces adverses.
+            </p>
+
+            <p class="mission-order">
+                Les ordres sont donnés.<br>
+                La mission commence maintenant.
+            </p>
+        </div>
+
+        <div class="action-container">
+            <a href="../ALERTEALENTREEDUVILLAGE/Alerteauvillage.html"
+               class="parchment-btn"
+               id="startMissionBtn">
+                Commencer la mission
+            </a>
+        </div>
+
+    </mainfooter>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('startMissionBtn');
+
+    btn.addEventListener('click', () => {
+        btn.style.opacity = '0.8';
+        btn.textContent = 'Déploiement...';
+    });
+});
+</script>
+
+</body>
+</html>
