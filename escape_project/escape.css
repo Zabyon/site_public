@@ -204,6 +204,17 @@
             .parchment-btn { font-size: 1rem; padding: 14px 30px; }
         }
 
+
+        body.intro-page {
+            background-color: #d8c7a3;
+            background-image:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(255,255,255,0.4) 0%,
+                    rgba(210,190,150,0.20) 60%,
+                    rgba(150,120,80,0.35) 100%
+                );
+        }
         .intro-text {
             max-width: 650px;
             margin: 20px auto 40px auto;
