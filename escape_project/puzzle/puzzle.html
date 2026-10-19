@@ -78,22 +78,22 @@ font-size: 1.2em;
 
 /* --- Conteneur du Puzzle --- */
 #puzzle-container {
-width: min(92vw, 720px); /* Taille fluide : 720px sur desktop, écran-dépendant sur mobile */
-aspect-ratio: 1 / 1;     /* Garde un carré parfait quelle que soit la largeur */
+width: min(92vw, 720px);
+aspect-ratio: 1 / 1;
 background-color: #21262d;
 border: 4px solid #30363d;
 border-radius: 8px;
 display: grid;
-grid-template-columns: repeat(6, 1fr); /* Grille 6x6 */
+grid-template-columns: repeat(6, 1fr); /* Valeur de départ, pilotée ensuite par le JS */
 grid-template-rows: repeat(6, 1fr);
-gap: 0; /* Important : pas d'espace, sinon les morceaux d'image seraient décalés */
+gap: 0;
 overflow: hidden;
 position: relative;
 }
 
 /* --- Pièces du Puzzle (Tuiles) --- */
 .tile {
-background-repeat: no-repeat; /* background-size défini dynamiquement en JS */
+background-repeat: no-repeat;
 cursor: pointer;
 transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 box-sizing: border-box;
@@ -131,6 +131,8 @@ border: none;
 margin-top: 30px;
 display: flex;
 gap: 15px;
+justify-content: center;
+flex-wrap: wrap;
 }
 
 button {
@@ -156,6 +158,20 @@ box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 
 button:active {
 transform: translateY(1px);
+}
+
+/* Bouton désactivé (utilisé par le bouton de difficulté arrivé au minimum) */
+button:disabled {
+opacity: 0.45;
+cursor: not-allowed;
+color: #8b949e;
+border-color: #484f58;
+}
+
+button:disabled:hover {
+background-color: #21262d;
+color: #8b949e;
+box-shadow: none;
 }
 
 /* --- Zone d'Aperçu --- */
@@ -241,7 +257,7 @@ button { font-size: 0.95em; padding: 10px 18px; }
 </div>
 <div class="info-block">
 <span class="info-icon">📐</span>
-<span>GRILLE : <strong>6 x 6</strong></span>
+<span>GRILLE : <strong id="grid-label">6 x 6</strong></span>
 </div>
 </div>
 
@@ -254,6 +270,12 @@ button { font-size: 0.95em; padding: 10px 18px; }
 <div class="button-container">
 <button id="shuffle-btn">Mélanger</button>
 </div>
+
+<!-- ▼▼ BLOC TEMPORAIRE : bouton de difficulté — à supprimer plus tard ▼▼ -->
+<div class="button-container" id="difficulty-container">
+<button id="easier-btn">Faciliter (5 x 5)</button>
+</div>
+<!-- ▲▲ FIN DU BLOC TEMPORAIRE ▲▲ -->
 
 </div>
 
@@ -277,9 +299,10 @@ Temps : <strong id="final-time"></strong> secondes.
 
 <script>
 // --- Configuration ---
-const gridSize = 6; // Grille 6x6
-const totalTiles = gridSize * gridSize;
+let gridSize = 6;                 // Modifiable via le bouton de difficulté
+let totalTiles = gridSize * gridSize;
 const imageSrc = '../assets/Puzzle_Napo.webp'; // Image imposée
+const MIN_GRID_SIZE = 4;          // Taille la plus facile atteignable
 
 // --- État du Jeu ---
 let tiles = [];
@@ -294,21 +317,42 @@ let selectedTileIndex = null;
 const container = document.getElementById('puzzle-container');
 const moveCountDisplay = document.getElementById('move-count');
 const timerDisplay = document.getElementById('timer');
+const gridLabel = document.getElementById('grid-label');
 const shuffleBtn = document.getElementById('shuffle-btn');
+const easierBtn = document.getElementById('easier-btn');
 const victoryOverlay = document.getElementById('victory-overlay');
 const finalMovesDisplay = document.getElementById('final-moves');
 const finalTimeDisplay = document.getElementById('final-time');
 const restartBtn = document.getElementById('restart-btn');
 
 // --- Taille dynamique (responsive) ---
-// La taille est mesurée sur le conteneur réel, donc elle s'adapte
-// à l'écran (desktop 720px comme avant, téléphone plus petit).
 function getPuzzleSize() {
     return container.clientWidth;
 }
 
+// --- Appliquer la taille de grille courante (CSS + libellé + bouton) ---
+function applyGridSize() {
+    container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+    gridLabel.textContent = `${gridSize} x ${gridSize}`;
+
+    if (gridSize <= MIN_GRID_SIZE) {
+        easierBtn.disabled = true;
+        easierBtn.textContent = `Minimum (${MIN_GRID_SIZE} x ${MIN_GRID_SIZE})`;
+    } else {
+        easierBtn.disabled = false;
+        easierBtn.textContent = `Faciliter (${gridSize - 1} x ${gridSize - 1})`;
+    }
+}
+
 // --- Initialisation ---
 function initGame() {
+    // Recalculer les valeurs dépendantes de la grille
+    totalTiles = gridSize * gridSize;
+    emptyTileIndex = totalTiles - 1;
+
+    applyGridSize();
+
     tiles = Array.from({ length: totalTiles }, (_, i) => i);
     shuffleTiles();
     renderTiles();
@@ -483,8 +527,15 @@ restartBtn.addEventListener('click', () => {
     initGame();
 });
 
-// Responsive : si l'écran change de taille (rotation, redimensionnement),
-// on redessine les tuiles sans re-mélanger ni réinitialiser le jeu.
+// ▼▼ TEMPORAIRE : réduire la difficulté d'un cran (6x6 → 5x5 → 4x4) ▼▼
+easierBtn.addEventListener('click', () => {
+    if (gridSize <= MIN_GRID_SIZE) return;
+    gridSize--;
+    initGame();
+});
+// ▲▲ FIN TEMPORAIRE ▲▲
+
+// Responsive : redessiner les tuiles sans re-mélanger ni réinitialiser
 let resizeTimeout = null;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
@@ -502,6 +553,7 @@ img.onload = initGame;
 img.onerror = () => {
     container.innerHTML = '<div style="color:#ef4444; padding:20px;">Erreur : Impossible de charger l\'image du puzzle.</div>';
     shuffleBtn.disabled = true;
+    easierBtn.disabled = true;
 };
 
 </script>
