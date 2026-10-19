@@ -7,8 +7,8 @@
 <style>
 /* --- Styles de base et Arrière-plan --- */
 body {
-font-family: 'Times New Roman', Times, serif; /* Police plus classique, napoléonienne */
-background-color: #0d1117; /* Fond sombre de base */
+font-family: 'Times New Roman', Times, serif;
+background-color: #0d1117;
 color: #e0e0e0;
 margin: 0;
 padding: 20px;
@@ -16,12 +16,8 @@ display: flex;
 flex-direction: column;
 align-items: center;
 min-height: 100vh;
-
-/* Arrière-plan de type napoléonien : N impérial et Abeilles dorées */
 background-image:
-/* Motif N et Abeilles */
 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-opacity='0.1'%3E%3C!-- N impérial --%3E%3Cpath fill='%23d4af37' d='M25 25h10v50H25zM65 25h10v50H65zM35 25l30 50v-10l-30-50z'/%3E%3C!-- Abeilles dorées --%3E%3Ccircle fill='%23d4af37' cx='85' cy='15' r='3'/%3E%3Cpath fill='%23d4af37' d='M85 18c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0z'/%3E%3Ccircle fill='%23d4af37' cx='15' cy='85' r='3'/%3E%3Cpath fill='%23d4af37' d='M15 88c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0z'/%3E%3C/g%3E%3C/svg%3E"),
-/* Dégradés radiaux pour la profondeur */
 radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.15) 0%, transparent 40%),
 radial-gradient(circle at 80% 70%, rgba(102, 0, 204, 0.15) 0%, transparent 40%);
 background-attachment: fixed;
@@ -30,16 +26,17 @@ background-attachment: fixed;
 /* --- Titre --- */
 h1 {
 color: #fff;
-text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 0 10px rgba(212, 175, 55, 0.5); /* Lueur dorée */
+text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 0 10px rgba(212, 175, 55, 0.5);
 margin-bottom: 20px;
 text-transform: uppercase;
 letter-spacing: 2px;
+text-align: center;
 }
 
 /* --- Zone de jeu principale --- */
 #game-panel {
 background-color: #161b22;
-border: 2px dashed rgba(212, 175, 55, 0.3); /* Bordure en pointillés dorée */
+border: 2px dashed rgba(212, 175, 55, 0.3);
 border-radius: 12px;
 padding: 30px;
 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -48,12 +45,16 @@ flex-direction: column;
 align-items: center;
 max-width: 900px;
 position: relative;
+width: 100%;
+box-sizing: border-box;
 }
 
 /* --- Barre d'infos (Compteur, Temps, Grille) --- */
 #info-bar {
 display: flex;
 justify-content: space-between;
+flex-wrap: wrap;
+gap: 8px;
 width: 100%;
 margin-bottom: 20px;
 font-size: 1.1em;
@@ -77,23 +78,22 @@ font-size: 1.2em;
 
 /* --- Conteneur du Puzzle --- */
 #puzzle-container {
-width: 700px; /* Taille fixe pour le puzzle */
-height: 700px;
+width: min(92vw, 720px); /* Taille fluide : 720px sur desktop, écran-dépendant sur mobile */
+aspect-ratio: 1 / 1;     /* Garde un carré parfait quelle que soit la largeur */
 background-color: #21262d;
 border: 4px solid #30363d;
 border-radius: 8px;
 display: grid;
-grid-template-columns: repeat(7, 1fr); /* Grille 7x7 */
-grid-template-rows: repeat(7, 1fr);
-gap: 2px; /* Espacement entre les pièces */
+grid-template-columns: repeat(6, 1fr); /* Grille 6x6 */
+grid-template-rows: repeat(6, 1fr);
+gap: 0; /* Important : pas d'espace, sinon les morceaux d'image seraient décalés */
 overflow: hidden;
 position: relative;
 }
 
 /* --- Pièces du Puzzle (Tuiles) --- */
 .tile {
-background-size: 700px 700px; /* Doit correspondre à la taille du conteneur */
-background-repeat: no-repeat;
+background-repeat: no-repeat; /* background-size défini dynamiquement en JS */
 cursor: pointer;
 transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 box-sizing: border-box;
@@ -111,7 +111,7 @@ border-color: rgba(212, 175, 55, 0.8);
 
 /* Pièce sélectionnée pour l'échange */
 .tile.selected {
-border: 3px solid #d4af37; /* Or vif */
+border: 3px solid #d4af37;
 box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
 transform: scale(1.05);
 z-index: 11;
@@ -135,8 +135,8 @@ gap: 15px;
 
 button {
 background-color: #21262d;
-color: #d4af37; /* Texte doré */
-border: 1px solid #d4af37; /* Bordure dorée */
+color: #d4af37;
+border: 1px solid #d4af37;
 padding: 12px 24px;
 font-size: 1.1em;
 font-family: 'Times New Roman', Times, serif;
@@ -149,8 +149,8 @@ letter-spacing: 1px;
 }
 
 button:hover {
-background-color: #d4af37; /* Fond doré au survol */
-color: #161b22; /* Texte sombre */
+background-color: #d4af37;
+color: #161b22;
 box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
@@ -158,9 +158,9 @@ button:active {
 transform: translateY(1px);
 }
 
-/* --- Zone d'Aperçu (Retirée selon la demande, mais structure gardée si besoin) --- */
+/* --- Zone d'Aperçu --- */
 #preview-container {
-display: none; /* Caché */
+display: none;
 }
 
 /* --- Overlay de Victoire --- */
@@ -171,13 +171,15 @@ left: 0;
 width: 100%;
 height: 100%;
 background-color: rgba(0,0,0,0.85);
-display: none; /* Caché par défaut */
+display: none;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 z-index: 100;
 opacity: 0;
 transition: opacity 0.5s ease;
+padding: 20px;
+box-sizing: border-box;
 }
 
 #victory-overlay.show {
@@ -208,11 +210,15 @@ color: #e0e0e0;
 margin: 25px 0;
 }
 
-/* --- Icônes (SVG simples) --- */
-.icon-svg {
-width: 1em;
-height: 1em;
-fill: currentColor;
+/* --- Adaptation mobile --- */
+@media (max-width: 600px) {
+body { padding: 10px; }
+#game-panel { padding: 15px; }
+h1 { font-size: 1.3em; letter-spacing: 1px; }
+#info-bar { font-size: 0.9em; }
+button { font-size: 0.95em; padding: 10px 18px; }
+#victory-content { padding: 30px; }
+#victory-content h2 { font-size: 1.7em; }
 }
 
 </style>
@@ -235,7 +241,7 @@ fill: currentColor;
 </div>
 <div class="info-block">
 <span class="info-icon">📐</span>
-<span>GRILLE : <strong>7 x 7</strong></span>
+<span>GRILLE : <strong>6 x 6</strong></span>
 </div>
 </div>
 
@@ -253,7 +259,6 @@ fill: currentColor;
 
 <!-- Zone d'Aperçu (Cachée) -->
 <div id="preview-container">
-<!-- L'image originale est incluse pour le JS mais cachée visuellement -->
 <img id="source-image" src="../assets/Puzzle_Napo.webp" alt="Source" style="display:none;">
 </div>
 
@@ -272,20 +277,18 @@ Temps : <strong id="final-time"></strong> secondes.
 
 <script>
 // --- Configuration ---
-const gridSize = 7; // Grille 7x7
+const gridSize = 6; // Grille 6x6
 const totalTiles = gridSize * gridSize;
-const containerSize = 700; // Doit correspondre au CSS
-const tileSize = containerSize / gridSize;
 const imageSrc = '../assets/Puzzle_Napo.webp'; // Image imposée
 
 // --- État du Jeu ---
-let tiles = []; // Tableau stockant l'ordre actuel des pièces (indices)
-let emptyTileIndex = totalTiles - 1; // La dernière pièce est vide par défaut
+let tiles = [];
+let emptyTileIndex = totalTiles - 1;
 let moves = 0;
 let timerInterval = null;
 let secondsElapsed = 0;
 let isGameActive = false;
-let selectedTileIndex = null; // Pour le mode d'échange par clic
+let selectedTileIndex = null;
 
 // --- Éléments DOM ---
 const container = document.getElementById('puzzle-container');
@@ -297,219 +300,208 @@ const finalMovesDisplay = document.getElementById('final-moves');
 const finalTimeDisplay = document.getElementById('final-time');
 const restartBtn = document.getElementById('restart-btn');
 
+// --- Taille dynamique (responsive) ---
+// La taille est mesurée sur le conteneur réel, donc elle s'adapte
+// à l'écran (desktop 720px comme avant, téléphone plus petit).
+function getPuzzleSize() {
+    return container.clientWidth;
+}
+
 // --- Initialisation ---
 function initGame() {
-// Créer le tableau initial ordonné [0, 1, 2, ..., 48]
-tiles = Array.from({ length: totalTiles }, (_, i) => i);
-
-// Mélanger obligatoirement dès le départ
-shuffleTiles();
-
-// Rendu initial
-renderTiles();
-
-// Reset infos
-resetStats();
+    tiles = Array.from({ length: totalTiles }, (_, i) => i);
+    shuffleTiles();
+    renderTiles();
+    resetStats();
 }
 
 // --- Rendu des Tuiles dans le DOM ---
 function renderTiles() {
-container.innerHTML = ''; // Vider le conteneur
+    container.innerHTML = '';
 
-tiles.forEach((tileId, currentIndex) => {
-const tileDiv = document.createElement('div');
-tileDiv.className = 'tile';
+    const size = getPuzzleSize();
+    const tileSize = size / gridSize;
 
-// Position dans la grille (row / col)
-const row = Math.floor(currentIndex / gridSize);
-const col = currentIndex % gridSize;
+    tiles.forEach((tileId, currentIndex) => {
+        const tileDiv = document.createElement('div');
+        tileDiv.className = 'tile';
 
-// Position de la pièce originale dans l'image (id unique)
-const originalRow = Math.floor(tileId / gridSize);
-const originalCol = tileId % gridSize;
+        const originalRow = Math.floor(tileId / gridSize);
+        const originalCol = tileId % gridSize;
 
-if (tileId === emptyTileIndex) {
-// C'est la pièce vide
-tileDiv.classList.add('empty');
-} else {
-// C'est une pièce normale avec image
-tileDiv.style.backgroundImage = `url(${imageSrc})`;
+        if (tileId === emptyTileIndex) {
+            tileDiv.classList.add('empty');
+        } else {
+            tileDiv.style.backgroundImage = `url(${imageSrc})`;
+            tileDiv.style.backgroundSize = `${size}px ${size}px`;
 
-// Calcul du background-position pour afficher la bonne partie de l'image
-const bgX = -originalCol * tileSize;
-const bgY = -originalRow * tileSize;
-tileDiv.style.backgroundPosition = `${bgX}px ${bgY}px`;
+            const bgX = -originalCol * tileSize;
+            const bgY = -originalRow * tileSize;
+            tileDiv.style.backgroundPosition = `${bgX}px ${bgY}px`;
 
-// Gestionnaire de clic
-tileDiv.addEventListener('click', () => handleTileClick(currentIndex));
-}
+            tileDiv.addEventListener('click', () => handleTileClick(currentIndex));
+        }
 
-container.appendChild(tileDiv);
-});
+        container.appendChild(tileDiv);
+    });
 }
 
 // --- Gestion du Clic sur une Tuile ---
 function handleTileClick(clickedIndex) {
-if (!isGameActive) return; // Ignorer si le jeu n'est pas lancé
+    if (!isGameActive) return;
 
-// Trouver la position de la pièce vide dans le tableau actuel
-const currentEmptyIndex = tiles.indexOf(emptyTileIndex);
+    const currentEmptyIndex = tiles.indexOf(emptyTileIndex);
 
-if (canMove(clickedIndex, currentEmptyIndex)) {
-// Mouvement valide (adjacent à la case vide)
-swapTiles(clickedIndex, currentEmptyIndex);
-renderTiles();
-incrementMoves();
-checkVictory();
-} else {
-// Mouvement invalide : donner un feedback visuel ?
-const tileDiv = container.children[clickedIndex];
-tileDiv.style.borderColor = '#ef4444'; // Rouge
-setTimeout(() => tileDiv.style.borderColor = '', 200);
-}
+    if (canMove(clickedIndex, currentEmptyIndex)) {
+        swapTiles(clickedIndex, currentEmptyIndex);
+        renderTiles();
+        incrementMoves();
+        checkVictory();
+    } else {
+        const tileDiv = container.children[clickedIndex];
+        tileDiv.style.borderColor = '#ef4444';
+        setTimeout(() => tileDiv.style.borderColor = '', 200);
+    }
 }
 
-// --- Vérifier si le mouvement est possible (adjacent à la case vide) ---
+// --- Vérifier si le mouvement est possible ---
 function canMove(clickedIndex, emptyIndex) {
-const clickedRow = Math.floor(clickedIndex / gridSize);
-const clickedCol = clickedIndex % gridSize;
-const emptyRow = Math.floor(emptyIndex / gridSize);
-const emptyCol = emptyIndex % gridSize;
+    const clickedRow = Math.floor(clickedIndex / gridSize);
+    const clickedCol = clickedIndex % gridSize;
+    const emptyRow = Math.floor(emptyIndex / gridSize);
+    const emptyCol = emptyIndex % gridSize;
 
-// Adjacent si même ligne et colonne diff de 1, OU même colonne et ligne diff de 1
-const rowDiff = Math.abs(clickedRow - emptyRow);
-const colDiff = Math.abs(clickedCol - emptyCol);
+    const rowDiff = Math.abs(clickedRow - emptyRow);
+    const colDiff = Math.abs(clickedCol - emptyCol);
 
-return (rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1);
+    return (rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1);
 }
 
 // --- Échanger deux tuiles dans le tableau d'état ---
 function swapTiles(index1, index2) {
-[tiles[index1], tiles[index2]] = [tiles[index2], tiles[index1]];
+    [tiles[index1], tiles[index2]] = [tiles[index2], tiles[index1]];
 }
 
 // --- Mélanger les Tuiles ---
 function shuffleTiles() {
-// Un mélange simple (Fisher-Yates) ne garantit pas la résolubilité.
-// Pour un puzzle glissant (sliding puzzle), il faut faire des mouvements aléatoires.
-let currentEmpty = tiles.indexOf(emptyTileIndex);
+    let currentEmpty = tiles.indexOf(emptyTileIndex);
 
-// Faire un grand nombre de mouvements aléatoires
-const shuffleMoves = 1000;
+    const shuffleMoves = 1000;
 
-for (let i = 0; i < shuffleMoves; i++) {
-const possibleMoves = getValidMoves(currentEmpty);
-const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    for (let i = 0; i < shuffleMoves; i++) {
+        const possibleMoves = getValidMoves(currentEmpty);
+        const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        swapTiles(currentEmpty, randomMove);
+        currentEmpty = randomMove;
+    }
 
-swapTiles(currentEmpty, randomMove);
-currentEmpty = randomMove; // Mettre à jour la position de la case vide
-}
-
-// S'assurer que le puzzle n'est pas résolu après mélange (peu probable mais bon)
-if (isSolved()) {
-shuffleTiles(); // Re-mélanger
-}
+    if (isSolved()) {
+        shuffleTiles();
+    }
 }
 
 // --- Obtenir les indices des mouvements valides autour de la case vide ---
 function getValidMoves(emptyIndex) {
-const emptyRow = Math.floor(emptyIndex / gridSize);
-const emptyCol = emptyIndex % gridSize;
-const moves = [];
+    const emptyRow = Math.floor(emptyIndex / gridSize);
+    const emptyCol = emptyIndex % gridSize;
+    const moves = [];
 
-// Haut
-if (emptyRow > 0) moves.push(emptyIndex - gridSize);
-// Bas
-if (emptyRow < gridSize - 1) moves.push(emptyIndex + gridSize);
-// Gauche
-if (emptyCol > 0) moves.push(emptyIndex - 1);
-// Droite
-if (emptyCol < gridSize - 1) moves.push(emptyIndex + 1);
+    if (emptyRow > 0) moves.push(emptyIndex - gridSize);
+    if (emptyRow < gridSize - 1) moves.push(emptyIndex + gridSize);
+    if (emptyCol > 0) moves.push(emptyIndex - 1);
+    if (emptyCol < gridSize - 1) moves.push(emptyIndex + 1);
 
-return moves;
+    return moves;
 }
 
 // --- Vérifier si le puzzle est résolu ---
 function isSolved() {
-// Vérifier si chaque tuile est à sa position originale (id === index)
-for (let i = 0; i < totalTiles; i++) {
-if (tiles[i] !== i) return false;
-}
-return true;
+    for (let i = 0; i < totalTiles; i++) {
+        if (tiles[i] !== i) return false;
+    }
+    return true;
 }
 
 // --- Vérification de la Victoire ---
 function checkVictory() {
-if (isSolved()) {
-endGame();
-}
+    if (isSolved()) {
+        endGame();
+    }
 }
 
-// --- Gestion des Statistiques (Compteur, Timer) ---
+// --- Gestion des Statistiques ---
 function incrementMoves() {
-moves++;
-moveCountDisplay.textContent = moves;
-if (moves === 1) startTimer(); // Démarrer le timer au premier coup
+    moves++;
+    moveCountDisplay.textContent = moves;
+    if (moves === 1) startTimer();
 }
 
 function startTimer() {
-if (timerInterval) return; // Déjà lancé
-secondsElapsed = 0;
-isGameActive = true;
-timerInterval = setInterval(() => {
-secondsElapsed++;
-timerDisplay.textContent = secondsElapsed + 's';
-}, 1000);
+    if (timerInterval) return;
+    secondsElapsed = 0;
+    isGameActive = true;
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        timerDisplay.textContent = secondsElapsed + 's';
+    }, 1000);
 }
 
 function stopTimer() {
-clearInterval(timerInterval);
-timerInterval = null;
+    clearInterval(timerInterval);
+    timerInterval = null;
 }
 
 function resetStats() {
-stopTimer();
-moves = 0;
-secondsElapsed = 0;
-isGameActive = true; // Le jeu est prêt à recevoir le premier clic
-moveCountDisplay.textContent = '0';
-timerDisplay.textContent = '0s';
+    stopTimer();
+    moves = 0;
+    secondsElapsed = 0;
+    isGameActive = true;
+    moveCountDisplay.textContent = '0';
+    timerDisplay.textContent = '0s';
 }
 
-// --- Fin du Jeu (Victoire) ---
+// --- Fin du Jeu ---
 function endGame() {
-stopTimer();
-isGameActive = false;
+    stopTimer();
+    isGameActive = false;
 
-// Afficher les stats finales
-finalMovesDisplay.textContent = moves;
-finalTimeDisplay.textContent = secondsElapsed;
+    finalMovesDisplay.textContent = moves;
+    finalTimeDisplay.textContent = secondsElapsed;
 
-// Afficher l'overlay
-setTimeout(() => {
-victoryOverlay.classList.add('show');
-}, 500); // Petit délai pour voir la dernière pièce se placer
+    setTimeout(() => {
+        victoryOverlay.classList.add('show');
+    }, 500);
 }
 
 // --- Événements ---
 shuffleBtn.addEventListener('click', () => {
-initGame(); // Re-mélange et reset
+    initGame();
 });
 
 restartBtn.addEventListener('click', () => {
-victoryOverlay.classList.remove('show');
-initGame(); // Recommencer
+    victoryOverlay.classList.remove('show');
+    initGame();
+});
+
+// Responsive : si l'écran change de taille (rotation, redimensionnement),
+// on redessine les tuiles sans re-mélanger ni réinitialiser le jeu.
+let resizeTimeout = null;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (container.children.length > 0 && isGameActive) {
+            renderTiles();
+        }
+    }, 150);
 });
 
 // --- Lancement ---
-// S'assurer que l'image est chargée avant de lancer pour le calcul des BG positions
 const img = new Image();
 img.src = imageSrc;
 img.onload = initGame;
-// En cas d'erreur de chargement
 img.onerror = () => {
-container.innerHTML = '<div style="color:#ef4444; padding:20px;">Erreur : Impossible de charger l\'image du puzzle.</div>';
-shuffleBtn.disabled = true;
+    container.innerHTML = '<div style="color:#ef4444; padding:20px;">Erreur : Impossible de charger l\'image du puzzle.</div>';
+    shuffleBtn.disabled = true;
 };
 
 </script>
