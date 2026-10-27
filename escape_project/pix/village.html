@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mission Cartographique Impériale</title>
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-light: #e5c158;
+            --gold-dark: #8c6d2d;
+            --imperial-blue: #121c2b;
+            --imperial-red: #6b1414;
+            --parchment-bg: #f2ebd9;
+            --text-color: #2b2118;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--imperial-blue);
+
+            background-image:
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(30, 45, 66, 0.8) 0%,
+                    rgba(10, 15, 23, 0.98) 100%
+                );
+
+            color: var(--text-color);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            padding: 25px 12px;
+        }
+
+        /* ================================
+           DOCUMENT
+           ================================ */
+
+        .document-wrapper {
+            position: relative;
+
+            max-width: 850px;
+            width: 100%;
+
+            background: var(--parchment-bg);
+
+            background-image:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(255,255,255,0.45) 0%,
+                    rgba(210,190,150,0.20) 70%,
+                    rgba(160,130,90,0.40) 100%
+                );
+
+            padding: 40px 30px;
+
+            box-shadow:
+                0 0 0 10px #1e293b,
+                0 0 0 12px var(--gold),
+                0 0 0 18px #0f172a,
+                0 20px 50px rgba(0,0,0,0.8);
+
+            border-radius: 4px;
+        }
+
+        /* ================================
+           DÉCORATIONS
+           ================================ */
+
+        .corner-decoration {
+            position: absolute;
+
+            width: 40px;
+            height: 40px;
+
+            border: 3px solid var(--gold);
+
+            pointer-events: none;
+        }
+
+        .top-left {
+            top: 12px;
+            left: 12px;
+
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .top-right {
+            top: 12px;
+            right: 12px;
+
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bottom-left {
+            bottom: 12px;
+            left: 12px;
+
+            border-right: none;
+            border-top: none;
+        }
+
+        .bottom-right {
+            bottom: 12px;
+            right: 12px;
+
+            border-left: none;
+            border-top: none;
+        }
+
+        /* ================================
+           EN-TÊTE
+           ================================ */
+
+        header {
+            text-align: center;
+
+            border-bottom:
+                2px solid var(--gold-dark);
+
+            padding-bottom: 18px;
+            margin-bottom: 28px;
+        }
+
+        .imperial-header {
+            letter-spacing: 4px;
+
+            font-size: 0.85rem;
+
+            color: var(--imperial-red);
+
+            text-transform: uppercase;
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-weight: 900;
+
+            font-size: 2rem;
+
+            color: #1a110b;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+                1px 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+
+            font-style: italic;
+
+            color: var(--gold-dark);
+
+            margin-top: 8px;
+
+            font-weight: bold;
+        }
+
+        /* ================================
+           ORDRES DE MISSION
+           ================================ */
+
+        .mission-box {
+            background:
+                rgba(226, 215, 195, 0.55);
+
+            border:
+                2px dashed var(--gold-dark);
+
+            padding: 20px;
+
+            border-radius: 4px;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+        .mission-label {
+            color: var(--imperial-red);
+
+            font-size: 0.8rem;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        .mission-text {
+            font-size: 1.25rem;
+
+            font-weight: bold;
+
+            line-height: 1.6;
+
+            color: #2c1d11;
+        }
+
+        /* ================================
+           APPAREIL PHOTO
+           ================================ */
+
+        .camera-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            width: 100%;
+        }
+
+        .camera-frame {
+            position: relative;
+
+            width: 100%;
+
+            background: #17120e;
+
+            border:
+                5px solid #2b2118;
+
+            outline:
+                2px solid var(--gold);
+
+            padding: 6px;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.35);
+
+            overflow: hidden;
+        }
+
+        video,
+        canvas {
+            display: block;
+
+            width: 100%;
+            max-height: 70vh;
+
+            object-fit: contain;
+
+            background: #000;
+        }
+
+        canvas {
+            display: none;
+
+            touch-action: none;
+
+            cursor: crosshair;
+        }
+
+        /* ================================
+           CONTRÔLES
+           ================================ */
+
+        .controls {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+        .parchment-btn {
+            position: relative;
+
+            display: inline-block;
+
+            padding:
+                13px 25px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 0.9rem;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            color: #2c1d11;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    #f4e8c1 0%,
+                    #d8be91 100%
+                );
+
+            border:
+                2px solid #5c4428;
+
+            border-radius: 4px;
+
+            box-shadow:
+                0 0 0 1px #a88956,
+                0 5px 12px rgba(0,0,0,0.25),
+                inset 0 0 15px rgba(139,90,43,0.3);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
+
+            user-select: none;
+        }
+
+        .parchment-btn:hover {
+            transform:
+                translateY(-2px);
+
+            background: #f0e2c3;
+
+            box-shadow:
+                0 0 0 1px var(--gold-light),
+                0 8px 16px rgba(0,0,0,0.35);
+        }
+
+        .parchment-btn:active {
+            transform:
+                translateY(1px);
+        }
+
+        .parchment-btn:disabled {
+            opacity: 0.45;
+
+            cursor: default;
+
+            transform: none;
+        }
+
+        .danger-btn {
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    #842020,
+                    #591010
+                );
+
+            border-color: #3f0c0c;
+        }
+
+        /* ================================
+           INSTRUCTION DESSIN
+           ================================ */
+
+        .drawing-instruction {
+            margin-top: 30px;
+
+            padding: 20px;
+
+            width: 100%;
+
+            text-align: center;
+
+            border-top:
+                1px dashed var(--gold-dark);
+
+            border-bottom:
+                1px dashed var(--gold-dark);
+
+            background:
+                rgba(197,160,89,0.08);
+        }
+
+        .drawing-instruction .instruction-title {
+            color: var(--imperial-red);
+
+            text-transform: uppercase;
+
+            font-size: 0.8rem;
+
+            letter-spacing: 3px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        .drawing-instruction p {
+            font-size: 1.2rem;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+        }
+
+        /* ================================
+           OUTILS DE DESSIN
+           ================================ */
+
+        .drawing-tools {
+            display: none;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            background:
+                rgba(226,215,195,0.6);
+
+            border:
+                1px solid var(--gold-dark);
+        }
+
+        .tool-label {
+            font-size: 0.85rem;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .color-button {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            border:
+                3px solid #5c4428;
+
+            cursor: pointer;
+        }
+
+        .red {
+            background: #b91c1c;
+        }
+
+        .black {
+            background: #111;
+        }
+
+        .gold {
+            background: var(--gold);
+        }
+
+        .color-button.active {
+            outline:
+                3px solid var(--imperial-red);
+
+            outline-offset:
+                2px;
+        }
+
+        /* ================================
+           ERREUR
+           ================================ */
+
+        #errorMessage {
+            margin-top: 15px;
+
+            color: var(--imperial-red);
+
+            text-align: center;
+
+            font-weight: bold;
+
+            min-height: 25px;
+        }
+
+        /* ================================
+           FOOTER
+           ================================ */
+
+        footer {
+            margin-top: 35px;
+
+            text-align: center;
+
+            font-size: 0.8rem;
+
+            color: #6b5b4f;
+
+            border-top:
+                1px dashed var(--gold-dark);
+
+            padding-top: 15px;
+        }
+
+        /* ================================
+           MOBILE
+           ================================ */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding:
+                    18px 8px;
+            }
+
+            .document-wrapper {
+                padding:
+                    28px 15px;
+            }
+
+            h1 {
+                font-size:
+                    1.45rem;
+            }
+
+            .subtitle {
+                font-size:
+                    1.2rem;
+            }
+
+            .mission-text,
+            .drawing-instruction p {
+                font-size:
+                    1.05rem;
+            }
+
+            .controls {
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+            }
+
+            .parchment-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="document-wrapper">
+
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+
+
+    <header>
+
+        <div class="imperial-header">
+            Grande Armée — Mission Cartographique
+        </div>
+
+        <h1>
+            Relevé de la Fontaine
+        </h1>
+
+        <div class="subtitle">
+            Ordre de reconnaissance impérial
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- ===============================
+             INSTRUCTION AVANT PHOTO
+             =============================== -->
+
+        <section class="mission-box">
+
+            <div class="mission-label">
+                Ordre de mission
+            </div>
+
+            <div class="mission-text">
+                Arrivée sur place vous devrez prendre en photo la fontaine Centrale
+            </div>
+
+        </section>
+
+
+        <!-- ===============================
+             APPAREIL PHOTO
+             =============================== -->
+
+        <section class="camera-section">
+
+            <div class="camera-frame">
+
+                <video
+                    id="camera"
+                    autoplay
+                    playsinline
+                    muted
+                ></video>
+
+
+                <canvas
+                    id="photoCanvas"
+                ></canvas>
+
+            </div>
+
+
+            <!-- CONTRÔLES -->
+
+            <div class="controls">
+
+                <button
+                    type="button"
+                    class="parchment-btn"
+                    id="startCameraBtn"
+                >
+                    Activer l'appareil photo
+                </button>
+
+
+                <button
+                    type="button"
+                    class="parchment-btn"
+                    id="takePhotoBtn"
+                    disabled
+                >
+                    Prendre la photo
+                </button>
+
+
+                <button
+                    type="button"
+                    class="parchment-btn"
+                    id="retakeBtn"
+                    style="display:none;"
+                >
+                    Reprendre la photo
+                </button>
+
+
+                <button
+                    type="button"
+                    class="parchment-btn"
+                    id="undoBtn"
+                    style="display:none;"
+                >
+                    Annuler le dernier tracé
+                </button>
+
+
+                <button
+                    type="button"
+                    class="parchment-btn danger-btn"
+                    id="clearBtn"
+                    style="display:none;"
+                >
+                    Effacer les tracés
+                </button>
+
+
+                <button
+                    type="button"
+                    class="parchment-btn"
+                    id="downloadBtn"
+                    style="display:none;"
+                >
+                    Enregistrer l'image
+                </button>
+
+            </div>
+
+
+            <div id="errorMessage"></div>
+
+        </section>
+
+
+        <!-- ===============================
+             INSTRUCTION APRÈS PHOTO
+             =============================== -->
+
+        <section class="drawing-instruction">
+
+            <div class="instruction-title">
+                Relevé cartographique
+            </div>
+
+            <p>
+                Une fois la photo chargée tracer la diagonale des bois du cerf a la taverne des logements
+            </p>
+
+        </section>
+
+
+        <!-- ===============================
+             OUTILS DE DESSIN
+             =============================== -->
+
+        <div
+            class="drawing-tools"
+            id="drawingTools"
+        >
+
+            <span class="tool-label">
+                Couleur du tracé :
+            </span>
+
+
+            <button
+                type="button"
+                class="color-button red active"
+                data-color="#b91c1c"
+                aria-label="Rouge"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-button black"
+                data-color="#111111"
+                aria-label="Noir"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-button gold"
+                data-color="#c5a059"
+                aria-label="Or"
+            ></button>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        Service Cartographique Impérial —
+        Bureau des Reconnaissances de Terrain
+    </footer>
+
+</div>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        /* =====================================
+           DOM
+           ===================================== */
+
+        const video =
+            document.getElementById("camera");
+
+
+        const canvas =
+            document.getElementById("photoCanvas");
+
+
+        const context =
+            canvas.getContext("2d");
+
+
+        const startCameraBtn =
+            document.getElementById("startCameraBtn");
+
+
+        const takePhotoBtn =
+            document.getElementById("takePhotoBtn");
+
+
+        const retakeBtn =
+            document.getElementById("retakeBtn");
+
+
+        const undoBtn =
+            document.getElementById("undoBtn");
+
+
+        const clearBtn =
+            document.getElementById("clearBtn");
+
+
+        const downloadBtn =
+            document.getElementById("downloadBtn");
+
+
+        const drawingTools =
+            document.getElementById("drawingTools");
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+
+        const colorButtons =
+            document.querySelectorAll(".color-button");
+
+
+        /* =====================================
+           ÉTAT
+           ===================================== */
+
+        let cameraStream = null;
+
+        let isDrawing = false;
+
+        let currentColor = "#b91c1c";
+
+        let originalPhoto = null;
+
+        let drawingHistory = [];
+
+
+        /* =====================================
+           CAMÉRA
+           ===================================== */
+
+        async function startCamera() {
+
+            errorMessage.textContent = "";
+
+
+            if (
+                !navigator.mediaDevices ||
+                !navigator.mediaDevices.getUserMedia
+            ) {
+
+                errorMessage.textContent =
+                    "L'appareil photo n'est pas accessible avec ce navigateur.";
+
+                return;
+
+            }
+
+
+            try {
+
+                cameraStream =
+                    await navigator.mediaDevices.getUserMedia({
+
+                        video: {
+                            facingMode: {
+                                ideal: "environment"
+                            }
+                        },
+
+                        audio: false
+
+                    });
+
+
+                video.srcObject =
+                    cameraStream;
+
+
+                await video.play();
+
+
+                takePhotoBtn.disabled =
+                    false;
+
+
+                startCameraBtn.style.display =
+                    "none";
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+
+                errorMessage.textContent =
+                    "Impossible d'accéder à l'appareil photo. Vérifiez l'autorisation de la caméra et que la page est ouverte en HTTPS.";
+
+            }
+
+        }
+
+
+        /* =====================================
+           PRISE DE PHOTO
+           ===================================== */
+
+        function takePhoto() {
+
+            if (!video.videoWidth) {
+                return;
+            }
+
+
+            canvas.width =
+                video.videoWidth;
+
+
+            canvas.height =
+                video.videoHeight;
+
+
+            context.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            originalPhoto =
+                context.getImageData(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+
+            drawingHistory = [];
+
+
+            context.lineCap =
+                "round";
+
+
+            context.lineJoin =
+                "round";
+
+
+            video.style.display =
+                "none";
+
+
+            canvas.style.display =
+                "block";
+
+
+            takePhotoBtn.style.display =
+                "none";
+
+
+            retakeBtn.style.display =
+                "inline-block";
+
+
+            undoBtn.style.display =
+                "inline-block";
+
+
+            clearBtn.style.display =
+                "inline-block";
+
+
+            downloadBtn.style.display =
+                "inline-block";
+
+
+            drawingTools.style.display =
+                "flex";
+
+
+            stopCamera();
+
+        }
+
+
+        /* =====================================
+           ARRÊT CAMÉRA
+           ===================================== */
+
+        function stopCamera() {
+
+            if (!cameraStream) {
+                return;
+            }
+
+
+            cameraStream
+                .getTracks()
+                .forEach(
+                    track => track.stop()
+                );
+
+
+            cameraStream = null;
+
+        }
+
+
+        /* =====================================
+           COORDONNÉES DU POINTEUR
+           ===================================== */
+
+        function getPointerPosition(event) {
+
+            const rectangle =
+                canvas.getBoundingClientRect();
+
+
+            return {
+
+                x:
+                    (
+                        event.clientX -
+                        rectangle.left
+                    )
+                    *
+                    canvas.width
+                    /
+                    rectangle.width,
+
+
+                y:
+                    (
+                        event.clientY -
+                        rectangle.top
+                    )
+                    *
+                    canvas.height
+                    /
+                    rectangle.height
+
+            };
+
+        }
+
+
+        /* =====================================
+           DÉBUT DU TRACÉ
+           ===================================== */
+
+        canvas.addEventListener(
+            "pointerdown",
+            event => {
+
+                isDrawing = true;
+
+
+                drawingHistory.push(
+                    context.getImageData(
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    )
+                );
+
+
+                const position =
+                    getPointerPosition(event);
+
+
+                context.beginPath();
+
+
+                context.moveTo(
+                    position.x,
+                    position.y
+                );
+
+
+                if (canvas.setPointerCapture) {
+
+                    canvas.setPointerCapture(
+                        event.pointerId
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =====================================
+           TRACÉ
+           ===================================== */
+
+        canvas.addEventListener(
+            "pointermove",
+            event => {
+
+                if (!isDrawing) {
+                    return;
+                }
+
+
+                const position =
+                    getPointerPosition(event);
+
+
+                context.strokeStyle =
+                    currentColor;
+
+
+                context.lineWidth =
+                    Math.max(
+                        4,
+                        canvas.width / 250
+                    );
+
+
+                context.lineTo(
+                    position.x,
+                    position.y
+                );
+
+
+                context.stroke();
+
+            }
+        );
+
+
+        /* =====================================
+           FIN DU TRACÉ
+           ===================================== */
+
+        function stopDrawing() {
+
+            isDrawing = false;
+
+
+            context.closePath();
+
+        }
+
+
+        canvas.addEventListener(
+            "pointerup",
+            stopDrawing
+        );
+
+
+        canvas.addEventListener(
+            "pointercancel",
+            stopDrawing
+        );
+
+
+        /* =====================================
+           ANNULER DERNIER TRACÉ
+           ===================================== */
+
+        function undoDrawing() {
+
+            if (
+                drawingHistory.length === 0
+            ) {
+                return;
+            }
+
+
+            const previousState =
+                drawingHistory.pop();
+
+
+            context.putImageData(
+                previousState,
+                0,
+                0
+            );
+
+        }
+
+
+        /* =====================================
+           EFFACER LES TRACÉS
+           ===================================== */
+
+        function clearDrawings() {
+
+            if (!originalPhoto) {
+                return;
+            }
+
+
+            context.putImageData(
+                originalPhoto,
+                0,
+                0
+            );
+
+
+            drawingHistory = [];
+
+        }
+
+
+        /* =====================================
+           REPRENDRE LA PHOTO
+           ===================================== */
+
+        async function retakePhoto() {
+
+            originalPhoto = null;
+
+            drawingHistory = [];
+
+
+            context.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            canvas.style.display =
+                "none";
+
+
+            video.style.display =
+                "block";
+
+
+            retakeBtn.style.display =
+                "none";
+
+
+            undoBtn.style.display =
+                "none";
+
+
+            clearBtn.style.display =
+                "none";
+
+
+            downloadBtn.style.display =
+                "none";
+
+
+            drawingTools.style.display =
+                "none";
+
+
+            takePhotoBtn.style.display =
+                "inline-block";
+
+
+            takePhotoBtn.disabled =
+                true;
+
+
+            await startCamera();
+
+        }
+
+
+        /* =====================================
+           COULEUR
+           ===================================== */
+
+        colorButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        currentColor =
+                            button.dataset.color;
+
+
+                        colorButtons.forEach(
+                            item => {
+                                item.classList.remove(
+                                    "active"
+                                );
+                            }
+                        );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================
+           TÉLÉCHARGEMENT
+           ===================================== */
+
+        function downloadImage() {
+
+            const link =
+                document.createElement("a");
+
+
+            link.download =
+                "releve-fontaine.png";
+
+
+            link.href =
+                canvas.toDataURL(
+                    "image/png"
+                );
+
+
+            link.click();
+
+        }
+
+
+        /* =====================================
+           ÉVÉNEMENTS
+           ===================================== */
+
+        startCameraBtn.addEventListener(
+            "click",
+            startCamera
+        );
+
+
+        takePhotoBtn.addEventListener(
+            "click",
+            takePhoto
+        );
+
+
+        retakeBtn.addEventListener(
+            "click",
+            retakePhoto
+        );
+
+
+        undoBtn.addEventListener(
+            "click",
+            undoDrawing
+        );
+
+
+        clearBtn.addEventListener(
+            "click",
+            clearDrawings
+        );
+
+
+        downloadBtn.addEventListener(
+            "click",
+            downloadImage
+        );
+
+
+        /* =====================================
+           NETTOYAGE
+           ===================================== */
+
+        window.addEventListener(
+            "beforeunload",
+            stopCamera
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
