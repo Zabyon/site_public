@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La Relique Impériale</title>
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-light: #e5c158;
+            --gold-dark: #8c6d2d;
+            --imperial-red: #6b1414;
+            --imperial-blue: #121c2b;
+            --parchment: #f3ecd9;
+            --parchment-light: #fffaf0;
+            --parchment-dark: #d9c69e;
+            --ink: #21160d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 25px 12px;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            color: var(--ink);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #26354b 0%,
+                    #121c2b 60%,
+                    #080e17 100%
+                );
+        }
+
+        /* =====================================================
+           DOCUMENT PARCHEMIN
+        ===================================================== */
+
+        .document-wrapper {
+            position: relative;
+
+            width: 100%;
+            max-width: 900px;
+
+            padding: 45px 38px 35px;
+
+            overflow: hidden;
+
+            border-radius: 4px;
+
+            background-color: var(--parchment);
+
+            background-image:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(255, 255, 255, 0.90) 0%,
+                    rgba(255, 250, 235, 0.80) 45%,
+                    rgba(228, 211, 174, 0.65) 100%
+                );
+
+            box-shadow:
+                0 0 0 10px #1d293c,
+                0 0 0 12px var(--gold),
+                0 0 0 18px #101827,
+                0 20px 55px rgba(0, 0, 0, 0.75);
+        }
+
+        .document-wrapper::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(165, 125, 60, 0.08),
+                    transparent 22%
+                ),
+                radial-gradient(
+                    circle at 85% 75%,
+                    rgba(165, 125, 60, 0.07),
+                    transparent 25%
+                );
+        }
+
+        /* =====================================================
+           ANGLES DÉCORATIFS
+        ===================================================== */
+
+        .corner-decoration {
+            position: absolute;
+            z-index: 2;
+
+            width: 42px;
+            height: 42px;
+
+            border: 3px solid var(--gold);
+
+            pointer-events: none;
+        }
+
+        .top-left {
+            top: 18px;
+            left: 18px;
+
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .top-right {
+            top: 18px;
+            right: 18px;
+
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bottom-left {
+            bottom: 18px;
+            left: 18px;
+
+            border-right: none;
+            border-top: none;
+        }
+
+        .bottom-right {
+            right: 18px;
+            bottom: 18px;
+
+            border-left: none;
+            border-top: none;
+        }
+
+        /* =====================================================
+           EN-TÊTE
+        ===================================================== */
+
+        header {
+            position: relative;
+            z-index: 1;
+
+            margin-bottom: 32px;
+            padding-bottom: 25px;
+
+            text-align: center;
+
+            border-bottom: 2px solid var(--gold-dark);
+        }
+
+        .imperial-header {
+            margin-bottom: 15px;
+
+            color: var(--imperial-red);
+
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            line-height: 1.5;
+
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #17100a;
+
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1.1;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                1px 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .subtitle {
+            margin-top: 12px;
+
+            color: #9a7127;
+
+            font-size: 1.55rem;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* =====================================================
+           CONTENU PRINCIPAL
+        ===================================================== */
+
+        #main-panel {
+            position: relative;
+            z-index: 1;
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* =====================================================
+           TEXTE D'INTRODUCTION
+        ===================================================== */
+
+        #intro-text {
+            width: 100%;
+
+            margin-bottom: 30px;
+            padding: 25px 30px;
+
+            color: #28190e;
+
+            font-size: 1.18rem;
+            font-style: italic;
+            font-weight: bold;
+            line-height: 1.6;
+
+            text-align: center;
+
+            border: 2px dashed var(--gold-dark);
+            border-radius: 3px;
+
+            background:
+                rgba(246, 237, 214, 0.58);
+
+            box-shadow:
+                inset 0 0 25px rgba(139, 109, 45, 0.05);
+        }
+
+        /* =====================================================
+           VISUALISEUR STL
+        ===================================================== */
+
+        #viewer-container {
+            position: relative;
+
+            width: 100%;
+
+            height: min(65vh, 600px);
+            min-height: 420px;
+
+            padding: 7px;
+
+            overflow: hidden;
+
+            border: 2px solid var(--gold-dark);
+
+            background: #2b2118;
+
+            box-shadow:
+                0 8px 22px rgba(80, 55, 25, 0.25),
+                0 0 0 2px rgba(197, 160, 89, 0.30);
+        }
+
+        #viewer {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    #fffaf0 0%,
+                    #f3ecd9 65%,
+                    #dfceaa 100%
+                );
+        }
+
+        #viewer canvas {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        /* =====================================================
+           ÉTAT DU CHARGEMENT
+        ===================================================== */
+
+        #viewer-status {
+            position: absolute;
+            z-index: 5;
+
+            top: 18px;
+            left: 50%;
+
+            max-width: calc(100% - 36px);
+
+            padding: 10px 18px;
+
+            color: #4d351d;
+
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1.4;
+
+            text-align: center;
+            text-transform: uppercase;
+
+            border: 1px solid var(--gold-dark);
+            border-radius: 3px;
+
+            background:
+                rgba(255, 250, 240, 0.92);
+
+            box-shadow:
+                0 3px 10px rgba(80, 55, 25, 0.15);
+
+            transform: translateX(-50%);
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.3s,
+                visibility 0.3s;
+        }
+
+        #viewer-status.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #viewer-status.error {
+            color: #ffffff;
+
+            border-color: #4b0d0d;
+
+            background: rgba(107, 20, 20, 0.94);
+        }
+
+        /* =====================================================
+           QUESTION
+        ===================================================== */
+
+        #question-section {
+            width: 100%;
+
+            margin-top: 32px;
+            padding: 25px 20px;
+
+            text-align: center;
+
+            border-top: 1px dashed var(--gold-dark);
+            border-bottom: 1px dashed var(--gold-dark);
+
+            background:
+                rgba(226, 211, 179, 0.28);
+        }
+
+        #question-section::before {
+            content: "Question impériale";
+
+            display: block;
+
+            margin-bottom: 13px;
+
+            color: var(--imperial-red);
+
+            font-size: 0.78rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+        }
+
+        #question-section h2 {
+            margin: 0 0 22px;
+
+            color: #25170d;
+
+            font-size: 1.3rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           RÉPONSE
+        ===================================================== */
+
+        #answer-container {
+            width: 100%;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            gap: 15px;
+        }
+
+        #answer-input {
+            width: min(100%, 350px);
+
+            padding: 13px 16px;
+
+            color: #28190e;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 1.05rem;
+
+            text-align: center;
+
+            border: 2px solid #9d7b42;
+            border-radius: 4px;
+
+            outline: none;
+
+            background: var(--parchment-light);
+
+            box-shadow:
+                inset 0 2px 8px rgba(100, 70, 35, 0.08);
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+        }
+
+        #answer-input::placeholder {
+            color: #857460;
+        }
+
+        #answer-input:focus {
+            border-color: var(--imperial-red);
+
+            box-shadow:
+                0 0 0 3px rgba(107, 20, 20, 0.10),
+                inset 0 2px 8px rgba(100, 70, 35, 0.06);
+        }
+
+        /* =====================================================
+           BOUTONS
+        ===================================================== */
+
+        button {
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            color: #2c1d11;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            border: 2px solid #654a28;
+            border-radius: 4px;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    #fff7df 0%,
+                    #e5cd9e 100%
+                );
+
+            box-shadow:
+                0 0 0 1px #b99455,
+                0 5px 12px rgba(70, 45, 20, 0.18),
+                inset 0 0 15px rgba(139, 90, 43, 0.16);
+
+            cursor: pointer;
+            user-select: none;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+
+            background: #fff9e9;
+
+            box-shadow:
+                0 0 0 1px var(--gold-light),
+                0 7px 16px rgba(70, 45, 20, 0.25);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* =====================================================
+           FENÊTRE DE RÉSULTAT
+        ===================================================== */
+
+        #result-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(12, 18, 28, 0.78);
+        }
+
+        #result-overlay.show {
+            display: flex;
+        }
+
+        #result-content {
+            position: relative;
+
+            width: min(100%, 520px);
+
+            padding: 42px 35px;
+
+            color: #28190e;
+
+            text-align: center;
+
+            border: 3px solid var(--gold);
+            border-radius: 4px;
+
+            background: var(--parchment);
+
+            background-image:
+                radial-gradient(
+                    ellipse at center,
+                    #fffaf0 0%,
+                    #f5edd9 65%,
+                    #ddc99f 100%
+                );
+
+            box-shadow:
+                0 0 0 8px #1e293b,
+                0 15px 50px rgba(0, 0, 0, 0.55);
+        }
+
+        #result-content h2 {
+            margin: 0;
+
+            color: var(--imperial-red);
+
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        #result-message {
+            margin: 28px 0;
+
+            color: #28190e;
+
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           PIED DE PAGE
+        ===================================================== */
+
+        footer {
+            position: relative;
+            z-index: 1;
+
+            margin-top: 35px;
+            padding-top: 15px;
+
+            color: #6b5b4f;
+
+            font-size: 0.8rem;
+
+            text-align: center;
+
+            border-top: 1px dashed var(--gold-dark);
+        }
+
+        /* =====================================================
+           AFFICHAGE MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 18px 8px;
+            }
+
+            .document-wrapper {
+                padding: 35px 16px 28px;
+            }
+
+            .imperial-header {
+                font-size: 0.72rem;
+                letter-spacing: 3px;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+
+            .subtitle {
+                font-size: 1.15rem;
+            }
+
+            #intro-text {
+                padding: 18px 15px;
+
+                font-size: 1rem;
+            }
+
+            #viewer-container {
+                height: 55vh;
+                min-height: 350px;
+            }
+
+            #viewer-status {
+                top: 12px;
+
+                padding: 8px 12px;
+
+                font-size: 0.68rem;
+            }
+
+            #question-section {
+                padding: 22px 12px;
+            }
+
+            #question-section h2 {
+                font-size: 1.05rem;
+            }
+
+            #answer-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            #answer-input,
+            button {
+                width: 100%;
+            }
+
+            #result-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+
+    <!-- Three.js -->
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <div class="document-wrapper">
+
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <header>
+            <div class="imperial-header">
+                Grande Armée — Mission Impériale
+            </div>
+
+            <h1>
+                La Relique Impériale
+            </h1>
+
+            <div class="subtitle">
+                Ordre d'examen impérial
+            </div>
+        </header>
+
+        <main id="main-panel">
+
+            <div id="intro-text">
+                Dans cette relique se trouve la réponse à la question posée.
+            </div>
+
+            <div id="viewer-container">
+
+                <div id="viewer-status">
+                    Chargement de la relique…
+                </div>
+
+                <div id="viewer"></div>
+
+            </div>
+
+            <div id="question-section">
+
+                <h2>
+                    Quelles sont les années marquantes de la carrière de Napoléon ?
+                </h2>
+
+                <div id="answer-container">
+
+                    <input
+                        type="text"
+                        id="answer-input"
+                        placeholder="Entrez votre réponse..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="submit-btn"
+                    >
+                        Soumettre
+                    </button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer>
+            Service des Reliques Impériales —
+            Bureau des Reconnaissances Historiques
+        </footer>
+
+    </div>
+
+    <div id="result-overlay">
+
+        <div id="result-content">
+
+            <h2 id="result-title">
+                Résultat
+            </h2>
+
+            <div id="result-message"></div>
+
+            <button
+                type="button"
+                id="close-result"
+            >
+                Continuer
+            </button>
+
+        </div>
+
+    </div>
+
+    <script type="module">
+
+        import * as THREE from "three";
+
+        import {
+            STLLoader
+        } from "three/addons/loaders/STLLoader.js";
+
+        import {
+            OrbitControls
+        } from "three/addons/controls/OrbitControls.js";
+
+
+        /* =====================================================
+           CHEMIN DU FICHIER STL
+        ===================================================== */
+
+        const stlPath =
+            "../assets/export.stl";
+
+
+        /* =====================================================
+           ÉLÉMENTS HTML
+        ===================================================== */
+
+        const viewer =
+            document.getElementById(
+                "viewer"
+            );
+
+        const viewerStatus =
+            document.getElementById(
+                "viewer-status"
+            );
+
+
+        /* =====================================================
+           SCÈNE THREE.JS
+        ===================================================== */
+
+        const scene =
+            new THREE.Scene();
+
+        scene.background =
+            new THREE.Color(
+                0xf4ecd9
+            );
+
+
+        /* =====================================================
+           CAMÉRA
+        ===================================================== */
+
+        const camera =
+            new THREE.PerspectiveCamera(
+                45,
+                viewer.clientWidth /
+                    viewer.clientHeight,
+                0.1,
+                10000
+            );
+
+        camera.position.set(
+            100,
+            100,
+            100
+        );
+
+
+        /* =====================================================
+           MOTEUR DE RENDU
+        ===================================================== */
+
+        const renderer =
+            new THREE.WebGLRenderer({
+                antialias: true
+            });
+
+        renderer.setPixelRatio(
+            Math.min(
+                window.devicePixelRatio,
+                2
+            )
+        );
+
+        renderer.setSize(
+            viewer.clientWidth,
+            viewer.clientHeight
+        );
+
+        renderer.outputColorSpace =
+            THREE.SRGBColorSpace;
+
+        viewer.appendChild(
+            renderer.domElement
+        );
+
+
+        /* =====================================================
+           CONTRÔLES
+        ===================================================== */
+
+        const controls =
+            new OrbitControls(
+                camera,
+                renderer.domElement
+            );
+
+        controls.enableDamping =
+            true;
+
+        controls.dampingFactor =
+            0.05;
+
+        controls.enablePan =
+            true;
+
+        controls.enableZoom =
+            true;
+
+        controls.enableRotate =
+            true;
+
+
+        /* =====================================================
+           LUMIÈRES
+        ===================================================== */
+
+        const hemisphereLight =
+            new THREE.HemisphereLight(
+                0xfff8e7,
+                0x8c7045,
+                2.8
+            );
+
+        scene.add(
+            hemisphereLight
+        );
+
+
+        const directionalLight =
+            new THREE.DirectionalLight(
+                0xfff4d6,
+                2.7
+            );
+
+        directionalLight.position.set(
+            100,
+            200,
+            150
+        );
+
+        scene.add(
+            directionalLight
+        );
+
+
+        const secondaryLight =
+            new THREE.DirectionalLight(
+                0xffe3a4,
+                1.1
+            );
+
+        secondaryLight.position.set(
+            -120,
+            70,
+            -100
+        );
+
+        scene.add(
+            secondaryLight
+        );
+
+
+        /* =====================================================
+           GRILLE
+        ===================================================== */
+
+        const grid =
+            new THREE.GridHelper(
+                500,
+                20,
+                0xb68b3d,
+                0xd8c79f
+            );
+
+        grid.material.opacity =
+            0.28;
+
+        grid.material.transparent =
+            true;
+
+        scene.add(
+            grid
+        );
+
+
+        /* =====================================================
+           CHARGEMENT DU STL
+        ===================================================== */
+
+        const loader =
+            new STLLoader();
+
+        let currentMesh =
+            null;
+
+
+        function afficherSTL(url) {
+
+            viewerStatus.textContent =
+                "Chargement de la relique…";
+
+            viewerStatus.classList.remove(
+                "hidden",
+                "error"
+            );
+
+
+            loader.load(
+
+                url,
+
+
+                /* Chargement réussi */
+
+                function (geometry) {
+
+                    if (currentMesh) {
+
+                        scene.remove(
+                            currentMesh
+                        );
+
+                        currentMesh
+                            .geometry
+                            .dispose();
+
+                        currentMesh
+                            .material
+                            .dispose();
+
+                    }
+
+
+                    geometry
+                        .computeVertexNormals();
+
+                    geometry
+                        .center();
+
+                    geometry
+                        .computeBoundingBox();
+
+                    geometry
+                        .computeBoundingSphere();
+
+
+                    const material =
+                        new THREE.MeshStandardMaterial({
+
+                            color:
+                                0xc59a51,
+
+                            roughness:
+                                0.42,
+
+                            metalness:
+                                0.38,
+
+                            side:
+                                THREE.DoubleSide
+
+                        });
+
+
+                    currentMesh =
+                        new THREE.Mesh(
+                            geometry,
+                            material
+                        );
+
+
+                    /*
+                     * Pose le modèle sur la grille.
+                     */
+
+                    if (
+                        geometry.boundingBox
+                    ) {
+
+                        const minimumY =
+                            geometry
+                                .boundingBox
+                                .min
+                                .y;
+
+                        currentMesh.position.y =
+                            -minimumY;
+
+                    }
+
+
+                    scene.add(
+                        currentMesh
+                    );
+
+
+                    /*
+                     * Cadrage automatique.
+                     */
+
+                    const radius =
+                        geometry
+                            .boundingSphere
+                            ?.radius || 1;
+
+
+                    camera.position.set(
+                        radius * 1.7,
+                        radius * 1.3,
+                        radius * 2.2
+                    );
+
+
+                    camera.near =
+                        Math.max(
+                            radius / 1000,
+                            0.01
+                        );
+
+
+                    camera.far =
+                        Math.max(
+                            radius * 100,
+                            1000
+                        );
+
+
+                    camera
+                        .updateProjectionMatrix();
+
+
+                    controls.target.set(
+                        0,
+                        radius * 0.25,
+                        0
+                    );
+
+
+                    controls.minDistance =
+                        radius * 0.25;
+
+
+                    controls.maxDistance =
+                        radius * 10;
+
+
+                    controls.update();
+
+
+                    /*
+                     * Adapte la grille à la taille du STL.
+                     */
+
+                    grid.scale.setScalar(
+                        Math.max(
+                            radius / 100,
+                            0.1
+                        )
+                    );
+
+
+                    viewerStatus.textContent =
+                        "Relique chargée";
+
+
+                    window.setTimeout(
+                        function () {
+
+                            viewerStatus
+                                .classList
+                                .add(
+                                    "hidden"
+                                );
+
+                        },
+                        1000
+                    );
+
+                },
+
+
+                /* Progression du chargement */
+
+                function (progressEvent) {
+
+                    if (
+                        progressEvent.lengthComputable
+                    ) {
+
+                        const percentage =
+                            Math.round(
+                                progressEvent.loaded /
+                                progressEvent.total *
+                                100
+                            );
+
+
+                        viewerStatus.textContent =
+                            "Chargement de la relique : " +
+                            percentage +
+                            " %";
+
+                    }
+
+                },
+
+
+                /* Erreur de chargement */
+
+                function (error) {
+
+                    console.error(
+                        "Erreur de chargement STL :",
+                        error
+                    );
+
+
+                    viewerStatus.textContent =
+                        "Impossible de charger ../assets/export.stl";
+
+
+                    viewerStatus
+                        .classList
+                        .add(
+                            "error"
+                        );
+
+                }
+
+            );
+
+        }
+
+
+        /*
+         * Chargement automatique du fichier :
+         *
+         * ../assets/export.stl
+         */
+
+        afficherSTL(
+            stlPath
+        );
+
+
+        /* =====================================================
+           REDIMENSIONNEMENT
+        ===================================================== */
+
+        function resizeViewer() {
+
+            const width =
+                viewer.clientWidth;
+
+            const height =
+                viewer.clientHeight;
+
+
+            if (
+                width === 0 ||
+                height === 0
+            ) {
+
+                return;
+
+            }
+
+
+            camera.aspect =
+                width /
+                height;
+
+
+            camera
+                .updateProjectionMatrix();
+
+
+            renderer.setSize(
+                width,
+                height
+            );
+
+        }
+
+
+        window.addEventListener(
+            "resize",
+            resizeViewer
+        );
+
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
+        function animate() {
+
+            requestAnimationFrame(
+                animate
+            );
+
+            controls.update();
+
+            renderer.render(
+                scene,
+                camera
+            );
+
+        }
+
+
+        animate();
+
+
+        /* =====================================================
+           VALIDATION DE LA RÉPONSE
+        ===================================================== */
+
+        const answerInput =
+            document.getElementById(
+                "answer-input"
+            );
+
+        const submitButton =
+            document.getElementById(
+                "submit-btn"
+            );
+
+        const resultOverlay =
+            document.getElementById(
+                "result-overlay"
+            );
+
+        const resultTitle =
+            document.getElementById(
+                "result-title"
+            );
+
+        const resultMessage =
+            document.getElementById(
+                "result-message"
+            );
+
+        const closeResult =
+            document.getElementById(
+                "close-result"
+            );
+
+
+        const correctAnswer =
+            "1814";
+
+
+        function submitAnswer() {
+
+            const answer =
+                answerInput
+                    .value
+                    .trim();
+
+
+            if (
+                answer ===
+                correctAnswer
+            ) {
+
+                resultTitle.textContent =
+                    "Réponse validée";
+
+                resultTitle.style.color =
+                    "#8c6d2d";
+
+                resultMessage.innerHTML =
+                    "La réponse est correcte.<br><br>" +
+                    "<strong>1814</strong>";
+
+            } else {
+
+                resultTitle.textContent =
+                    "Réponse incorrecte";
+
+                resultTitle.style.color =
+                    "#6b1414";
+
+                resultMessage.textContent =
+                    "Cette réponse ne permet pas de résoudre l'énigme.";
+
+            }
+
+
+            resultOverlay
+                .classList
+                .add(
+                    "show"
+                );
+
+        }
+
+
+        submitButton.addEventListener(
+            "click",
+            submitAnswer
+        );
+
+
+        answerInput.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    submitAnswer();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           FERMETURE DE LA FENÊTRE DE RÉSULTAT
+        ===================================================== */
+
+        function fermerResultat() {
+
+            resultOverlay
+                .classList
+                .remove(
+                    "show"
+                );
+
+            answerInput.focus();
+
+        }
+
+
+        closeResult.addEventListener(
+            "click",
+            fermerResultat
+        );
+
+
+        resultOverlay.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    resultOverlay
+                ) {
+
+                    fermerResultat();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    resultOverlay.classList.contains(
+                        "show"
+                    )
+                ) {
+
+                    fermerResultat();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           NETTOYAGE THREE.JS
+        ===================================================== */
+
+        window.addEventListener(
+            "beforeunload",
+            function () {
+
+                controls.dispose();
+
+                renderer.dispose();
+
+                grid.geometry.dispose();
+
+                grid.material.dispose();
+
+
+                if (
+                    currentMesh
+                ) {
+
+                    currentMesh
+                        .geometry
+                        .dispose();
+
+                    currentMesh
+                        .material
+                        .dispose();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
