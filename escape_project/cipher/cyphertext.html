@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographe Impérial - Saint-Vallier-de-Thiey</title>
+    
+    <!-- Polices officielles de la charte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-light: #e5c158;
+            --gold-dark: #8c6d2d;
+            --imperial-blue: #121c2b;
+            --imperial-red: #6b1414;
+            --parchment-bg: #f2ebd9;
+            --parchment-border: #3a2e2b;
+            --text-color: #2b2118;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--imperial-blue);
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(30, 45, 66, 0.8) 0%, rgba(10, 15, 23, 0.95) 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c5a059' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M30 0l5 10 10-5-5 10 10 5-10 5 5 10-10-5-5 10-5-10-10 5 5-10-10-5 10-5-5-10 10 5z'/%3E%3C/g%3E%3C/svg%3E");
+            color: var(--text-color);
+            font-family: 'Playfair Display', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+        }
+
+        /* Frame container for the document */
+        .document-wrapper {
+            position: relative;
+            max-width: 850px;
+            width: 100%;
+            background: var(--parchment-bg);
+            background-image: 
+                radial-gradient(ellipse at center, rgba(255,255,255,0.4) 0%, rgba(210,190,150,0.2) 70%, rgba(160,130,90,0.4) 100%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.03' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'/%3E%3C/svg%3E");
+            padding: 40px 30px;
+            box-shadow: 
+                0 0 0 10px #1e293b,
+                0 0 0 12px var(--gold),
+                0 0 0 18px #0f172a,
+                0 20px 50px rgba(0,0,0,0.8);
+            border-radius: 4px;
+        }
+
+        /* Gold Corner Embellishments */
+        .corner-decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gold);
+            pointer-events: none;
+        }
+        .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+        .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+        .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--gold-dark);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .imperial-header {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            color: var(--imperial-red);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: #1a110b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        .subtitle {
+            font-family: 'Tangerine', cursive;
+            font-size: 2.2rem;
+            color: var(--gold-dark);
+            margin-top: -5px;
+            font-weight: 700;
+        }
+
+        /* Cadre de la Roue César */
+        .cipher-wheel-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            border: 6px solid #2b2118;
+            outline: 2px solid var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background-color: #e2d7c3;
+            touch-action: none;
+            overflow: hidden;
+        }
+
+        #caesarWheelSvg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: sepia(0.2) contrast(1.05);
+        }
+
+        /* Repère fixe en haut de la roue */
+        .wheel-pointer {
+            position: absolute;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 16px solid var(--imperial-red);
+            z-index: 10;
+            filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5));
+        }
+
+        /* Style des textes SVG de la roue */
+        .ring-text {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            user-select: none;
+        }
+        
+        .outer-text {
+            fill: #1a110b;
+            font-size: 15px;
+        }
+
+        .inner-text {
+            fill: var(--imperial-red);
+            font-size: 14px;
+        }
+
+        .wheel-center-label {
+            font-family: 'Cinzel', serif;
+            font-size: 9px;
+            fill: var(--gold-dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-anchor: middle;
+        }
+
+        /* Contrôles de rotation */
+        .wheel-controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: #e8d8b7;
+            border: 1px solid #5c4428;
+            color: #2c1d11;
+            padding: 6px 14px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            background: #f0e2c3;
+            border-color: var(--gold-dark);
+        }
+
+        .shift-indicator {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--imperial-red);
+            font-weight: 700;
+            text-align: center;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* Section du Mot à Déchiffrer */
+        .cipher-box {
+            background: rgba(226, 215, 195, 0.6);
+            border: 2px dashed var(--gold-dark);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cipher-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #5c4428;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .encrypted-word {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            color: var(--imperial-red);
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.7);
+        }
+
+        .live-preview {
+            margin-top: 10px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #3a2e2b;
+            font-size: 1.1rem;
+        }
+
+        .live-preview span {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-style: normal;
+            color: #1a110b;
+            letter-spacing: 3px;
+        }
+
+        /* Zone de Soumission */
+        .submission-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 4px;
+            background: #fbf8f0;
+            border: 2px solid #5c4428;
+            border-radius: 4px;
+            color: #1a110b;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .answer-input:focus {
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 5px rgba(197, 160, 89, 0.5), inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Bouton Parchemin */
+        .parchment-btn {
+            position: relative;
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #2c1d11;
+            text-decoration: none;
+            background: #e8d8b7;
+            background-image: radial-gradient(ellipse at center, #f4e8c1 0%, #d8be91 100%);
+            border: 2px solid #5c4428;
+            border-radius: 4px;
+            box-shadow: 
+                0 0 0 1px #a88956,
+                0 8px 15px rgba(0,0,0,0.3),
+                inset 0 0 15px rgba(139, 90, 43, 0.3);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: center;
+            user-select: none;
+        }
+
+        .parchment-btn::before, .parchment-btn::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            bottom: -6px;
+            width: 10px;
+            background: linear-gradient(to right, #8c6d2d, #fcf6ba, #8c6d2d);
+            border: 1px solid #3a2e2b;
+            border-radius: 3px;
+        }
+
+        .parchment-btn::before { left: -6px; }
+        .parchment-btn::after { right: -6px; }
+
+        .parchment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 0 1px var(--gold-light),
+                0 12px 20px rgba(0,0,0,0.4),
+                inset 0 0 20px rgba(139, 90, 43, 0.1);
+            color: #000;
+            background: #f0e2c3;
+        }
+
+        .parchment-btn:active {
+            transform: translateY(1px);
+            box-shadow: 
+                0 0 0 1px #8c6d2d,
+                0 4px 8px rgba(0,0,0,0.3),
+                inset 0 0 25px rgba(139, 90, 43, 0.5);
+        }
+
+        /* Zone de Message de Résultat */
+        #resultFeedback {
+            margin-top: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            min-height: 30px;
+        }
+
+        .success-msg {
+            color: #1b5e20;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .error-msg {
+            color: var(--imperial-red);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        footer {
+            margin-top: 35px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6b5b4f;
+            border-top: 1px dashed var(--gold-dark);
+            padding-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .document-wrapper { padding: 25px 15px; }
+            h1 { font-size: 1.5rem; }
+            .subtitle { font-size: 1.8rem; }
+            .encrypted-word { font-size: 1.7rem; letter-spacing: 4px; }
+            .parchment-btn { font-size: 0.95rem; padding: 14px 25px; }
+            .wheel-container { max-width: 310px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-wrapper">
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <header>
+            <div class="imperial-header">Grande Armée — État-Major Général</div>
+            <h1>Décodeur Dépêche Secrète</h1>
+            <div class="subtitle">Chiffre du Général Napoléon</div>
+        </header>
+
+        <main>
+            <!-- SECTION ROUE CRANTÉE -->
+            <div class="cipher-wheel-section">
+                <div class="wheel-container" id="wheelContainer">
+                    <div class="wheel-pointer"></div>
+                    <svg id="caesarWheelSvg" viewBox="-200 -200 400 400">
+                        <defs>
+                            <!-- Graduations dorées décoratives -->
+                            <pattern id="innerGearPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+                                <path d="M 0 10 L 10 0 M 0 0 L 10 10" stroke="#c5a059" stroke-width="0.5" opacity="0.1"/>
+                            </pattern>
+                        </defs>
+
+                        <!-- ROUE EXTÉRIEURE (FIXE - TEXTE CHIFFRÉ) -->
+                        <g id="outerWheel">
+                            <!-- Couronne Extérieure -->
+                            <circle cx="0" cy="0" r="192" fill="#2b2118"/>
+                            <circle cx="0" cy="0" r="188" fill="#d9ccb0" stroke="#8c6d2d" stroke-width="2"/>
+                            <circle cx="0" cy="0" r="135" fill="none" stroke="#5c4428" stroke-width="1.5"/>
+                            
+                            <!-- Lettres Extérieures (Placées circulairement) -->
+                            <g id="outerLetters"></g>
+                        </g>
+
+                        <!-- ROUE INTÉRIEURE (MOBILE - TEXTE CLAIR) -->
+                        <g id="innerWheel">
+                            <!-- Fond de la Roue Intérieure -->
+                            <circle cx="0" cy="0" r="134" fill="#eddcb7" stroke="#8c6d2d" stroke-width="2"/>
+                            <circle cx="0" cy="0" r="80" fill="#dfcaa2" stroke="#5c4428" stroke-width="1"/>
+                            
+                            <!-- Centre décoratif -->
+                            <circle cx="0" cy="0" r="75" fill="#121c2b" stroke="#c5a059" stroke-width="2"/>
+                            <circle cx="0" cy="0" r="71" fill="none" stroke="#c5a059" stroke-width="0.8" stroke-dasharray="3,3"/>
+                            
+                            <!-- Symbole Central -->
+                            <text x="0" y="-12" class="wheel-center-label">ÉTAT-MAJOR</text>
+                            <text x="0" y="5" font-family="'Cinzel', serif" font-size="22" fill="#c5a059" text-anchor="middle" font-weight="bold">N</text>
+                            <text x="0" y="22" class="wheel-center-label">AN X</text>
+                            
+                            <!-- Axe central -->
+                            <circle cx="0" cy="0" r="6" fill="#8c6d2d" stroke="#fcf6ba" stroke-width="1"/>
+
+                            <!-- Lettres Intérieures -->
+                            <g id="innerLetters"></g>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Contrôles de la roue -->
+                <div class="wheel-controls">
+                    <button type="button" class="control-btn" id="rotateCcwBtn" title="Pivoter à gauche">↺ -1</button>
+                    <button type="button" class="control-btn" id="resetWheelBtn">Aligner A-A</button>
+                    <button type="button" class="control-btn" id="rotateCwBtn" title="Pivoter à droite">+1 ↻</button>
+                </div>
+                <div class="shift-indicator" id="shiftIndicator">Décalage : 0 (A = A)</div>
+            </div>
+
+            <!-- MOT À DÉCHIFFRER & TRADUCTION -->
+            <div class="cipher-box">
+                <div class="cipher-label">Mot Chiffré Intercepté</div>
+                <!-- ORNITHOLOGIE chiffré avec décalage +5 -->
+                <div class="encrypted-word" id="encryptedWordDisplay">TWSITHTQTLNJ</div>
+                
+                <div class="live-preview">
+                    Décodage selon la roue : <span id="liveDecodedText">ORNITHOLOGIE</span>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE DE SOUMISSION -->
+            <form id="cipherForm" class="submission-form" onsubmit="return false;">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="userAnswer" 
+                        class="answer-input" 
+                        placeholder="VOTRE RÉPONSE..." 
+                        autocomplete="off"
+                        spellcheck="false"
+                        required
+                    />
+                </div>
+
+                <button type="submit" class="parchment-btn" id="dispatchBtn">
+                    Transmettre la réponse
+                </button>
+            </form>
+
+            <div id="resultFeedback"></div>
+        </main>
+
+        <footer>
+            Service Cartographique Impérial — Répertoire Tactique & Cryptographique
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+            const TARGET_WORD = "ORNITHOLOGIE";
+            const ENCRYPTED_WORD = "TWSITHTQTLNJ"; // +5 décalage
+            
+            let currentShift = 0; // Décalage actuel en pas d'alphabet (0 à 25)
+
+            // Éléments du DOM
+            const outerLettersGroup = document.getElementById('outerLetters');
+            const innerLettersGroup = document.getElementById('innerLetters');
+            const innerWheelGroup = document.getElementById('innerWheel');
+            const wheelContainer = document.getElementById('wheelContainer');
+            const shiftIndicator = document.getElementById('shiftIndicator');
+            const liveDecodedText = document.getElementById('liveDecodedText');
+            const userAnswerInput = document.getElementById('userAnswer');
+            const cipherForm = document.getElementById('cipherForm');
+            const dispatchBtn = document.getElementById('dispatchBtn');
+            const resultFeedback = document.getElementById('resultFeedback');
+
+            // 1. Génération des Lettres sur la Roue SVG
+            function buildWheelLetters() {
+                const total = 26;
+                const angleStep = 360 / total;
+
+                // Roue Extérieure (Fixe) : R = 162
+                const outerRadius = 162;
+                ALPHABET.forEach((letter, i) => {
+                    const angle = i * angleStep;
+                    const rad = (angle - 90) * (Math.PI / 180);
+                    const x = outerRadius * Math.cos(rad);
+                    const y = outerRadius * Math.sin(rad);
+
+                    const textElem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                    textElem.setAttribute("x", x);
+                    textElem.setAttribute("y", y + 5);
+                    textElem.setAttribute("text-anchor", "middle");
+                    textElem.setAttribute("class", "ring-text outer-text");
+                    textElem.setAttribute("transform", `rotate(${angle}, ${x}, ${y})`);
+                    textElem.textContent = letter;
+                    outerLettersGroup.appendChild(textElem);
+                });
+
+                // Roue Intérieure (Mobile) : R = 107
+                const innerRadius = 107;
+                ALPHABET.forEach((letter, i) => {
+                    const angle = i * angleStep;
+                    const rad = (angle - 90) * (Math.PI / 180);
+                    const x = innerRadius * Math.cos(rad);
+                    const y = innerRadius * Math.sin(rad);
+
+                    const textElem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                    textElem.setAttribute("x", x);
+                    textElem.setAttribute("y", y + 5);
+                    textElem.setAttribute("text-anchor", "middle");
+                    textElem.setAttribute("class", "ring-text inner-text");
+                    textElem.setAttribute("transform", `rotate(${angle}, ${x}, ${y})`);
+                    textElem.textContent = letter;
+                    innerLettersGroup.appendChild(textElem);
+                });
+            }
+
+            // 2. Mettre à jour la Rotation et le Décodage en Direct
+            function updateWheel() {
+                // S'assurer que le décalage reste entre 0 et 25
+                currentShift = (currentShift % 26 + 26) % 26;
+                
+                // Calcul de l'angle (chaque cran = 360/26 deg)
+                const angle = currentShift * (360 / 26);
+                
+                // Rotation géométrique sur l'axe central (0,0)
+                innerWheelGroup.setAttribute("transform", `rotate(${-angle}, 0, 0)`);
+
+                // Affichage du décalage actuel
+                const sourceLetter = ALPHABET[0]; // A
+                const mappedLetter = ALPHABET[(26 - currentShift) % 26]; // Lettre alignée sous A
+                shiftIndicator.textContent = `Décalage : ${currentShift} (A ➔ ${mappedLetter})`;
+
+                // Décodage du mot
+                let decoded = "";
+                for (let char of ENCRYPTED_WORD) {
+                    const idx = ALPHABET.indexOf(char);
+                    if (idx !== -1) {
+                        const newIdx = (idx - currentShift + 26) % 26;
+                        decoded += ALPHABET[newIdx];
+                    } else {
+                        decoded += char;
+                    }
+                }
+                liveDecodedText.textContent = decoded;
+            }
+
+            // 3. Interactions de rotation (Drag & Touch sur la roue)
+            let isDragging = false;
+            let startAngle = 0;
+            let startShift = 0;
+
+            function getCenterCoordinates() {
+                const rect = wheelContainer.getBoundingClientRect();
+                return {
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2
+                };
+            }
+
+            function getAngle(clientX, clientY) {
+                const center = getCenterCoordinates();
+                const dx = clientX - center.x;
+                const dy = clientY - center.y;
+                let deg = Math.atan2(dy, dx) * (180 / Math.PI);
+                return deg;
+            }
+
+            function onPointerDown(e) {
+                isDragging = true;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                startAngle = getAngle(clientX, clientY);
+                startShift = currentShift;
+            }
+
+            function onPointerMove(e) {
+                if (!isDragging) return;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                const currentAngle = getAngle(clientX, clientY);
+                
+                let angleDiff = startAngle - currentAngle;
+                // Conversion de la différence d'angle en nombre de crans d'alphabet
+                const shiftDiff = Math.round(angleDiff / (360 / 26));
+                
+                currentShift = startShift + shiftDiff;
+                updateWheel();
+            }
+
+            function onPointerUp() {
+                isDragging = false;
+            }
+
+            wheelContainer.addEventListener('mousedown', onPointerDown);
+            window.addEventListener('mousemove', onPointerMove);
+            window.addEventListener('mouseup', onPointerUp);
+
+            wheelContainer.addEventListener('touchstart', onPointerDown, { passive: true });
+            window.addEventListener('touchmove', onPointerMove, { passive: true });
+            window.addEventListener('touchend', onPointerUp);
+
+            // Boutons de contrôle
+            document.getElementById('rotateCwBtn').addEventListener('click', () => {
+                currentShift++;
+                updateWheel();
+            });
+
+            document.getElementById('rotateCcwBtn').addEventListener('click', () => {
+                currentShift--;
+                updateWheel();
+            });
+
+            document.getElementById('resetWheelBtn').addEventListener('click', () => {
+                currentShift = 0;
+                updateWheel();
+            });
+
+            // 4. Validation et Soumission
+            cipherForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const val = userAnswerInput.value.trim().toUpperCase();
+
+                if (val === TARGET_WORD) {
+                    dispatchBtn.style.opacity = '0.8';
+                    dispatchBtn.innerText = 'Transmission...';
+                    
+                    resultFeedback.className = "success-msg";
+                    resultFeedback.innerHTML = "🏛️ <strong>Dépêche Authentifiée !</strong> Mot correct. Redirection vers l'État-Major...";
+
+                    setTimeout(() => {
+                        window.location.href = "https://www.google.com";
+                    }, 1800);
+                } else {
+                    resultFeedback.className = "error-msg";
+                    resultFeedback.innerHTML = "❌ <strong>Réponse Incorrecte.</strong> Le mot clé ne correspond pas au registre impérial.";
+                    
+                    userAnswerInput.focus();
+                    userAnswerInput.select();
+                }
+            });
+
+            // Initialisation
+            buildWheelLetters();
+            updateWheel();
+        });
+    </script>
+</body>
+</html>
